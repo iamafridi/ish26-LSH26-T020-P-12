@@ -442,6 +442,37 @@ a {
   border: 1px solid var(--lime-line);
   border-radius: var(--radius);
   background: var(--grad-accent-soft), var(--surface);
+  max-height: 20rem;
+  opacity: 1;
+  overflow: hidden;
+  transition:
+    max-height var(--base) var(--ease),
+    opacity var(--fast) var(--ease),
+    margin var(--base) var(--ease),
+    padding var(--base) var(--ease);
+}
+
+/* Once "Try the demo" is pressed, the card's job is done — the credentials it
+   was showing are already in the form above, about to sign the visitor in, so
+   it collapses out of the way rather than sitting there stating a password that
+   is a moment away from being redundant. */
+.demo-card.is-collapsing {
+  max-height: 0;
+  opacity: 0;
+  padding-block: 0;
+  border-width: 0;
+  margin-top: calc(var(--s-3) * -1);
+}
+
+/* The email and password fields, briefly, while the demo credentials are being
+   typed into them — so filling the form reads as a real (if automated) action
+   rather than a hidden side channel into the account. */
+.field--filled > input {
+  border-color: var(--lime);
+  background: var(--lime-sunk);
+  transition:
+    border-color var(--fast) var(--ease),
+    background var(--fast) var(--ease);
 }
 
 .demo-creds {

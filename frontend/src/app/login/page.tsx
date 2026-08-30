@@ -77,6 +77,9 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  /** True once the demo credentials have been written into the form, so the
+   *  button can say which step it is on. */
+  const [filled, setFilled] = useState(false);
 
   useEffect(() => {
     if (ready && user) router.replace("/dashboard");
@@ -130,7 +133,7 @@ export default function LoginPage() {
 
 
               <form className="stack" onSubmit={submit} noValidate>
-                <label className="field">
+                <label className={`field ${filled ? "field--filled" : ""}`}>
                   <span className="label">Email</span>
                   <input
                     id="email"
@@ -143,7 +146,7 @@ export default function LoginPage() {
                   />
                 </label>
 
-                <label className="field">
+                <label className={`field ${filled ? "field--filled" : ""}`}>
                   <span className="label">Password</span>
                   <input
                     id="password"
@@ -208,7 +211,7 @@ export default function LoginPage() {
                   reviewing this can see every screen populated with real,
                   checkable data without creating an account or typing in a
                   month of expenses first. */}
-              <div className="demo-card">
+              <div className={`demo-card ${filled ? "is-collapsing" : ""}`}>
                 <div className="row-between" style={{ gap: "var(--s-2)" }}>
                   <p className="label" style={{ margin: 0 }}>
                     Reviewer? Use the demo account
@@ -234,19 +237,29 @@ export default function LoginPage() {
                   onClick={async () => {
                     setError(null);
                     setBusy(true);
+
+                    // Fill the visible fields first and give the eye a beat to
+                    // register it. Signing in from a button while the form sits
+                    // empty looks like a different, hidden mechanism; showing
+                    // the credentials land makes it obvious that this is an
+                    // ordinary sign-in anyone could type themselves.
                     setEmail(DEMO_EMAIL);
                     setPassword(DEMO_PASSWORD);
+                    setFilled(true);
+                    await new Promise((resolve) => setTimeout(resolve, 450));
+
                     try {
                       await signIn(DEMO_EMAIL, DEMO_PASSWORD);
                       router.replace("/dashboard");
                     } catch (caught) {
                       setError(readableAuthError(caught));
+                      setFilled(false);
                     } finally {
                       setBusy(false);
                     }
                   }}
                 >
-                  {busy ? "Opening…" : "Open the demo ledger"}
+                  {busy ? (filled ? "Signing in…" : "Filling in…") : "Try the demo"}
                 </button>
 
                 <p className="faint" style={{ fontSize: "var(--t-xs)", margin: 0 }}>
