@@ -1,17 +1,21 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "ES2023",
+    "lib": ["ES2023"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
+    "rootDir": ".",
+    "outDir": "dist",
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "types": ["node", "vitest/globals"],
-    "baseUrl": "."
+    "declaration": false,
+    "sourceMap": true
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts", "eslint.config.mjs"]
+  "include": ["src/**/*", "tests/**/*", "scripts/**/*"]
 }
