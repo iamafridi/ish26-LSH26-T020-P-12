@@ -51,6 +51,12 @@ export function createApp(): Express {
     }),
   );
 
+  // The Render service URL is often opened directly during demos. Send browser
+  // visitors to the web application instead of returning an API-only 404.
+  app.get("/", (_request, response) => {
+    response.redirect(302, origins[0] ?? "https://lsh26-t020-p12-web.vercel.app");
+  });
+
   app.use("/api/v1/health", healthRouter);
   app.use("/api/v1/auth", authRouter);
   app.use("/api/v1/dashboard", dashboardRouter);
