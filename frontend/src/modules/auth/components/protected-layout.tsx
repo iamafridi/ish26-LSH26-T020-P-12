@@ -9,6 +9,7 @@ import { useAuth } from "../hooks/use-auth";
 const navigation = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/expenses", label: "Expenses" },
+  { href: "/receipts", label: "Scan receipt" },
   { href: "/savings-pockets", label: "Savings pockets" },
 ];
 

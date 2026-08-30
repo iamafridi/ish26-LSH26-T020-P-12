@@ -236,6 +236,32 @@ h1 {
 .empty-card strong { color: var(--ink); }
 .empty-card p { margin-bottom: 0; }
 
+.receipt-page { display: grid; gap: 1.5rem; }
+.receipt-page > div:first-child > h1 { max-width: 850px; font-size: clamp(2.4rem, 5vw, 4.4rem); }
+.receipt-page > div:first-child > p:last-child { color: var(--muted); }
+.receipt-grid { display: grid; grid-template-columns: minmax(280px, 0.8fr) minmax(340px, 1.2fr); gap: 1.25rem; align-items: start; }
+.upload-panel,
+.review-panel {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  background: var(--surface);
+}
+.receipt-preview { position: relative; min-height: 360px; overflow: hidden; border: 1px dashed #aab4aa; border-radius: 1rem; background: #eef0e9; }
+.receipt-preview > div { position: absolute; inset: 0; display: grid; place-content: center; gap: 0.45rem; padding: 1.5rem; text-align: center; }
+.receipt-preview span, .file-name, .review-empty p { color: var(--muted); }
+.receipt-image { object-fit: contain; }
+.file-button { display: grid; place-items: center; border: 1px solid var(--primary); border-radius: 999px; padding: 0.8rem 1rem; color: var(--primary); font-weight: 700; cursor: pointer; }
+.file-button input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+.file-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.85rem; text-align: center; }
+.review-panel h2 { margin: 0.35rem 0 0; font-family: Georgia, serif; font-size: 2rem; }
+.review-empty { min-height: 360px; display: grid; place-content: center; text-align: center; }
+.review-empty strong { font-family: Georgia, serif; font-size: 1.6rem; }
+.confidence { color: var(--primary); font-weight: 700; }
+.confidence.warning { color: #9a6714; }
+
 @media (max-width: 760px) {
   .feature-grid, .placeholder-grid { grid-template-columns: 1fr; }
   .app-shell { display: block; padding-bottom: 74px; }
@@ -249,7 +275,7 @@ h1 {
     border-top: 1px solid var(--line);
   }
   .brand, .secondary-button { display: none; }
-  .sidebar nav { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .sidebar nav { display: grid; grid-template-columns: repeat(4, 1fr); }
   .nav-link { padding: 0.65rem 0.3rem; text-align: center; font-size: 0.8rem; }
   .topbar { min-height: 56px; padding: 0 1rem; }
   .page-heading-row { align-items: flex-end; }
@@ -258,6 +284,8 @@ h1 {
   .expense-amount { grid-column: 3; grid-row: 1; }
   .row-actions { grid-column: 2 / -1; }
   .section-heading { align-items: flex-start; }
+  .receipt-grid { grid-template-columns: 1fr; }
+  .receipt-preview { min-height: 300px; }
 }
 
 @media (max-width: 480px) {

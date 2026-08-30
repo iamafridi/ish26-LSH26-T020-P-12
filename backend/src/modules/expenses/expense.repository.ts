@@ -36,8 +36,12 @@ export async function findOwnedExpense(firebaseUid: string, id: string): Promise
   return ExpenseModel.findOne({ _id: id, firebaseUid }).lean<ExpenseDocument>().exec();
 }
 
-export async function createOwnedExpense(firebaseUid: string, input: ExpenseWrite): Promise<ExpenseDocument> {
-  const expense = await ExpenseModel.create({ firebaseUid, ...input, source: "manual" });
+export async function createOwnedExpense(
+  firebaseUid: string,
+  input: ExpenseWrite,
+  source: "manual" | "receipt" = "manual",
+): Promise<ExpenseDocument> {
+  const expense = await ExpenseModel.create({ firebaseUid, ...input, source });
   return expense.toObject() as ExpenseDocument;
 }
 

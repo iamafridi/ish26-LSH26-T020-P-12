@@ -9,6 +9,7 @@ const envSchema = z.object({
   FIREBASE_PROJECT_ID: z.string().min(1, "FIREBASE_PROJECT_ID is required"),
   FIREBASE_CLIENT_EMAIL: z.email("FIREBASE_CLIENT_EMAIL must be valid"),
   FIREBASE_PRIVATE_KEY: z.string().min(1, "FIREBASE_PRIVATE_KEY is required"),
+  OCR_PROVIDER: z.enum(["google-vision"]).default("google-vision"),
 });
 
 export type Environment = z.infer<typeof envSchema>;

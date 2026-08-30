@@ -76,6 +76,10 @@ export async function createExpense(firebaseUid: string, input: ExpenseInput) {
   return serializeExpense(await createOwnedExpense(firebaseUid, toWrite(input)));
 }
 
+export async function createReceiptExpense(firebaseUid: string, input: ExpenseInput) {
+  return serializeExpense(await createOwnedExpense(firebaseUid, toWrite(input), "receipt"));
+}
+
 export async function updateExpense(firebaseUid: string, id: string, input: Partial<ExpenseInput>) {
   const existing = await findOwnedExpense(firebaseUid, id);
   if (!existing) throw new AppError(404, "NOT_FOUND", "Expense not found.");
