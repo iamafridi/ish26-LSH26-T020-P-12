@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Amount } from "@/components/money";
 import { CategoryBars, RunwayBar } from "@/components/charts";
 import { MonthPicker } from "@/components/month-picker";
+import { LoadSampleCase } from "@/components/load-sample-case";
 import { absolute } from "@/lib/money";
 import { currentMonth, monthLabel, useDashboard } from "@/lib/use-dashboard";
 
@@ -67,6 +68,8 @@ export default function DashboardPage() {
                 Scan a receipt
               </Link>
             </div>
+            <hr className="divider" style={{ marginBlock: "var(--s-5)" }} />
+            <LoadSampleCase onLoaded={setMonth} />
           </div>
         ) : (
           <div className="grid grid-sidebar" style={{ marginTop: "var(--s-5)", alignItems: "start" }}>

@@ -6,7 +6,7 @@
   "description": "Personal Ledger Manager API — exact-decimal ledger engine over Express and MongoDB",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && mkdir -p dist/data && cp src/data/p12-public.json dist/data/",
     "start": "node dist/server.js",
     "lint": "eslint src tests scripts",
     "typecheck": "tsc --noEmit",

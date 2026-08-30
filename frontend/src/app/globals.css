@@ -885,6 +885,80 @@ a {
    14  UTILITIES
    -------------------------------------------------------------------------- */
 
+/* -----------------------------------------------------------------------------
+   15  SMALL SCREENS
+   The layout is single-column by default and gains columns at breakpoints, so
+   this section only has to relieve pressure rather than rebuild anything: tighten
+   the generous desktop spacing, let the masthead wrap onto two rows, and stop the
+   three-column bar rows from crushing the label at 390px.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .wrap {
+    padding-inline: var(--s-4);
+  }
+
+  .section {
+    padding-block: var(--s-6);
+  }
+
+  .panel {
+    padding: var(--s-4);
+  }
+
+  /* Wordmark on the first row, the nav scrolling underneath it. */
+  .masthead-inner {
+    flex-wrap: wrap;
+    padding-block: var(--s-2);
+    row-gap: var(--s-2);
+  }
+
+  .masthead-inner .nav {
+    order: 3;
+    width: 100%;
+    margin-inline: calc(var(--s-4) * -1);
+    padding-inline: var(--s-4);
+    border-top: 1px solid var(--rule);
+  }
+
+  /* The label needs a full line of its own before the bar and the figure. */
+  .bar-row {
+    grid-template-columns: 1fr auto;
+    gap: var(--s-2) var(--s-3);
+  }
+
+  .bar-row > :first-child {
+    grid-column: 1 / -1;
+  }
+
+  .runway-legend {
+    gap: var(--s-3);
+  }
+
+  /* A hero figure at 64px overflows a 390px viewport once it passes six digits. */
+  .money--display {
+    font-size: clamp(2rem, 11vw, 2.75rem);
+  }
+
+  .ledger th,
+  .ledger td {
+    padding: var(--s-2);
+  }
+
+  /* Stacked buttons are easier to hit than two half-width ones. */
+  .empty .row .btn {
+    flex: 1 1 100%;
+  }
+}
+
+/* Nothing may push the page sideways. Wide content scrolls inside its own
+   container — see .ledger-scroll — and never the document. */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

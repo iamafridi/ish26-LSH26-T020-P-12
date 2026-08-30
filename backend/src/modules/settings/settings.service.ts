@@ -13,6 +13,8 @@ export const UpdateSettingsSchema = z.object({
 export interface SettingsView {
   dps_annual_rate_percent: string;
   currency: string;
+  /** Present only when a published case has been loaded. */
+  as_of_date?: string;
 }
 
 export async function getSettings(uid: string): Promise<SettingsView> {
@@ -20,6 +22,7 @@ export async function getSettings(uid: string): Promise<SettingsView> {
   return {
     dps_annual_rate_percent: found?.dps_annual_rate_percent ?? DEFAULT_DPS_RATE,
     currency: found?.currency ?? "BDT",
+    ...(found?.as_of_date ? { as_of_date: found.as_of_date } : {}),
   };
 }
 

@@ -16,6 +16,15 @@ const settingsSchema = new Schema(
       default: "8.00",
     },
     currency: { type: String, default: "BDT" },
+    /**
+     * The reference date the forecast should treat as "today".
+     *
+     * Set when a published case is loaded, because a case states its own `today`
+     * (PUB-01 is the 17th of April) and the forecast is only reproducible
+     * against the dataset if that date is used. Absent for an ordinary user, who
+     * gets the real date.
+     */
+    as_of_date: { type: String, match: [/^\d{4}-\d{2}-\d{2}$/, "Bad date."] },
   },
   { timestamps: true, versionKey: false },
 );

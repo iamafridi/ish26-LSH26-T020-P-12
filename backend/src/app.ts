@@ -6,6 +6,7 @@ import rateLimit from "express-rate-limit";
 import { allowedOrigins } from "./config/env.js";
 import { authRouter } from "./modules/auth/auth.routes.js";
 import { dashboardRouter } from "./modules/dashboard/dashboard.routes.js";
+import { demoRouter } from "./modules/demo/demo.routes.js";
 import { expenseRouter } from "./modules/expenses/expense.routes.js";
 import { healthRouter } from "./modules/health/health.routes.js";
 import { pocketRouter } from "./modules/pockets/pocket.routes.js";
@@ -53,6 +54,7 @@ export function createApp(): Express {
   app.use("/api/v1/health", healthRouter);
   app.use("/api/v1/auth", authRouter);
   app.use("/api/v1/dashboard", dashboardRouter);
+  app.use("/api/v1/demo", demoRouter);
   app.use("/api/v1/salaries", salaryRouter);
   app.use("/api/v1/expenses", expenseRouter);
   app.use("/api/v1/savings-pockets", pocketRouter);

@@ -42,7 +42,12 @@ export const DPS_RULE =
  * against a past month would divide that month's spending by today's
  * day-of-month and invent a wild projection.
  */
-function referenceDate(month: string): string {
+function referenceDate(month: string, asOf?: string): string {
+  // A loaded case states its own reference date, and the published figures are
+  // only reproducible against that date. It wins whenever it falls in the month
+  // being viewed.
+  if (asOf && asOf.slice(0, 7) === month) return asOf;
+
   const today = todayInLedgerZone();
   if (today.slice(0, 7) === month) return today;
   if (month < today.slice(0, 7)) return `${month}-${String(daysInMonth(month)).padStart(2, "0")}`;
@@ -73,7 +78,7 @@ export async function buildDashboard(uid: string, month: string): Promise<Dashbo
 
   const ledgerCase: LedgerCase = {
     case_id: `${uid.slice(0, 8)}-${month}`,
-    today: referenceDate(month),
+    today: referenceDate(month, settings.as_of_date),
     months: { last: lastMonth, this: month },
     salary_bdt: salary,
     expenses: expenses.map((expense) => ({
