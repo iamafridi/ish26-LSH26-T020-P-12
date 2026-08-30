@@ -2,15 +2,18 @@
 
 import { useEffect, useState } from "react";
 
-import { currentDhakaMonth } from "@/lib/date";
 import { formatBDT } from "@/lib/format-money";
 import { useAuth } from "@/modules/auth/hooks/use-auth";
 import { fetchSalary, saveSalary } from "../api/salary.api";
 import type { Salary } from "../types/salary.types";
 
-export function SalaryCard() {
+interface SalaryCardProps {
+  month: string;
+  onSaved?: () => void;
+}
+
+export function SalaryCard({ month, onSaved }: SalaryCardProps) {
   const { user } = useAuth();
-  const [month, setMonth] = useState(currentDhakaMonth);
   const [salary, setSalary] = useState<Salary | null>(null);
   const [amount, setAmount] = useState("");
   const [editing, setEditing] = useState(false);
@@ -51,6 +54,7 @@ export function SalaryCard() {
       const response = await saveSalary(month, amount, token);
       setSalary(response.data.salary);
       setEditing(false);
+      onSaved?.();
     } catch (saveError) {
       setError(saveError instanceof Error ? saveError.message : "Unable to save salary.");
     } finally {
@@ -62,7 +66,7 @@ export function SalaryCard() {
     <section className="salary-panel">
       <div className="section-heading">
         <div><span>Monthly salary</span><strong>{loading ? "Loading…" : salary ? formatBDT(salary.amount) : "Not set"}</strong></div>
-        <input aria-label="Salary month" type="month" value={month} onChange={(event) => setMonth(event.target.value)} />
+        <span>{month}</span>
       </div>
       {editing ? (
         <div className="inline-form">

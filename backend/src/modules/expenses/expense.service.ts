@@ -1,4 +1,5 @@
 import { AppError } from "../../shared/errors/app-error.js";
+import { dhakaToday } from "../../shared/dates/month.js";
 import { moneyStringToPaisa, paisaToMoneyString } from "../../shared/money/money.js";
 import type { ExpenseCategory } from "./expense.constants.js";
 import {
@@ -17,15 +18,6 @@ interface ExpenseInput {
   shop: string;
   category: ExpenseCategory;
   note?: string;
-}
-
-function dhakaToday(): string {
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Asia/Dhaka",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(new Date());
 }
 
 function ensureNotFuture(date: string): void {
