@@ -23,7 +23,7 @@ export async function authenticate(
     request.authenticatedUser = {
       uid: decoded.uid,
       ...(decoded.email ? { email: decoded.email } : {}),
-      ...(decoded.name ? { name: decoded.name } : {}),
+      ...(typeof decoded.name === "string" ? { name: decoded.name } : {}),
     };
     next();
   } catch (error) {

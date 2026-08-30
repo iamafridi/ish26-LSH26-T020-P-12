@@ -10,13 +10,18 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-export function getFirebaseAuth(): Auth {
+export function getFirebaseConfigurationError(): string | null {
   const missing = Object.entries(firebaseConfig)
     .filter(([, value]) => !value)
     .map(([key]) => key);
 
-  if (missing.length > 0) {
-    throw new Error(`Firebase is not configured: ${missing.join(", ")}`);
+  return missing.length > 0 ? `Firebase is not configured: ${missing.join(", ")}` : null;
+}
+
+export function getFirebaseAuth(): Auth {
+  const configurationError = getFirebaseConfigurationError();
+  if (configurationError) {
+    throw new Error(configurationError);
   }
 
   const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);

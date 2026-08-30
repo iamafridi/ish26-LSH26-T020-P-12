@@ -8,29 +8,30 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useMemo, useState, type ReactNode } from "react";
 
-import { getFirebaseAuth } from "@/lib/firebase";
+import { getFirebaseAuth, getFirebaseConfigurationError } from "@/lib/firebase";
 import type { AuthContextValue } from "../types/auth.types";
 
 export const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  const initialConfigurationError = getFirebaseConfigurationError();
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [configurationError, setConfigurationError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(initialConfigurationError === null);
+  const configurationError = initialConfigurationError
+    ? "Firebase authentication has not been configured yet."
+    : null;
 
   useEffect(() => {
-    try {
-      const auth = getFirebaseAuth();
-      return onAuthStateChanged(auth, (nextUser) => {
-        setUser(nextUser);
-        setLoading(false);
-      });
-    } catch {
-      setConfigurationError("Firebase authentication has not been configured yet.");
-      setLoading(false);
+    if (initialConfigurationError) {
       return undefined;
     }
-  }, []);
+
+    const auth = getFirebaseAuth();
+    return onAuthStateChanged(auth, (nextUser) => {
+      setUser(nextUser);
+      setLoading(false);
+    });
+  }, [initialConfigurationError]);
 
   const value = useMemo<AuthContextValue>(
     () => ({
