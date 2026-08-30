@@ -1,0 +1,1034 @@
+{
+  "schema_version": "2.2",
+  "problem_id": "P04",
+  "format_note": "## Case format\n```json\n{ \"case_id\": \"PUB-01\",\n  \"stops\": [\"Savar\", \"Nabinagar\", \"Hemayetpur\", \"Gabtoli\"],\n  \"total_fare_bdt\": \"100.01\",\n  \"passengers\": [ {\"id\": \"Arif\", \"board\": 0, \"alight\": 3}, ... ] }\n```\n`board`/`alight` are stop indexes, 0-based. Segment k runs from stop k to stop k+1.",
+  "cases": [
+    {
+      "case_id": "PUB-01",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli"
+      ],
+      "total_fare_bdt": "333.33",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 0,
+          "alight": 1
+        },
+        {
+          "id": "Bithi",
+          "board": 1,
+          "alight": 3
+        },
+        {
+          "id": "Chandan",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Dipa",
+          "board": 2,
+          "alight": 3
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-02",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1"
+      ],
+      "total_fare_bdt": "333.33",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 0,
+          "alight": 2
+        },
+        {
+          "id": "Bithi",
+          "board": 1,
+          "alight": 4
+        },
+        {
+          "id": "Chandan",
+          "board": 3,
+          "alight": 4
+        },
+        {
+          "id": "Dipa",
+          "board": 2,
+          "alight": 4
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-03",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1",
+        "Technical",
+        "Shyamoli"
+      ],
+      "total_fare_bdt": "199.99",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Bithi",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Chandan",
+          "board": 4,
+          "alight": 6
+        },
+        {
+          "id": "Dipa",
+          "board": 1,
+          "alight": 6
+        },
+        {
+          "id": "Emon",
+          "board": 0,
+          "alight": 2
+        },
+        {
+          "id": "Farzana",
+          "board": 0,
+          "alight": 6
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-04",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1",
+        "Technical"
+      ],
+      "total_fare_bdt": "89.95",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Bithi",
+          "board": 4,
+          "alight": 5
+        },
+        {
+          "id": "Chandan",
+          "board": 0,
+          "alight": 5
+        },
+        {
+          "id": "Dipa",
+          "board": 1,
+          "alight": 2
+        },
+        {
+          "id": "Emon",
+          "board": 1,
+          "alight": 2
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-05",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1"
+      ],
+      "total_fare_bdt": "100.01",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Bithi",
+          "board": 1,
+          "alight": 4
+        },
+        {
+          "id": "Chandan",
+          "board": 0,
+          "alight": 2
+        },
+        {
+          "id": "Dipa",
+          "board": 3,
+          "alight": 4
+        },
+        {
+          "id": "Emon",
+          "board": 2,
+          "alight": 4
+        },
+        {
+          "id": "Farzana",
+          "board": 0,
+          "alight": 3
+        },
+        {
+          "id": "Gias",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Hasib",
+          "board": 1,
+          "alight": 3
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-06",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1"
+      ],
+      "total_fare_bdt": "601.01",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Bithi",
+          "board": 3,
+          "alight": 4
+        },
+        {
+          "id": "Chandan",
+          "board": 1,
+          "alight": 2
+        },
+        {
+          "id": "Dipa",
+          "board": 1,
+          "alight": 4
+        },
+        {
+          "id": "Emon",
+          "board": 3,
+          "alight": 4
+        },
+        {
+          "id": "Farzana",
+          "board": 0,
+          "alight": 3
+        },
+        {
+          "id": "Gias",
+          "board": 0,
+          "alight": 3
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-07",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli"
+      ],
+      "total_fare_bdt": "601.01",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 0,
+          "alight": 3
+        },
+        {
+          "id": "Bithi",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Chandan",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Dipa",
+          "board": 1,
+          "alight": 3
+        },
+        {
+          "id": "Emon",
+          "board": 0,
+          "alight": 1
+        },
+        {
+          "id": "Farzana",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Gias",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Hasib",
+          "board": 2,
+          "alight": 3
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-08",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1",
+        "Technical",
+        "Shyamoli",
+        "Asad Gate"
+      ],
+      "total_fare_bdt": "601.01",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 6,
+          "alight": 7
+        },
+        {
+          "id": "Bithi",
+          "board": 3,
+          "alight": 7
+        },
+        {
+          "id": "Chandan",
+          "board": 0,
+          "alight": 7
+        },
+        {
+          "id": "Dipa",
+          "board": 4,
+          "alight": 6
+        },
+        {
+          "id": "Emon",
+          "board": 4,
+          "alight": 7
+        },
+        {
+          "id": "Farzana",
+          "board": 5,
+          "alight": 7
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-09",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli"
+      ],
+      "total_fare_bdt": "120.10",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Bithi",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Chandan",
+          "board": 0,
+          "alight": 2
+        },
+        {
+          "id": "Dipa",
+          "board": 1,
+          "alight": 3
+        },
+        {
+          "id": "Emon",
+          "board": 1,
+          "alight": 2
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-10",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli"
+      ],
+      "total_fare_bdt": "333.33",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 0,
+          "alight": 3
+        },
+        {
+          "id": "Bithi",
+          "board": 1,
+          "alight": 2
+        },
+        {
+          "id": "Chandan",
+          "board": 1,
+          "alight": 3
+        },
+        {
+          "id": "Dipa",
+          "board": 0,
+          "alight": 3
+        },
+        {
+          "id": "Emon",
+          "board": 1,
+          "alight": 2
+        },
+        {
+          "id": "Farzana",
+          "board": 1,
+          "alight": 3
+        },
+        {
+          "id": "Gias",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Hasib",
+          "board": 0,
+          "alight": 2
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-11",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1"
+      ],
+      "total_fare_bdt": "100.01",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 0,
+          "alight": 4
+        },
+        {
+          "id": "Bithi",
+          "board": 1,
+          "alight": 4
+        },
+        {
+          "id": "Chandan",
+          "board": 3,
+          "alight": 4
+        },
+        {
+          "id": "Dipa",
+          "board": 1,
+          "alight": 4
+        },
+        {
+          "id": "Emon",
+          "board": 2,
+          "alight": 3
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-12",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1",
+        "Technical",
+        "Shyamoli"
+      ],
+      "total_fare_bdt": "77.77",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 5,
+          "alight": 6
+        },
+        {
+          "id": "Bithi",
+          "board": 0,
+          "alight": 5
+        },
+        {
+          "id": "Chandan",
+          "board": 4,
+          "alight": 5
+        },
+        {
+          "id": "Dipa",
+          "board": 4,
+          "alight": 6
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-13",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1"
+      ],
+      "total_fare_bdt": "601.01",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 2,
+          "alight": 4
+        },
+        {
+          "id": "Bithi",
+          "board": 0,
+          "alight": 3
+        },
+        {
+          "id": "Chandan",
+          "board": 1,
+          "alight": 2
+        },
+        {
+          "id": "Dipa",
+          "board": 3,
+          "alight": 4
+        },
+        {
+          "id": "Emon",
+          "board": 3,
+          "alight": 4
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-14",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1",
+        "Technical",
+        "Shyamoli"
+      ],
+      "total_fare_bdt": "199.99",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 1,
+          "alight": 4
+        },
+        {
+          "id": "Bithi",
+          "board": 2,
+          "alight": 5
+        },
+        {
+          "id": "Chandan",
+          "board": 5,
+          "alight": 6
+        },
+        {
+          "id": "Dipa",
+          "board": 0,
+          "alight": 1
+        },
+        {
+          "id": "Emon",
+          "board": 5,
+          "alight": 6
+        },
+        {
+          "id": "Farzana",
+          "board": 3,
+          "alight": 6
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-15",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1"
+      ],
+      "total_fare_bdt": "601.01",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 1,
+          "alight": 3
+        },
+        {
+          "id": "Bithi",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Chandan",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Dipa",
+          "board": 1,
+          "alight": 3
+        },
+        {
+          "id": "Emon",
+          "board": 3,
+          "alight": 4
+        },
+        {
+          "id": "Farzana",
+          "board": 1,
+          "alight": 4
+        },
+        {
+          "id": "Gias",
+          "board": 0,
+          "alight": 3
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-16",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1",
+        "Technical"
+      ],
+      "total_fare_bdt": "77.77",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 3,
+          "alight": 5
+        },
+        {
+          "id": "Bithi",
+          "board": 0,
+          "alight": 4
+        },
+        {
+          "id": "Chandan",
+          "board": 4,
+          "alight": 5
+        },
+        {
+          "id": "Dipa",
+          "board": 0,
+          "alight": 5
+        },
+        {
+          "id": "Emon",
+          "board": 4,
+          "alight": 5
+        },
+        {
+          "id": "Farzana",
+          "board": 1,
+          "alight": 3
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-17",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1",
+        "Technical"
+      ],
+      "total_fare_bdt": "89.95",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 3,
+          "alight": 5
+        },
+        {
+          "id": "Bithi",
+          "board": 4,
+          "alight": 5
+        },
+        {
+          "id": "Chandan",
+          "board": 4,
+          "alight": 5
+        },
+        {
+          "id": "Dipa",
+          "board": 0,
+          "alight": 5
+        },
+        {
+          "id": "Emon",
+          "board": 3,
+          "alight": 5
+        },
+        {
+          "id": "Farzana",
+          "board": 1,
+          "alight": 2
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-18",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1",
+        "Technical",
+        "Shyamoli"
+      ],
+      "total_fare_bdt": "300",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 5,
+          "alight": 6
+        },
+        {
+          "id": "Bithi",
+          "board": 3,
+          "alight": 5
+        },
+        {
+          "id": "Chandan",
+          "board": 0,
+          "alight": 6
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-19",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1",
+        "Technical"
+      ],
+      "total_fare_bdt": "601.01",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 1,
+          "alight": 5
+        },
+        {
+          "id": "Bithi",
+          "board": 2,
+          "alight": 4
+        },
+        {
+          "id": "Chandan",
+          "board": 0,
+          "alight": 5
+        },
+        {
+          "id": "Dipa",
+          "board": 1,
+          "alight": 2
+        },
+        {
+          "id": "Emon",
+          "board": 2,
+          "alight": 5
+        },
+        {
+          "id": "Farzana",
+          "board": 4,
+          "alight": 5
+        },
+        {
+          "id": "Gias",
+          "board": 1,
+          "alight": 3
+        },
+        {
+          "id": "Hasib",
+          "board": 4,
+          "alight": 5
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-20",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1",
+        "Technical"
+      ],
+      "total_fare_bdt": "175.25",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 4,
+          "alight": 5
+        },
+        {
+          "id": "Bithi",
+          "board": 2,
+          "alight": 4
+        },
+        {
+          "id": "Chandan",
+          "board": 0,
+          "alight": 4
+        },
+        {
+          "id": "Dipa",
+          "board": 3,
+          "alight": 4
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-21",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1",
+        "Technical"
+      ],
+      "total_fare_bdt": "77.77",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 4,
+          "alight": 5
+        },
+        {
+          "id": "Bithi",
+          "board": 0,
+          "alight": 3
+        },
+        {
+          "id": "Chandan",
+          "board": 0,
+          "alight": 4
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-22",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1",
+        "Technical",
+        "Shyamoli"
+      ],
+      "total_fare_bdt": "333.33",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 1,
+          "alight": 4
+        },
+        {
+          "id": "Bithi",
+          "board": 5,
+          "alight": 6
+        },
+        {
+          "id": "Chandan",
+          "board": 0,
+          "alight": 2
+        },
+        {
+          "id": "Dipa",
+          "board": 1,
+          "alight": 4
+        },
+        {
+          "id": "Emon",
+          "board": 3,
+          "alight": 4
+        },
+        {
+          "id": "Farzana",
+          "board": 0,
+          "alight": 6
+        },
+        {
+          "id": "Gias",
+          "board": 4,
+          "alight": 6
+        },
+        {
+          "id": "Hasib",
+          "board": 0,
+          "alight": 2
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-23",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1",
+        "Technical",
+        "Shyamoli"
+      ],
+      "total_fare_bdt": "333.33",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 4,
+          "alight": 5
+        },
+        {
+          "id": "Bithi",
+          "board": 3,
+          "alight": 5
+        },
+        {
+          "id": "Chandan",
+          "board": 0,
+          "alight": 6
+        },
+        {
+          "id": "Dipa",
+          "board": 0,
+          "alight": 2
+        },
+        {
+          "id": "Emon",
+          "board": 1,
+          "alight": 6
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-24",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli"
+      ],
+      "total_fare_bdt": "500",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 2,
+          "alight": 3
+        },
+        {
+          "id": "Bithi",
+          "board": 1,
+          "alight": 2
+        },
+        {
+          "id": "Chandan",
+          "board": 0,
+          "alight": 1
+        }
+      ]
+    },
+    {
+      "case_id": "PUB-25",
+      "stops": [
+        "Savar",
+        "Nabinagar",
+        "Hemayetpur",
+        "Gabtoli",
+        "Mirpur 1",
+        "Technical"
+      ],
+      "total_fare_bdt": "1000.01",
+      "passengers": [
+        {
+          "id": "Arif",
+          "board": 0,
+          "alight": 1
+        },
+        {
+          "id": "Bithi",
+          "board": 0,
+          "alight": 5
+        },
+        {
+          "id": "Chandan",
+          "board": 2,
+          "alight": 5
+        }
+      ]
+    }
+  ]
+}

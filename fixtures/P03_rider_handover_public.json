@@ -1,0 +1,6000 @@
+{
+  "schema_version": "2.2",
+  "problem_id": "P03",
+  "format_note": "## Case format\n```json\n{ \"case_id\": \"PUB-01\", \"courier\": \"Pathao Courier\", \"rider\": \"Rasel\", \"handover_time\": \"2026-08-26T10:15\",\n  \"parcels\": [ {\"order_id\": \"ORD-6919\", \"cod_bdt\": \"2875.00\", \"area\": \"Chawkbazar\", \"lat\": 22.35936, \"lng\": 91.8377},\n               {\"order_id\": \"ORD-6920\", \"cod_bdt\": \"899.50\",  \"area\": \"Agrabad\",    \"lat\": 22.32695, \"lng\": 91.81576} ],\n  \"cash_returned_bdt\": \"7209.75\" }\n```\nParcels are in the order they were typed. Money is a 2 dp string in taka. Coordinates are synthetic\nChattogram points (area centre plus jitter); public batches hold 20 to 40 parcels.",
+  "cases": [
+    {
+      "case_id": "PUB-01",
+      "courier": "Pathao Courier",
+      "rider": "Tuhin",
+      "handover_time": "2026-08-27T09:15",
+      "parcels": [
+        {
+          "order_id": "ORD-3214",
+          "cod_bdt": "1999.99",
+          "area": "Halishahar",
+          "lat": 22.33251,
+          "lng": 91.78079
+        },
+        {
+          "order_id": "ORD-3215",
+          "cod_bdt": "990.00",
+          "area": "Bahaddarhat",
+          "lat": 22.37,
+          "lng": 91.84206
+        },
+        {
+          "order_id": "ORD-3216",
+          "cod_bdt": "1999.99",
+          "area": "Khulshi",
+          "lat": 22.36204,
+          "lng": 91.80576
+        },
+        {
+          "order_id": "ORD-3217",
+          "cod_bdt": "1250.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35343,
+          "lng": 91.82386
+        },
+        {
+          "order_id": "ORD-3218",
+          "cod_bdt": "899.50",
+          "area": "Muradpur",
+          "lat": 22.3693,
+          "lng": 91.84192
+        },
+        {
+          "order_id": "ORD-3219",
+          "cod_bdt": "1150.00",
+          "area": "Muradpur",
+          "lat": 22.36726,
+          "lng": 91.84241
+        },
+        {
+          "order_id": "ORD-3220",
+          "cod_bdt": "2875.00",
+          "area": "Bahaddarhat",
+          "lat": 22.37021,
+          "lng": 91.84433
+        },
+        {
+          "order_id": "ORD-3221",
+          "cod_bdt": "2875.00",
+          "area": "Dewanhat",
+          "lat": 22.34423,
+          "lng": 91.80142
+        },
+        {
+          "order_id": "ORD-3222",
+          "cod_bdt": "1299.99",
+          "area": "Patenga",
+          "lat": 22.23971,
+          "lng": 91.79213
+        },
+        {
+          "order_id": "ORD-3223",
+          "cod_bdt": "1780.25",
+          "area": "Bahaddarhat",
+          "lat": 22.36869,
+          "lng": 91.83628
+        },
+        {
+          "order_id": "ORD-3224",
+          "cod_bdt": "3200.00",
+          "area": "Chawkbazar",
+          "lat": 22.35632,
+          "lng": 91.83161
+        },
+        {
+          "order_id": "ORD-3225",
+          "cod_bdt": "3200.00",
+          "area": "Chawkbazar",
+          "lat": 22.35461,
+          "lng": 91.83733
+        },
+        {
+          "order_id": "ORD-3226",
+          "cod_bdt": "990.00",
+          "area": "Dewanhat",
+          "lat": 22.34465,
+          "lng": 91.81084
+        },
+        {
+          "order_id": "ORD-3227",
+          "cod_bdt": "1780.25",
+          "area": "Bahaddarhat",
+          "lat": 22.37316,
+          "lng": 91.84658
+        },
+        {
+          "order_id": "ORD-3228",
+          "cod_bdt": "1150.00",
+          "area": "Nasirabad",
+          "lat": 22.36521,
+          "lng": 91.81894
+        },
+        {
+          "order_id": "ORD-3229",
+          "cod_bdt": "1999.99",
+          "area": "Halishahar",
+          "lat": 22.33306,
+          "lng": 91.77913
+        },
+        {
+          "order_id": "ORD-3230",
+          "cod_bdt": "1150.00",
+          "area": "Patenga",
+          "lat": 22.24564,
+          "lng": 91.79688
+        },
+        {
+          "order_id": "ORD-3231",
+          "cod_bdt": "1780.25",
+          "area": "Chawkbazar",
+          "lat": 22.35067,
+          "lng": 91.83184
+        },
+        {
+          "order_id": "ORD-3232",
+          "cod_bdt": "1525.75",
+          "area": "Oxygen",
+          "lat": 22.39332,
+          "lng": 91.83648
+        },
+        {
+          "order_id": "ORD-3233",
+          "cod_bdt": "1299.99",
+          "area": "Pahartali",
+          "lat": 22.36277,
+          "lng": 91.77771
+        },
+        {
+          "order_id": "ORD-3234",
+          "cod_bdt": "2875.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34929,
+          "lng": 91.82021
+        },
+        {
+          "order_id": "ORD-3235",
+          "cod_bdt": "1780.25",
+          "area": "Bahaddarhat",
+          "lat": 22.36689,
+          "lng": 91.84776
+        },
+        {
+          "order_id": "ORD-3236",
+          "cod_bdt": "1299.99",
+          "area": "Khulshi",
+          "lat": 22.36037,
+          "lng": 91.79468
+        },
+        {
+          "order_id": "ORD-3237",
+          "cod_bdt": "1525.75",
+          "area": "Patenga",
+          "lat": 22.24533,
+          "lng": 91.79951
+        },
+        {
+          "order_id": "ORD-3238",
+          "cod_bdt": "480.50",
+          "area": "Khulshi",
+          "lat": 22.36252,
+          "lng": 91.80252
+        },
+        {
+          "order_id": "ORD-3239",
+          "cod_bdt": "480.50",
+          "area": "Khulshi",
+          "lat": 22.36398,
+          "lng": 91.80219
+        },
+        {
+          "order_id": "ORD-3240",
+          "cod_bdt": "650.00",
+          "area": "Dewanhat",
+          "lat": 22.34367,
+          "lng": 91.8017
+        },
+        {
+          "order_id": "ORD-3241",
+          "cod_bdt": "1999.99",
+          "area": "GEC Circle",
+          "lat": 22.35815,
+          "lng": 91.81934
+        },
+        {
+          "order_id": "ORD-3242",
+          "cod_bdt": "3200.00",
+          "area": "Khulshi",
+          "lat": 22.36176,
+          "lng": 91.79955
+        },
+        {
+          "order_id": "ORD-3243",
+          "cod_bdt": "480.50",
+          "area": "Chawkbazar",
+          "lat": 22.35023,
+          "lng": 91.83961
+        },
+        {
+          "order_id": "ORD-3244",
+          "cod_bdt": "560.25",
+          "area": "Halishahar",
+          "lat": 22.33093,
+          "lng": 91.7766
+        },
+        {
+          "order_id": "ORD-3245",
+          "cod_bdt": "1525.75",
+          "area": "Kotwali",
+          "lat": 22.33079,
+          "lng": 91.83815
+        },
+        {
+          "order_id": "ORD-3246",
+          "cod_bdt": "899.50",
+          "area": "Muradpur",
+          "lat": 22.36676,
+          "lng": 91.83625
+        },
+        {
+          "order_id": "ORD-3247",
+          "cod_bdt": "1525.75",
+          "area": "Nasirabad",
+          "lat": 22.36444,
+          "lng": 91.8134
+        }
+      ],
+      "cash_returned_bdt": "54679.68"
+    },
+    {
+      "case_id": "PUB-02",
+      "courier": "Pathao Courier",
+      "rider": "Mamun",
+      "handover_time": "2026-08-26T09:45",
+      "parcels": [
+        {
+          "order_id": "ORD-8525",
+          "cod_bdt": "1780.25",
+          "area": "GEC Circle",
+          "lat": 22.3547,
+          "lng": 91.81885
+        },
+        {
+          "order_id": "ORD-8526",
+          "cod_bdt": "480.50",
+          "area": "Dewanhat",
+          "lat": 22.3362,
+          "lng": 91.80218
+        },
+        {
+          "order_id": "ORD-8527",
+          "cod_bdt": "1150.00",
+          "area": "Kotwali",
+          "lat": 22.33547,
+          "lng": 91.83647
+        },
+        {
+          "order_id": "ORD-8528",
+          "cod_bdt": "720.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35035,
+          "lng": 91.83011
+        },
+        {
+          "order_id": "ORD-8529",
+          "cod_bdt": "1999.99",
+          "area": "Agrabad",
+          "lat": 22.3244,
+          "lng": 91.80623
+        },
+        {
+          "order_id": "ORD-8530",
+          "cod_bdt": "2450.00",
+          "area": "Halishahar",
+          "lat": 22.33354,
+          "lng": 91.78456
+        },
+        {
+          "order_id": "ORD-8531",
+          "cod_bdt": "899.50",
+          "area": "Pahartali",
+          "lat": 22.36722,
+          "lng": 91.78163
+        },
+        {
+          "order_id": "ORD-8532",
+          "cod_bdt": "3200.00",
+          "area": "Muradpur",
+          "lat": 22.36344,
+          "lng": 91.84433
+        },
+        {
+          "order_id": "ORD-8533",
+          "cod_bdt": "1780.25",
+          "area": "Bahaddarhat",
+          "lat": 22.37484,
+          "lng": 91.84747
+        },
+        {
+          "order_id": "ORD-8534",
+          "cod_bdt": "480.50",
+          "area": "Halishahar",
+          "lat": 22.32857,
+          "lng": 91.77995
+        },
+        {
+          "order_id": "ORD-8535",
+          "cod_bdt": "990.00",
+          "area": "Nasirabad",
+          "lat": 22.35802,
+          "lng": 91.81201
+        },
+        {
+          "order_id": "ORD-8536",
+          "cod_bdt": "1250.00",
+          "area": "Bahaddarhat",
+          "lat": 22.3751,
+          "lng": 91.84153
+        },
+        {
+          "order_id": "ORD-8537",
+          "cod_bdt": "1150.00",
+          "area": "Pahartali",
+          "lat": 22.3699,
+          "lng": 91.78633
+        },
+        {
+          "order_id": "ORD-8538",
+          "cod_bdt": "990.00",
+          "area": "Khulshi",
+          "lat": 22.36902,
+          "lng": 91.79887
+        },
+        {
+          "order_id": "ORD-8539",
+          "cod_bdt": "480.50",
+          "area": "Dewanhat",
+          "lat": 22.34217,
+          "lng": 91.80328
+        },
+        {
+          "order_id": "ORD-8540",
+          "cod_bdt": "650.00",
+          "area": "Dewanhat",
+          "lat": 22.34232,
+          "lng": 91.80635
+        },
+        {
+          "order_id": "ORD-8541",
+          "cod_bdt": "3200.00",
+          "area": "Pahartali",
+          "lat": 22.36752,
+          "lng": 91.78423
+        },
+        {
+          "order_id": "ORD-8542",
+          "cod_bdt": "1780.25",
+          "area": "Kotwali",
+          "lat": 22.33836,
+          "lng": 91.83854
+        },
+        {
+          "order_id": "ORD-8543",
+          "cod_bdt": "2450.00",
+          "area": "Bahaddarhat",
+          "lat": 22.36722,
+          "lng": 91.84002
+        },
+        {
+          "order_id": "ORD-8544",
+          "cod_bdt": "2450.00",
+          "area": "Chandgaon",
+          "lat": 22.38064,
+          "lng": 91.85288
+        },
+        {
+          "order_id": "ORD-8545",
+          "cod_bdt": "1299.99",
+          "area": "Agrabad",
+          "lat": 22.32394,
+          "lng": 91.80971
+        },
+        {
+          "order_id": "ORD-8546",
+          "cod_bdt": "1299.99",
+          "area": "Kotwali",
+          "lat": 22.33961,
+          "lng": 91.83287
+        },
+        {
+          "order_id": "ORD-8547",
+          "cod_bdt": "720.00",
+          "area": "Dewanhat",
+          "lat": 22.34171,
+          "lng": 91.80148
+        },
+        {
+          "order_id": "ORD-8548",
+          "cod_bdt": "1780.25",
+          "area": "Agrabad",
+          "lat": 22.32025,
+          "lng": 91.80982
+        },
+        {
+          "order_id": "ORD-8549",
+          "cod_bdt": "1999.99",
+          "area": "Chawkbazar",
+          "lat": 22.35998,
+          "lng": 91.8371
+        },
+        {
+          "order_id": "ORD-8550",
+          "cod_bdt": "1250.00",
+          "area": "Patenga",
+          "lat": 22.23544,
+          "lng": 91.79951
+        },
+        {
+          "order_id": "ORD-8551",
+          "cod_bdt": "1150.00",
+          "area": "Oxygen",
+          "lat": 22.39268,
+          "lng": 91.82792
+        },
+        {
+          "order_id": "ORD-8552",
+          "cod_bdt": "1999.99",
+          "area": "Nasirabad",
+          "lat": 22.36515,
+          "lng": 91.82358
+        },
+        {
+          "order_id": "ORD-8553",
+          "cod_bdt": "899.50",
+          "area": "Patenga",
+          "lat": 22.23591,
+          "lng": 91.79667
+        },
+        {
+          "order_id": "ORD-8554",
+          "cod_bdt": "650.00",
+          "area": "Halishahar",
+          "lat": 22.33262,
+          "lng": 91.78112
+        },
+        {
+          "order_id": "ORD-8555",
+          "cod_bdt": "1299.99",
+          "area": "GEC Circle",
+          "lat": 22.35764,
+          "lng": 91.82587
+        }
+      ],
+      "cash_returned_bdt": "44881.44"
+    },
+    {
+      "case_id": "PUB-03",
+      "courier": "Steadfast",
+      "rider": "Riad",
+      "handover_time": "2026-08-25T11:15",
+      "parcels": [
+        {
+          "order_id": "ORD-7249",
+          "cod_bdt": "1999.99",
+          "area": "Pahartali",
+          "lat": 22.3706,
+          "lng": 91.782
+        },
+        {
+          "order_id": "ORD-7250",
+          "cod_bdt": "2450.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34572,
+          "lng": 91.82986
+        },
+        {
+          "order_id": "ORD-7251",
+          "cod_bdt": "720.00",
+          "area": "Khulshi",
+          "lat": 22.36556,
+          "lng": 91.80146
+        },
+        {
+          "order_id": "ORD-7252",
+          "cod_bdt": "3200.00",
+          "area": "Halishahar",
+          "lat": 22.3338,
+          "lng": 91.77872
+        },
+        {
+          "order_id": "ORD-7253",
+          "cod_bdt": "2450.00",
+          "area": "Khulshi",
+          "lat": 22.36544,
+          "lng": 91.79566
+        },
+        {
+          "order_id": "ORD-7254",
+          "cod_bdt": "1150.00",
+          "area": "Pahartali",
+          "lat": 22.37074,
+          "lng": 91.78323
+        },
+        {
+          "order_id": "ORD-7255",
+          "cod_bdt": "1150.00",
+          "area": "Sholoshohor",
+          "lat": 22.35957,
+          "lng": 91.82667
+        },
+        {
+          "order_id": "ORD-7256",
+          "cod_bdt": "1250.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35379,
+          "lng": 91.82233
+        },
+        {
+          "order_id": "ORD-7257",
+          "cod_bdt": "560.25",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35211,
+          "lng": 91.81992
+        },
+        {
+          "order_id": "ORD-7258",
+          "cod_bdt": "2875.00",
+          "area": "Nasirabad",
+          "lat": 22.36631,
+          "lng": 91.81861
+        },
+        {
+          "order_id": "ORD-7259",
+          "cod_bdt": "2450.00",
+          "area": "Khulshi",
+          "lat": 22.36626,
+          "lng": 91.79963
+        },
+        {
+          "order_id": "ORD-7260",
+          "cod_bdt": "1150.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35347,
+          "lng": 91.83006
+        },
+        {
+          "order_id": "ORD-7261",
+          "cod_bdt": "899.50",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35077,
+          "lng": 91.82119
+        },
+        {
+          "order_id": "ORD-7262",
+          "cod_bdt": "1999.99",
+          "area": "GEC Circle",
+          "lat": 22.35963,
+          "lng": 91.81893
+        },
+        {
+          "order_id": "ORD-7263",
+          "cod_bdt": "560.25",
+          "area": "Nasirabad",
+          "lat": 22.36464,
+          "lng": 91.81915
+        },
+        {
+          "order_id": "ORD-7264",
+          "cod_bdt": "1525.75",
+          "area": "GEC Circle",
+          "lat": 22.35513,
+          "lng": 91.82563
+        },
+        {
+          "order_id": "ORD-7265",
+          "cod_bdt": "650.00",
+          "area": "Kotwali",
+          "lat": 22.33479,
+          "lng": 91.84156
+        },
+        {
+          "order_id": "ORD-7266",
+          "cod_bdt": "1525.75",
+          "area": "Khulshi",
+          "lat": 22.3701,
+          "lng": 91.79961
+        },
+        {
+          "order_id": "ORD-7267",
+          "cod_bdt": "480.50",
+          "area": "Chawkbazar",
+          "lat": 22.3596,
+          "lng": 91.83333
+        },
+        {
+          "order_id": "ORD-7268",
+          "cod_bdt": "1299.99",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34769,
+          "lng": 91.83072
+        },
+        {
+          "order_id": "ORD-7269",
+          "cod_bdt": "650.00",
+          "area": "Chawkbazar",
+          "lat": 22.34856,
+          "lng": 91.83225
+        },
+        {
+          "order_id": "ORD-7270",
+          "cod_bdt": "2450.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34572,
+          "lng": 91.83024
+        },
+        {
+          "order_id": "ORD-7271",
+          "cod_bdt": "1780.25",
+          "area": "Kotwali",
+          "lat": 22.33686,
+          "lng": 91.84229
+        },
+        {
+          "order_id": "ORD-7272",
+          "cod_bdt": "1525.75",
+          "area": "Agrabad",
+          "lat": 22.32534,
+          "lng": 91.8125
+        },
+        {
+          "order_id": "ORD-7273",
+          "cod_bdt": "990.00",
+          "area": "Muradpur",
+          "lat": 22.35907,
+          "lng": 91.83764
+        },
+        {
+          "order_id": "ORD-7274",
+          "cod_bdt": "2450.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34879,
+          "lng": 91.82583
+        },
+        {
+          "order_id": "ORD-7275",
+          "cod_bdt": "480.50",
+          "area": "Chandgaon",
+          "lat": 22.37518,
+          "lng": 91.85317
+        },
+        {
+          "order_id": "ORD-7276",
+          "cod_bdt": "560.25",
+          "area": "Kotwali",
+          "lat": 22.33942,
+          "lng": 91.83551
+        }
+      ],
+      "cash_returned_bdt": "41433.72"
+    },
+    {
+      "case_id": "PUB-04",
+      "courier": "Pathao Courier",
+      "rider": "Faisal",
+      "handover_time": "2026-08-30T10:45",
+      "parcels": [
+        {
+          "order_id": "ORD-2846",
+          "cod_bdt": "1525.75",
+          "area": "Muradpur",
+          "lat": 22.36508,
+          "lng": 91.8344
+        },
+        {
+          "order_id": "ORD-2847",
+          "cod_bdt": "650.00",
+          "area": "Chandgaon",
+          "lat": 22.38121,
+          "lng": 91.85724
+        },
+        {
+          "order_id": "ORD-2848",
+          "cod_bdt": "2875.00",
+          "area": "Bahaddarhat",
+          "lat": 22.37379,
+          "lng": 91.84298
+        },
+        {
+          "order_id": "ORD-2849",
+          "cod_bdt": "899.50",
+          "area": "Sholoshohor",
+          "lat": 22.36056,
+          "lng": 91.8261
+        },
+        {
+          "order_id": "ORD-2850",
+          "cod_bdt": "990.00",
+          "area": "Chandgaon",
+          "lat": 22.37803,
+          "lng": 91.86143
+        },
+        {
+          "order_id": "ORD-2851",
+          "cod_bdt": "3200.00",
+          "area": "Dewanhat",
+          "lat": 22.33616,
+          "lng": 91.80813
+        },
+        {
+          "order_id": "ORD-2852",
+          "cod_bdt": "720.00",
+          "area": "Oxygen",
+          "lat": 22.38438,
+          "lng": 91.83599
+        },
+        {
+          "order_id": "ORD-2853",
+          "cod_bdt": "2450.00",
+          "area": "GEC Circle",
+          "lat": 22.36437,
+          "lng": 91.8209
+        },
+        {
+          "order_id": "ORD-2854",
+          "cod_bdt": "1780.25",
+          "area": "Oxygen",
+          "lat": 22.38615,
+          "lng": 91.83047
+        },
+        {
+          "order_id": "ORD-2855",
+          "cod_bdt": "1780.25",
+          "area": "Sholoshohor",
+          "lat": 22.36244,
+          "lng": 91.83264
+        },
+        {
+          "order_id": "ORD-2856",
+          "cod_bdt": "2450.00",
+          "area": "Kotwali",
+          "lat": 22.33641,
+          "lng": 91.84074
+        },
+        {
+          "order_id": "ORD-2857",
+          "cod_bdt": "2450.00",
+          "area": "Pahartali",
+          "lat": 22.36848,
+          "lng": 91.78475
+        },
+        {
+          "order_id": "ORD-2858",
+          "cod_bdt": "3200.00",
+          "area": "Pahartali",
+          "lat": 22.36368,
+          "lng": 91.77782
+        },
+        {
+          "order_id": "ORD-2859",
+          "cod_bdt": "899.50",
+          "area": "Pahartali",
+          "lat": 22.36137,
+          "lng": 91.78522
+        },
+        {
+          "order_id": "ORD-2860",
+          "cod_bdt": "560.25",
+          "area": "Chawkbazar",
+          "lat": 22.35579,
+          "lng": 91.838
+        },
+        {
+          "order_id": "ORD-2861",
+          "cod_bdt": "3200.00",
+          "area": "Sholoshohor",
+          "lat": 22.36348,
+          "lng": 91.8281
+        },
+        {
+          "order_id": "ORD-2862",
+          "cod_bdt": "480.50",
+          "area": "Bahaddarhat",
+          "lat": 22.36666,
+          "lng": 91.84586
+        },
+        {
+          "order_id": "ORD-2863",
+          "cod_bdt": "3200.00",
+          "area": "Halishahar",
+          "lat": 22.32586,
+          "lng": 91.78456
+        },
+        {
+          "order_id": "ORD-2864",
+          "cod_bdt": "2450.00",
+          "area": "Dewanhat",
+          "lat": 22.34476,
+          "lng": 91.80786
+        },
+        {
+          "order_id": "ORD-2865",
+          "cod_bdt": "990.00",
+          "area": "Chawkbazar",
+          "lat": 22.35895,
+          "lng": 91.8416
+        },
+        {
+          "order_id": "ORD-2866",
+          "cod_bdt": "899.50",
+          "area": "Kotwali",
+          "lat": 22.34069,
+          "lng": 91.83592
+        },
+        {
+          "order_id": "ORD-2867",
+          "cod_bdt": "990.00",
+          "area": "Sholoshohor",
+          "lat": 22.35977,
+          "lng": 91.82802
+        },
+        {
+          "order_id": "ORD-2868",
+          "cod_bdt": "1299.99",
+          "area": "Bahaddarhat",
+          "lat": 22.3738,
+          "lng": 91.84057
+        },
+        {
+          "order_id": "ORD-2869",
+          "cod_bdt": "3200.00",
+          "area": "GEC Circle",
+          "lat": 22.3593,
+          "lng": 91.81619
+        },
+        {
+          "order_id": "ORD-2870",
+          "cod_bdt": "480.50",
+          "area": "Nasirabad",
+          "lat": 22.36449,
+          "lng": 91.81301
+        },
+        {
+          "order_id": "ORD-2871",
+          "cod_bdt": "1525.75",
+          "area": "Lalkhan Bazar",
+          "lat": 22.3458,
+          "lng": 91.83042
+        },
+        {
+          "order_id": "ORD-2872",
+          "cod_bdt": "3200.00",
+          "area": "Muradpur",
+          "lat": 22.36798,
+          "lng": 91.83706
+        },
+        {
+          "order_id": "ORD-2873",
+          "cod_bdt": "1299.99",
+          "area": "Khulshi",
+          "lat": 22.36319,
+          "lng": 91.79937
+        },
+        {
+          "order_id": "ORD-2874",
+          "cod_bdt": "480.50",
+          "area": "Bahaddarhat",
+          "lat": 22.36603,
+          "lng": 91.83775
+        },
+        {
+          "order_id": "ORD-2875",
+          "cod_bdt": "1999.99",
+          "area": "Khulshi",
+          "lat": 22.36544,
+          "lng": 91.8001
+        },
+        {
+          "order_id": "ORD-2876",
+          "cod_bdt": "1299.99",
+          "area": "GEC Circle",
+          "lat": 22.3605,
+          "lng": 91.82697
+        },
+        {
+          "order_id": "ORD-2877",
+          "cod_bdt": "720.00",
+          "area": "Chawkbazar",
+          "lat": 22.35293,
+          "lng": 91.84097
+        },
+        {
+          "order_id": "ORD-2878",
+          "cod_bdt": "899.50",
+          "area": "Halishahar",
+          "lat": 22.32519,
+          "lng": 91.78056
+        },
+        {
+          "order_id": "ORD-2879",
+          "cod_bdt": "899.50",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34647,
+          "lng": 91.82067
+        },
+        {
+          "order_id": "ORD-2880",
+          "cod_bdt": "1250.00",
+          "area": "Kotwali",
+          "lat": 22.3361,
+          "lng": 91.83373
+        },
+        {
+          "order_id": "ORD-2881",
+          "cod_bdt": "1250.00",
+          "area": "Agrabad",
+          "lat": 22.32421,
+          "lng": 91.81002
+        },
+        {
+          "order_id": "ORD-2882",
+          "cod_bdt": "1780.25",
+          "area": "Pahartali",
+          "lat": 22.36279,
+          "lng": 91.77705
+        },
+        {
+          "order_id": "ORD-2883",
+          "cod_bdt": "3200.00",
+          "area": "Khulshi",
+          "lat": 22.36576,
+          "lng": 91.80469
+        }
+      ],
+      "cash_returned_bdt": "60976.46"
+    },
+    {
+      "case_id": "PUB-05",
+      "courier": "Pathao Courier",
+      "rider": "Riad",
+      "handover_time": "2026-08-30T09:15",
+      "parcels": [
+        {
+          "order_id": "ORD-3937",
+          "cod_bdt": "899.50",
+          "area": "Agrabad",
+          "lat": 22.32766,
+          "lng": 91.81066
+        },
+        {
+          "order_id": "ORD-3938",
+          "cod_bdt": "2875.00",
+          "area": "Agrabad",
+          "lat": 22.32571,
+          "lng": 91.81367
+        },
+        {
+          "order_id": "ORD-3939",
+          "cod_bdt": "480.50",
+          "area": "Halishahar",
+          "lat": 22.32402,
+          "lng": 91.77518
+        },
+        {
+          "order_id": "ORD-3940",
+          "cod_bdt": "480.50",
+          "area": "Kotwali",
+          "lat": 22.33853,
+          "lng": 91.84365
+        },
+        {
+          "order_id": "ORD-3941",
+          "cod_bdt": "1525.75",
+          "area": "Agrabad",
+          "lat": 22.32903,
+          "lng": 91.81163
+        },
+        {
+          "order_id": "ORD-3942",
+          "cod_bdt": "2450.00",
+          "area": "Dewanhat",
+          "lat": 22.33809,
+          "lng": 91.80118
+        },
+        {
+          "order_id": "ORD-3943",
+          "cod_bdt": "480.50",
+          "area": "Chawkbazar",
+          "lat": 22.35667,
+          "lng": 91.83718
+        },
+        {
+          "order_id": "ORD-3944",
+          "cod_bdt": "1525.75",
+          "area": "Nasirabad",
+          "lat": 22.35862,
+          "lng": 91.82206
+        },
+        {
+          "order_id": "ORD-3945",
+          "cod_bdt": "990.00",
+          "area": "Pahartali",
+          "lat": 22.36002,
+          "lng": 91.78389
+        },
+        {
+          "order_id": "ORD-3946",
+          "cod_bdt": "1150.00",
+          "area": "Sholoshohor",
+          "lat": 22.36731,
+          "lng": 91.82358
+        },
+        {
+          "order_id": "ORD-3947",
+          "cod_bdt": "1525.75",
+          "area": "Muradpur",
+          "lat": 22.36877,
+          "lng": 91.83342
+        },
+        {
+          "order_id": "ORD-3948",
+          "cod_bdt": "480.50",
+          "area": "Khulshi",
+          "lat": 22.37057,
+          "lng": 91.79987
+        },
+        {
+          "order_id": "ORD-3949",
+          "cod_bdt": "650.00",
+          "area": "Chandgaon",
+          "lat": 22.37622,
+          "lng": 91.85876
+        },
+        {
+          "order_id": "ORD-3950",
+          "cod_bdt": "2450.00",
+          "area": "Kotwali",
+          "lat": 22.33314,
+          "lng": 91.83446
+        },
+        {
+          "order_id": "ORD-3951",
+          "cod_bdt": "2450.00",
+          "area": "Muradpur",
+          "lat": 22.35841,
+          "lng": 91.8433
+        },
+        {
+          "order_id": "ORD-3952",
+          "cod_bdt": "2875.00",
+          "area": "Khulshi",
+          "lat": 22.36197,
+          "lng": 91.80321
+        },
+        {
+          "order_id": "ORD-3953",
+          "cod_bdt": "899.50",
+          "area": "GEC Circle",
+          "lat": 22.35994,
+          "lng": 91.82537
+        },
+        {
+          "order_id": "ORD-3954",
+          "cod_bdt": "3200.00",
+          "area": "Patenga",
+          "lat": 22.23521,
+          "lng": 91.79841
+        },
+        {
+          "order_id": "ORD-3955",
+          "cod_bdt": "1299.99",
+          "area": "Khulshi",
+          "lat": 22.36321,
+          "lng": 91.79541
+        },
+        {
+          "order_id": "ORD-3956",
+          "cod_bdt": "2450.00",
+          "area": "GEC Circle",
+          "lat": 22.3542,
+          "lng": 91.82643
+        },
+        {
+          "order_id": "ORD-3957",
+          "cod_bdt": "1299.99",
+          "area": "Dewanhat",
+          "lat": 22.3434,
+          "lng": 91.80188
+        },
+        {
+          "order_id": "ORD-3958",
+          "cod_bdt": "990.00",
+          "area": "Nasirabad",
+          "lat": 22.36997,
+          "lng": 91.82119
+        },
+        {
+          "order_id": "ORD-3959",
+          "cod_bdt": "1299.99",
+          "area": "Pahartali",
+          "lat": 22.36339,
+          "lng": 91.78228
+        },
+        {
+          "order_id": "ORD-3960",
+          "cod_bdt": "480.50",
+          "area": "Chandgaon",
+          "lat": 22.38317,
+          "lng": 91.85972
+        },
+        {
+          "order_id": "ORD-3961",
+          "cod_bdt": "1150.00",
+          "area": "Sholoshohor",
+          "lat": 22.36599,
+          "lng": 91.82428
+        },
+        {
+          "order_id": "ORD-3962",
+          "cod_bdt": "480.50",
+          "area": "Chawkbazar",
+          "lat": 22.34806,
+          "lng": 91.83409
+        },
+        {
+          "order_id": "ORD-3963",
+          "cod_bdt": "1250.00",
+          "area": "Sholoshohor",
+          "lat": 22.35985,
+          "lng": 91.83369
+        },
+        {
+          "order_id": "ORD-3964",
+          "cod_bdt": "480.50",
+          "area": "Muradpur",
+          "lat": 22.36484,
+          "lng": 91.84423
+        },
+        {
+          "order_id": "ORD-3965",
+          "cod_bdt": "2875.00",
+          "area": "Oxygen",
+          "lat": 22.38457,
+          "lng": 91.83271
+        },
+        {
+          "order_id": "ORD-3966",
+          "cod_bdt": "2450.00",
+          "area": "Halishahar",
+          "lat": 22.32399,
+          "lng": 91.77522
+        },
+        {
+          "order_id": "ORD-3967",
+          "cod_bdt": "1780.25",
+          "area": "Oxygen",
+          "lat": 22.38503,
+          "lng": 91.83121
+        },
+        {
+          "order_id": "ORD-3968",
+          "cod_bdt": "2450.00",
+          "area": "Chawkbazar",
+          "lat": 22.35372,
+          "lng": 91.83698
+        },
+        {
+          "order_id": "ORD-3969",
+          "cod_bdt": "899.50",
+          "area": "GEC Circle",
+          "lat": 22.3563,
+          "lng": 91.82208
+        },
+        {
+          "order_id": "ORD-3970",
+          "cod_bdt": "480.50",
+          "area": "GEC Circle",
+          "lat": 22.36261,
+          "lng": 91.81876
+        },
+        {
+          "order_id": "ORD-3971",
+          "cod_bdt": "720.00",
+          "area": "Bahaddarhat",
+          "lat": 22.37684,
+          "lng": 91.83832
+        },
+        {
+          "order_id": "ORD-3972",
+          "cod_bdt": "1780.25",
+          "area": "Kotwali",
+          "lat": 22.33565,
+          "lng": 91.84151
+        }
+      ],
+      "cash_returned_bdt": "52005.22"
+    },
+    {
+      "case_id": "PUB-06",
+      "courier": "Steadfast",
+      "rider": "Faisal",
+      "handover_time": "2026-08-30T10:15",
+      "parcels": [
+        {
+          "order_id": "ORD-7841",
+          "cod_bdt": "1999.99",
+          "area": "Oxygen",
+          "lat": 22.38694,
+          "lng": 91.83705
+        },
+        {
+          "order_id": "ORD-7842",
+          "cod_bdt": "1250.00",
+          "area": "Muradpur",
+          "lat": 22.36437,
+          "lng": 91.8387
+        },
+        {
+          "order_id": "ORD-7843",
+          "cod_bdt": "2450.00",
+          "area": "Kotwali",
+          "lat": 22.33673,
+          "lng": 91.83985
+        },
+        {
+          "order_id": "ORD-7844",
+          "cod_bdt": "1150.00",
+          "area": "GEC Circle",
+          "lat": 22.36023,
+          "lng": 91.82436
+        },
+        {
+          "order_id": "ORD-7845",
+          "cod_bdt": "720.00",
+          "area": "Patenga",
+          "lat": 22.23836,
+          "lng": 91.79586
+        },
+        {
+          "order_id": "ORD-7846",
+          "cod_bdt": "1299.99",
+          "area": "Dewanhat",
+          "lat": 22.33719,
+          "lng": 91.81029
+        },
+        {
+          "order_id": "ORD-7847",
+          "cod_bdt": "1999.99",
+          "area": "Sholoshohor",
+          "lat": 22.35652,
+          "lng": 91.82399
+        },
+        {
+          "order_id": "ORD-7848",
+          "cod_bdt": "2450.00",
+          "area": "Halishahar",
+          "lat": 22.32705,
+          "lng": 91.7813
+        },
+        {
+          "order_id": "ORD-7849",
+          "cod_bdt": "990.00",
+          "area": "Sholoshohor",
+          "lat": 22.35784,
+          "lng": 91.831
+        },
+        {
+          "order_id": "ORD-7850",
+          "cod_bdt": "899.50",
+          "area": "Dewanhat",
+          "lat": 22.34388,
+          "lng": 91.80624
+        },
+        {
+          "order_id": "ORD-7851",
+          "cod_bdt": "2450.00",
+          "area": "Oxygen",
+          "lat": 22.38969,
+          "lng": 91.83197
+        },
+        {
+          "order_id": "ORD-7852",
+          "cod_bdt": "1525.75",
+          "area": "Muradpur",
+          "lat": 22.36173,
+          "lng": 91.841
+        },
+        {
+          "order_id": "ORD-7853",
+          "cod_bdt": "899.50",
+          "area": "Patenga",
+          "lat": 22.23475,
+          "lng": 91.7977
+        },
+        {
+          "order_id": "ORD-7854",
+          "cod_bdt": "1250.00",
+          "area": "Bahaddarhat",
+          "lat": 22.37716,
+          "lng": 91.83672
+        },
+        {
+          "order_id": "ORD-7855",
+          "cod_bdt": "560.25",
+          "area": "Patenga",
+          "lat": 22.24479,
+          "lng": 91.79604
+        },
+        {
+          "order_id": "ORD-7856",
+          "cod_bdt": "899.50",
+          "area": "Khulshi",
+          "lat": 22.36425,
+          "lng": 91.79827
+        },
+        {
+          "order_id": "ORD-7857",
+          "cod_bdt": "1999.99",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34493,
+          "lng": 91.82365
+        },
+        {
+          "order_id": "ORD-7858",
+          "cod_bdt": "1999.99",
+          "area": "Khulshi",
+          "lat": 22.3711,
+          "lng": 91.80379
+        },
+        {
+          "order_id": "ORD-7859",
+          "cod_bdt": "1250.00",
+          "area": "Agrabad",
+          "lat": 22.3258,
+          "lng": 91.81162
+        },
+        {
+          "order_id": "ORD-7860",
+          "cod_bdt": "1780.25",
+          "area": "Nasirabad",
+          "lat": 22.36248,
+          "lng": 91.82288
+        },
+        {
+          "order_id": "ORD-7861",
+          "cod_bdt": "650.00",
+          "area": "Chandgaon",
+          "lat": 22.37681,
+          "lng": 91.85093
+        },
+        {
+          "order_id": "ORD-7862",
+          "cod_bdt": "899.50",
+          "area": "Dewanhat",
+          "lat": 22.34434,
+          "lng": 91.81217
+        },
+        {
+          "order_id": "ORD-7863",
+          "cod_bdt": "899.50",
+          "area": "Nasirabad",
+          "lat": 22.36581,
+          "lng": 91.81503
+        },
+        {
+          "order_id": "ORD-7864",
+          "cod_bdt": "720.00",
+          "area": "Halishahar",
+          "lat": 22.33207,
+          "lng": 91.78435
+        },
+        {
+          "order_id": "ORD-7865",
+          "cod_bdt": "1525.75",
+          "area": "Khulshi",
+          "lat": 22.36215,
+          "lng": 91.79959
+        },
+        {
+          "order_id": "ORD-7866",
+          "cod_bdt": "480.50",
+          "area": "Agrabad",
+          "lat": 22.32432,
+          "lng": 91.81641
+        },
+        {
+          "order_id": "ORD-7867",
+          "cod_bdt": "2450.00",
+          "area": "Kotwali",
+          "lat": 22.33145,
+          "lng": 91.83809
+        },
+        {
+          "order_id": "ORD-7868",
+          "cod_bdt": "1999.99",
+          "area": "GEC Circle",
+          "lat": 22.35689,
+          "lng": 91.82093
+        },
+        {
+          "order_id": "ORD-7869",
+          "cod_bdt": "1999.99",
+          "area": "Halishahar",
+          "lat": 22.33268,
+          "lng": 91.78321
+        },
+        {
+          "order_id": "ORD-7870",
+          "cod_bdt": "1299.99",
+          "area": "Halishahar",
+          "lat": 22.33285,
+          "lng": 91.77707
+        },
+        {
+          "order_id": "ORD-7871",
+          "cod_bdt": "2450.00",
+          "area": "Khulshi",
+          "lat": 22.37139,
+          "lng": 91.8024
+        },
+        {
+          "order_id": "ORD-7872",
+          "cod_bdt": "1250.00",
+          "area": "Chawkbazar",
+          "lat": 22.35804,
+          "lng": 91.83006
+        },
+        {
+          "order_id": "ORD-7873",
+          "cod_bdt": "990.00",
+          "area": "Chawkbazar",
+          "lat": 22.35826,
+          "lng": 91.84198
+        },
+        {
+          "order_id": "ORD-7874",
+          "cod_bdt": "560.25",
+          "area": "Halishahar",
+          "lat": 22.33367,
+          "lng": 91.77718
+        },
+        {
+          "order_id": "ORD-7875",
+          "cod_bdt": "720.00",
+          "area": "Nasirabad",
+          "lat": 22.35805,
+          "lng": 91.81551
+        },
+        {
+          "order_id": "ORD-7876",
+          "cod_bdt": "1150.00",
+          "area": "GEC Circle",
+          "lat": 22.363,
+          "lng": 91.81689
+        },
+        {
+          "order_id": "ORD-7877",
+          "cod_bdt": "1525.75",
+          "area": "GEC Circle",
+          "lat": 22.3577,
+          "lng": 91.82508
+        },
+        {
+          "order_id": "ORD-7878",
+          "cod_bdt": "3200.00",
+          "area": "Dewanhat",
+          "lat": 22.34023,
+          "lng": 91.80523
+        },
+        {
+          "order_id": "ORD-7879",
+          "cod_bdt": "990.00",
+          "area": "Pahartali",
+          "lat": 22.36801,
+          "lng": 91.77837
+        }
+      ],
+      "cash_returned_bdt": "55785.92"
+    },
+    {
+      "case_id": "PUB-07",
+      "courier": "Pathao Courier",
+      "rider": "Rasel",
+      "handover_time": "2026-08-25T11:15",
+      "parcels": [
+        {
+          "order_id": "ORD-4441",
+          "cod_bdt": "1250.00",
+          "area": "Kotwali",
+          "lat": 22.32983,
+          "lng": 91.83445
+        },
+        {
+          "order_id": "ORD-4442",
+          "cod_bdt": "899.50",
+          "area": "Pahartali",
+          "lat": 22.36255,
+          "lng": 91.78505
+        },
+        {
+          "order_id": "ORD-4443",
+          "cod_bdt": "1525.75",
+          "area": "Chandgaon",
+          "lat": 22.376,
+          "lng": 91.85686
+        },
+        {
+          "order_id": "ORD-4444",
+          "cod_bdt": "1250.00",
+          "area": "Kotwali",
+          "lat": 22.33606,
+          "lng": 91.83255
+        },
+        {
+          "order_id": "ORD-4445",
+          "cod_bdt": "3200.00",
+          "area": "Patenga",
+          "lat": 22.23477,
+          "lng": 91.7977
+        },
+        {
+          "order_id": "ORD-4446",
+          "cod_bdt": "3200.00",
+          "area": "Bahaddarhat",
+          "lat": 22.37245,
+          "lng": 91.84563
+        },
+        {
+          "order_id": "ORD-4447",
+          "cod_bdt": "3200.00",
+          "area": "Khulshi",
+          "lat": 22.35958,
+          "lng": 91.80034
+        },
+        {
+          "order_id": "ORD-4448",
+          "cod_bdt": "3200.00",
+          "area": "Nasirabad",
+          "lat": 22.35861,
+          "lng": 91.81727
+        },
+        {
+          "order_id": "ORD-4449",
+          "cod_bdt": "480.50",
+          "area": "Oxygen",
+          "lat": 22.39232,
+          "lng": 91.82877
+        },
+        {
+          "order_id": "ORD-4450",
+          "cod_bdt": "990.00",
+          "area": "Pahartali",
+          "lat": 22.367,
+          "lng": 91.78842
+        },
+        {
+          "order_id": "ORD-4451",
+          "cod_bdt": "2875.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34447,
+          "lng": 91.82753
+        },
+        {
+          "order_id": "ORD-4452",
+          "cod_bdt": "720.00",
+          "area": "Pahartali",
+          "lat": 22.36395,
+          "lng": 91.7843
+        },
+        {
+          "order_id": "ORD-4453",
+          "cod_bdt": "1780.25",
+          "area": "Chandgaon",
+          "lat": 22.38128,
+          "lng": 91.85088
+        },
+        {
+          "order_id": "ORD-4454",
+          "cod_bdt": "720.00",
+          "area": "Pahartali",
+          "lat": 22.37078,
+          "lng": 91.78799
+        },
+        {
+          "order_id": "ORD-4455",
+          "cod_bdt": "1250.00",
+          "area": "Chandgaon",
+          "lat": 22.37796,
+          "lng": 91.85026
+        },
+        {
+          "order_id": "ORD-4456",
+          "cod_bdt": "480.50",
+          "area": "Halishahar",
+          "lat": 22.32788,
+          "lng": 91.78691
+        },
+        {
+          "order_id": "ORD-4457",
+          "cod_bdt": "1999.99",
+          "area": "Pahartali",
+          "lat": 22.36877,
+          "lng": 91.78328
+        },
+        {
+          "order_id": "ORD-4458",
+          "cod_bdt": "990.00",
+          "area": "Sholoshohor",
+          "lat": 22.3617,
+          "lng": 91.83371
+        },
+        {
+          "order_id": "ORD-4459",
+          "cod_bdt": "650.00",
+          "area": "Halishahar",
+          "lat": 22.32921,
+          "lng": 91.77624
+        },
+        {
+          "order_id": "ORD-4460",
+          "cod_bdt": "650.00",
+          "area": "Chandgaon",
+          "lat": 22.3793,
+          "lng": 91.85416
+        },
+        {
+          "order_id": "ORD-4461",
+          "cod_bdt": "650.00",
+          "area": "Bahaddarhat",
+          "lat": 22.36616,
+          "lng": 91.84546
+        },
+        {
+          "order_id": "ORD-4462",
+          "cod_bdt": "1299.99",
+          "area": "Muradpur",
+          "lat": 22.36777,
+          "lng": 91.83693
+        },
+        {
+          "order_id": "ORD-4463",
+          "cod_bdt": "1525.75",
+          "area": "Patenga",
+          "lat": 22.23697,
+          "lng": 91.79962
+        },
+        {
+          "order_id": "ORD-4464",
+          "cod_bdt": "3200.00",
+          "area": "Sholoshohor",
+          "lat": 22.3589,
+          "lng": 91.8285
+        },
+        {
+          "order_id": "ORD-4465",
+          "cod_bdt": "1299.99",
+          "area": "Muradpur",
+          "lat": 22.36325,
+          "lng": 91.83842
+        },
+        {
+          "order_id": "ORD-4466",
+          "cod_bdt": "2450.00",
+          "area": "Khulshi",
+          "lat": 22.36295,
+          "lng": 91.79599
+        },
+        {
+          "order_id": "ORD-4467",
+          "cod_bdt": "990.00",
+          "area": "Oxygen",
+          "lat": 22.38443,
+          "lng": 91.8274
+        },
+        {
+          "order_id": "ORD-4468",
+          "cod_bdt": "990.00",
+          "area": "Muradpur",
+          "lat": 22.36832,
+          "lng": 91.83435
+        },
+        {
+          "order_id": "ORD-4469",
+          "cod_bdt": "899.50",
+          "area": "Nasirabad",
+          "lat": 22.35914,
+          "lng": 91.81472
+        },
+        {
+          "order_id": "ORD-4470",
+          "cod_bdt": "1250.00",
+          "area": "Oxygen",
+          "lat": 22.39273,
+          "lng": 91.83064
+        },
+        {
+          "order_id": "ORD-4471",
+          "cod_bdt": "2875.00",
+          "area": "Muradpur",
+          "lat": 22.36156,
+          "lng": 91.8386
+        },
+        {
+          "order_id": "ORD-4472",
+          "cod_bdt": "560.25",
+          "area": "Dewanhat",
+          "lat": 22.34073,
+          "lng": 91.80239
+        },
+        {
+          "order_id": "ORD-4473",
+          "cod_bdt": "560.25",
+          "area": "Dewanhat",
+          "lat": 22.3397,
+          "lng": 91.81123
+        }
+      ],
+      "cash_returned_bdt": "49862.22"
+    },
+    {
+      "case_id": "PUB-08",
+      "courier": "RedX",
+      "rider": "Nayeem",
+      "handover_time": "2026-08-28T09:00",
+      "parcels": [
+        {
+          "order_id": "ORD-7599",
+          "cod_bdt": "2450.00",
+          "area": "Bahaddarhat",
+          "lat": 22.37339,
+          "lng": 91.84254
+        },
+        {
+          "order_id": "ORD-7600",
+          "cod_bdt": "2875.00",
+          "area": "Khulshi",
+          "lat": 22.36,
+          "lng": 91.7979
+        },
+        {
+          "order_id": "ORD-7601",
+          "cod_bdt": "560.25",
+          "area": "Chandgaon",
+          "lat": 22.38016,
+          "lng": 91.85523
+        },
+        {
+          "order_id": "ORD-7602",
+          "cod_bdt": "560.25",
+          "area": "Nasirabad",
+          "lat": 22.35919,
+          "lng": 91.81885
+        },
+        {
+          "order_id": "ORD-7603",
+          "cod_bdt": "650.00",
+          "area": "Chawkbazar",
+          "lat": 22.35441,
+          "lng": 91.84188
+        },
+        {
+          "order_id": "ORD-7604",
+          "cod_bdt": "899.50",
+          "area": "Chandgaon",
+          "lat": 22.37516,
+          "lng": 91.86172
+        },
+        {
+          "order_id": "ORD-7605",
+          "cod_bdt": "2450.00",
+          "area": "Bahaddarhat",
+          "lat": 22.3683,
+          "lng": 91.84613
+        },
+        {
+          "order_id": "ORD-7606",
+          "cod_bdt": "3200.00",
+          "area": "Muradpur",
+          "lat": 22.36198,
+          "lng": 91.84434
+        },
+        {
+          "order_id": "ORD-7607",
+          "cod_bdt": "720.00",
+          "area": "Nasirabad",
+          "lat": 22.36426,
+          "lng": 91.82187
+        },
+        {
+          "order_id": "ORD-7608",
+          "cod_bdt": "2450.00",
+          "area": "Pahartali",
+          "lat": 22.3693,
+          "lng": 91.77938
+        },
+        {
+          "order_id": "ORD-7609",
+          "cod_bdt": "1299.99",
+          "area": "Dewanhat",
+          "lat": 22.33813,
+          "lng": 91.81219
+        },
+        {
+          "order_id": "ORD-7610",
+          "cod_bdt": "1999.99",
+          "area": "Bahaddarhat",
+          "lat": 22.36732,
+          "lng": 91.84445
+        },
+        {
+          "order_id": "ORD-7611",
+          "cod_bdt": "650.00",
+          "area": "Dewanhat",
+          "lat": 22.34342,
+          "lng": 91.80672
+        },
+        {
+          "order_id": "ORD-7612",
+          "cod_bdt": "1250.00",
+          "area": "Muradpur",
+          "lat": 22.35818,
+          "lng": 91.84488
+        },
+        {
+          "order_id": "ORD-7613",
+          "cod_bdt": "480.50",
+          "area": "Oxygen",
+          "lat": 22.39597,
+          "lng": 91.83767
+        },
+        {
+          "order_id": "ORD-7614",
+          "cod_bdt": "2875.00",
+          "area": "Sholoshohor",
+          "lat": 22.36233,
+          "lng": 91.82681
+        },
+        {
+          "order_id": "ORD-7615",
+          "cod_bdt": "1999.99",
+          "area": "Chawkbazar",
+          "lat": 22.34909,
+          "lng": 91.83745
+        },
+        {
+          "order_id": "ORD-7616",
+          "cod_bdt": "1299.99",
+          "area": "Pahartali",
+          "lat": 22.36198,
+          "lng": 91.78853
+        },
+        {
+          "order_id": "ORD-7617",
+          "cod_bdt": "1780.25",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34996,
+          "lng": 91.8231
+        },
+        {
+          "order_id": "ORD-7618",
+          "cod_bdt": "650.00",
+          "area": "Dewanhat",
+          "lat": 22.33436,
+          "lng": 91.80519
+        },
+        {
+          "order_id": "ORD-7619",
+          "cod_bdt": "990.00",
+          "area": "Muradpur",
+          "lat": 22.36311,
+          "lng": 91.83492
+        },
+        {
+          "order_id": "ORD-7620",
+          "cod_bdt": "1999.99",
+          "area": "Nasirabad",
+          "lat": 22.36947,
+          "lng": 91.8123
+        },
+        {
+          "order_id": "ORD-7621",
+          "cod_bdt": "650.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34518,
+          "lng": 91.82103
+        },
+        {
+          "order_id": "ORD-7622",
+          "cod_bdt": "720.00",
+          "area": "Sholoshohor",
+          "lat": 22.35765,
+          "lng": 91.82429
+        },
+        {
+          "order_id": "ORD-7623",
+          "cod_bdt": "2875.00",
+          "area": "Sholoshohor",
+          "lat": 22.36657,
+          "lng": 91.82698
+        },
+        {
+          "order_id": "ORD-7624",
+          "cod_bdt": "899.50",
+          "area": "Chawkbazar",
+          "lat": 22.35591,
+          "lng": 91.83245
+        },
+        {
+          "order_id": "ORD-7625",
+          "cod_bdt": "899.50",
+          "area": "Dewanhat",
+          "lat": 22.34114,
+          "lng": 91.80548
+        },
+        {
+          "order_id": "ORD-7626",
+          "cod_bdt": "3200.00",
+          "area": "Chawkbazar",
+          "lat": 22.35652,
+          "lng": 91.83742
+        },
+        {
+          "order_id": "ORD-7627",
+          "cod_bdt": "1780.25",
+          "area": "Kotwali",
+          "lat": 22.33889,
+          "lng": 91.83747
+        },
+        {
+          "order_id": "ORD-7628",
+          "cod_bdt": "1250.00",
+          "area": "Pahartali",
+          "lat": 22.36411,
+          "lng": 91.77737
+        },
+        {
+          "order_id": "ORD-7629",
+          "cod_bdt": "990.00",
+          "area": "Kotwali",
+          "lat": 22.33158,
+          "lng": 91.842
+        },
+        {
+          "order_id": "ORD-7630",
+          "cod_bdt": "1250.00",
+          "area": "Kotwali",
+          "lat": 22.33673,
+          "lng": 91.8372
+        },
+        {
+          "order_id": "ORD-7631",
+          "cod_bdt": "1525.75",
+          "area": "Khulshi",
+          "lat": 22.36903,
+          "lng": 91.79706
+        }
+      ],
+      "cash_returned_bdt": "50130.70"
+    },
+    {
+      "case_id": "PUB-09",
+      "courier": "RedX",
+      "rider": "Riad",
+      "handover_time": "2026-08-28T09:00",
+      "parcels": [
+        {
+          "order_id": "ORD-1684",
+          "cod_bdt": "2875.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34667,
+          "lng": 91.8225
+        },
+        {
+          "order_id": "ORD-1685",
+          "cod_bdt": "899.50",
+          "area": "Chawkbazar",
+          "lat": 22.34996,
+          "lng": 91.83222
+        },
+        {
+          "order_id": "ORD-1686",
+          "cod_bdt": "720.00",
+          "area": "Khulshi",
+          "lat": 22.36151,
+          "lng": 91.80428
+        },
+        {
+          "order_id": "ORD-1687",
+          "cod_bdt": "650.00",
+          "area": "Kotwali",
+          "lat": 22.33664,
+          "lng": 91.84276
+        },
+        {
+          "order_id": "ORD-1688",
+          "cod_bdt": "1780.25",
+          "area": "Pahartali",
+          "lat": 22.36544,
+          "lng": 91.77889
+        },
+        {
+          "order_id": "ORD-1689",
+          "cod_bdt": "1150.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34568,
+          "lng": 91.83041
+        },
+        {
+          "order_id": "ORD-1690",
+          "cod_bdt": "1999.99",
+          "area": "Dewanhat",
+          "lat": 22.34481,
+          "lng": 91.80822
+        },
+        {
+          "order_id": "ORD-1691",
+          "cod_bdt": "650.00",
+          "area": "Khulshi",
+          "lat": 22.35986,
+          "lng": 91.80398
+        },
+        {
+          "order_id": "ORD-1692",
+          "cod_bdt": "1150.00",
+          "area": "Nasirabad",
+          "lat": 22.36314,
+          "lng": 91.81789
+        },
+        {
+          "order_id": "ORD-1693",
+          "cod_bdt": "1780.25",
+          "area": "Sholoshohor",
+          "lat": 22.36586,
+          "lng": 91.83305
+        },
+        {
+          "order_id": "ORD-1694",
+          "cod_bdt": "720.00",
+          "area": "Halishahar",
+          "lat": 22.32572,
+          "lng": 91.78085
+        },
+        {
+          "order_id": "ORD-1695",
+          "cod_bdt": "990.00",
+          "area": "Oxygen",
+          "lat": 22.38415,
+          "lng": 91.83313
+        },
+        {
+          "order_id": "ORD-1696",
+          "cod_bdt": "1299.99",
+          "area": "GEC Circle",
+          "lat": 22.35457,
+          "lng": 91.81787
+        },
+        {
+          "order_id": "ORD-1697",
+          "cod_bdt": "2450.00",
+          "area": "Agrabad",
+          "lat": 22.32331,
+          "lng": 91.8064
+        },
+        {
+          "order_id": "ORD-1698",
+          "cod_bdt": "1780.25",
+          "area": "Halishahar",
+          "lat": 22.32746,
+          "lng": 91.78438
+        },
+        {
+          "order_id": "ORD-1699",
+          "cod_bdt": "1525.75",
+          "area": "Patenga",
+          "lat": 22.24421,
+          "lng": 91.79735
+        },
+        {
+          "order_id": "ORD-1700",
+          "cod_bdt": "899.50",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35268,
+          "lng": 91.83049
+        },
+        {
+          "order_id": "ORD-1701",
+          "cod_bdt": "1250.00",
+          "area": "Nasirabad",
+          "lat": 22.3666,
+          "lng": 91.81403
+        },
+        {
+          "order_id": "ORD-1702",
+          "cod_bdt": "560.25",
+          "area": "Bahaddarhat",
+          "lat": 22.36894,
+          "lng": 91.846
+        },
+        {
+          "order_id": "ORD-1703",
+          "cod_bdt": "1150.00",
+          "area": "Pahartali",
+          "lat": 22.36157,
+          "lng": 91.78184
+        },
+        {
+          "order_id": "ORD-1704",
+          "cod_bdt": "650.00",
+          "area": "Muradpur",
+          "lat": 22.36471,
+          "lng": 91.84463
+        },
+        {
+          "order_id": "ORD-1705",
+          "cod_bdt": "1299.99",
+          "area": "Sholoshohor",
+          "lat": 22.36002,
+          "lng": 91.82866
+        },
+        {
+          "order_id": "ORD-1706",
+          "cod_bdt": "480.50",
+          "area": "Chawkbazar",
+          "lat": 22.3556,
+          "lng": 91.84156
+        },
+        {
+          "order_id": "ORD-1707",
+          "cod_bdt": "1250.00",
+          "area": "Agrabad",
+          "lat": 22.3231,
+          "lng": 91.80921
+        },
+        {
+          "order_id": "ORD-1708",
+          "cod_bdt": "899.50",
+          "area": "Khulshi",
+          "lat": 22.37102,
+          "lng": 91.79503
+        },
+        {
+          "order_id": "ORD-1709",
+          "cod_bdt": "720.00",
+          "area": "Sholoshohor",
+          "lat": 22.36185,
+          "lng": 91.82542
+        },
+        {
+          "order_id": "ORD-1710",
+          "cod_bdt": "2450.00",
+          "area": "Chandgaon",
+          "lat": 22.37407,
+          "lng": 91.85098
+        },
+        {
+          "order_id": "ORD-1711",
+          "cod_bdt": "480.50",
+          "area": "GEC Circle",
+          "lat": 22.35923,
+          "lng": 91.82206
+        },
+        {
+          "order_id": "ORD-1712",
+          "cod_bdt": "560.25",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34972,
+          "lng": 91.81903
+        },
+        {
+          "order_id": "ORD-1713",
+          "cod_bdt": "650.00",
+          "area": "Kotwali",
+          "lat": 22.33345,
+          "lng": 91.83692
+        }
+      ],
+      "cash_returned_bdt": "35721.47"
+    },
+    {
+      "case_id": "PUB-10",
+      "courier": "Pathao Courier",
+      "rider": "Rasel",
+      "handover_time": "2026-08-28T12:45",
+      "parcels": [
+        {
+          "order_id": "ORD-8177",
+          "cod_bdt": "1780.25",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35476,
+          "lng": 91.82522
+        },
+        {
+          "order_id": "ORD-8178",
+          "cod_bdt": "650.00",
+          "area": "Khulshi",
+          "lat": 22.36686,
+          "lng": 91.80076
+        },
+        {
+          "order_id": "ORD-8179",
+          "cod_bdt": "1999.99",
+          "area": "Nasirabad",
+          "lat": 22.36854,
+          "lng": 91.81643
+        },
+        {
+          "order_id": "ORD-8180",
+          "cod_bdt": "1250.00",
+          "area": "GEC Circle",
+          "lat": 22.35568,
+          "lng": 91.8223
+        },
+        {
+          "order_id": "ORD-8181",
+          "cod_bdt": "2450.00",
+          "area": "Oxygen",
+          "lat": 22.38537,
+          "lng": 91.8279
+        },
+        {
+          "order_id": "ORD-8182",
+          "cod_bdt": "3200.00",
+          "area": "Kotwali",
+          "lat": 22.33447,
+          "lng": 91.83392
+        },
+        {
+          "order_id": "ORD-8183",
+          "cod_bdt": "1250.00",
+          "area": "Pahartali",
+          "lat": 22.36508,
+          "lng": 91.7819
+        },
+        {
+          "order_id": "ORD-8184",
+          "cod_bdt": "560.25",
+          "area": "Agrabad",
+          "lat": 22.3233,
+          "lng": 91.80993
+        },
+        {
+          "order_id": "ORD-8185",
+          "cod_bdt": "2875.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34427,
+          "lng": 91.82717
+        },
+        {
+          "order_id": "ORD-8186",
+          "cod_bdt": "1525.75",
+          "area": "Oxygen",
+          "lat": 22.39272,
+          "lng": 91.8357
+        },
+        {
+          "order_id": "ORD-8187",
+          "cod_bdt": "2875.00",
+          "area": "Dewanhat",
+          "lat": 22.3433,
+          "lng": 91.81092
+        },
+        {
+          "order_id": "ORD-8188",
+          "cod_bdt": "899.50",
+          "area": "Chawkbazar",
+          "lat": 22.35654,
+          "lng": 91.83921
+        },
+        {
+          "order_id": "ORD-8189",
+          "cod_bdt": "650.00",
+          "area": "Halishahar",
+          "lat": 22.32552,
+          "lng": 91.77785
+        },
+        {
+          "order_id": "ORD-8190",
+          "cod_bdt": "1999.99",
+          "area": "Chandgaon",
+          "lat": 22.37917,
+          "lng": 91.85861
+        },
+        {
+          "order_id": "ORD-8191",
+          "cod_bdt": "1999.99",
+          "area": "Halishahar",
+          "lat": 22.33354,
+          "lng": 91.77847
+        },
+        {
+          "order_id": "ORD-8192",
+          "cod_bdt": "1780.25",
+          "area": "Patenga",
+          "lat": 22.23587,
+          "lng": 91.79458
+        },
+        {
+          "order_id": "ORD-8193",
+          "cod_bdt": "990.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35157,
+          "lng": 91.81919
+        },
+        {
+          "order_id": "ORD-8194",
+          "cod_bdt": "899.50",
+          "area": "Pahartali",
+          "lat": 22.3661,
+          "lng": 91.78793
+        },
+        {
+          "order_id": "ORD-8195",
+          "cod_bdt": "990.00",
+          "area": "Chawkbazar",
+          "lat": 22.35444,
+          "lng": 91.83048
+        },
+        {
+          "order_id": "ORD-8196",
+          "cod_bdt": "2450.00",
+          "area": "Oxygen",
+          "lat": 22.38575,
+          "lng": 91.83675
+        },
+        {
+          "order_id": "ORD-8197",
+          "cod_bdt": "650.00",
+          "area": "Bahaddarhat",
+          "lat": 22.36748,
+          "lng": 91.8469
+        },
+        {
+          "order_id": "ORD-8198",
+          "cod_bdt": "560.25",
+          "area": "Nasirabad",
+          "lat": 22.36723,
+          "lng": 91.81984
+        },
+        {
+          "order_id": "ORD-8199",
+          "cod_bdt": "1150.00",
+          "area": "Patenga",
+          "lat": 22.24553,
+          "lng": 91.79048
+        },
+        {
+          "order_id": "ORD-8200",
+          "cod_bdt": "1250.00",
+          "area": "Chawkbazar",
+          "lat": 22.34977,
+          "lng": 91.83559
+        },
+        {
+          "order_id": "ORD-8201",
+          "cod_bdt": "480.50",
+          "area": "Chawkbazar",
+          "lat": 22.35145,
+          "lng": 91.83529
+        },
+        {
+          "order_id": "ORD-8202",
+          "cod_bdt": "2450.00",
+          "area": "Muradpur",
+          "lat": 22.36218,
+          "lng": 91.83389
+        },
+        {
+          "order_id": "ORD-8203",
+          "cod_bdt": "2450.00",
+          "area": "Chawkbazar",
+          "lat": 22.35031,
+          "lng": 91.83507
+        },
+        {
+          "order_id": "ORD-8204",
+          "cod_bdt": "2875.00",
+          "area": "Halishahar",
+          "lat": 22.32432,
+          "lng": 91.77541
+        },
+        {
+          "order_id": "ORD-8205",
+          "cod_bdt": "1250.00",
+          "area": "GEC Circle",
+          "lat": 22.36005,
+          "lng": 91.8244
+        },
+        {
+          "order_id": "ORD-8206",
+          "cod_bdt": "720.00",
+          "area": "Khulshi",
+          "lat": 22.36568,
+          "lng": 91.80413
+        },
+        {
+          "order_id": "ORD-8207",
+          "cod_bdt": "899.50",
+          "area": "Muradpur",
+          "lat": 22.36192,
+          "lng": 91.84496
+        },
+        {
+          "order_id": "ORD-8208",
+          "cod_bdt": "1999.99",
+          "area": "Nasirabad",
+          "lat": 22.36666,
+          "lng": 91.81414
+        }
+      ],
+      "cash_returned_bdt": "49810.21"
+    },
+    {
+      "case_id": "PUB-11",
+      "courier": "Pathao Courier",
+      "rider": "Mamun",
+      "handover_time": "2026-08-27T10:15",
+      "parcels": [
+        {
+          "order_id": "ORD-7057",
+          "cod_bdt": "2450.00",
+          "area": "Agrabad",
+          "lat": 22.3307,
+          "lng": 91.81485
+        },
+        {
+          "order_id": "ORD-7058",
+          "cod_bdt": "3200.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35537,
+          "lng": 91.82295
+        },
+        {
+          "order_id": "ORD-7059",
+          "cod_bdt": "1299.99",
+          "area": "Dewanhat",
+          "lat": 22.34212,
+          "lng": 91.81037
+        },
+        {
+          "order_id": "ORD-7060",
+          "cod_bdt": "2450.00",
+          "area": "Bahaddarhat",
+          "lat": 22.3712,
+          "lng": 91.8432
+        },
+        {
+          "order_id": "ORD-7061",
+          "cod_bdt": "1999.99",
+          "area": "Dewanhat",
+          "lat": 22.33831,
+          "lng": 91.81219
+        },
+        {
+          "order_id": "ORD-7062",
+          "cod_bdt": "990.00",
+          "area": "Dewanhat",
+          "lat": 22.34177,
+          "lng": 91.81057
+        },
+        {
+          "order_id": "ORD-7063",
+          "cod_bdt": "650.00",
+          "area": "Agrabad",
+          "lat": 22.32536,
+          "lng": 91.81649
+        },
+        {
+          "order_id": "ORD-7064",
+          "cod_bdt": "1150.00",
+          "area": "Nasirabad",
+          "lat": 22.36995,
+          "lng": 91.81707
+        },
+        {
+          "order_id": "ORD-7065",
+          "cod_bdt": "2450.00",
+          "area": "Nasirabad",
+          "lat": 22.36172,
+          "lng": 91.81208
+        },
+        {
+          "order_id": "ORD-7066",
+          "cod_bdt": "1999.99",
+          "area": "Pahartali",
+          "lat": 22.36623,
+          "lng": 91.7785
+        },
+        {
+          "order_id": "ORD-7067",
+          "cod_bdt": "650.00",
+          "area": "Chandgaon",
+          "lat": 22.37468,
+          "lng": 91.86099
+        },
+        {
+          "order_id": "ORD-7068",
+          "cod_bdt": "1250.00",
+          "area": "Halishahar",
+          "lat": 22.32357,
+          "lng": 91.78684
+        },
+        {
+          "order_id": "ORD-7069",
+          "cod_bdt": "560.25",
+          "area": "Halishahar",
+          "lat": 22.33306,
+          "lng": 91.77725
+        },
+        {
+          "order_id": "ORD-7070",
+          "cod_bdt": "3200.00",
+          "area": "Muradpur",
+          "lat": 22.3582,
+          "lng": 91.84345
+        },
+        {
+          "order_id": "ORD-7071",
+          "cod_bdt": "1999.99",
+          "area": "Chandgaon",
+          "lat": 22.38389,
+          "lng": 91.85315
+        },
+        {
+          "order_id": "ORD-7072",
+          "cod_bdt": "899.50",
+          "area": "Khulshi",
+          "lat": 22.36522,
+          "lng": 91.79555
+        },
+        {
+          "order_id": "ORD-7073",
+          "cod_bdt": "650.00",
+          "area": "Pahartali",
+          "lat": 22.36631,
+          "lng": 91.77986
+        },
+        {
+          "order_id": "ORD-7074",
+          "cod_bdt": "560.25",
+          "area": "Nasirabad",
+          "lat": 22.36633,
+          "lng": 91.81406
+        },
+        {
+          "order_id": "ORD-7075",
+          "cod_bdt": "720.00",
+          "area": "Halishahar",
+          "lat": 22.32332,
+          "lng": 91.78632
+        },
+        {
+          "order_id": "ORD-7076",
+          "cod_bdt": "1250.00",
+          "area": "Chawkbazar",
+          "lat": 22.35492,
+          "lng": 91.8326
+        },
+        {
+          "order_id": "ORD-7077",
+          "cod_bdt": "3200.00",
+          "area": "GEC Circle",
+          "lat": 22.35841,
+          "lng": 91.82254
+        },
+        {
+          "order_id": "ORD-7078",
+          "cod_bdt": "560.25",
+          "area": "Bahaddarhat",
+          "lat": 22.37313,
+          "lng": 91.84272
+        },
+        {
+          "order_id": "ORD-7079",
+          "cod_bdt": "480.50",
+          "area": "Bahaddarhat",
+          "lat": 22.36823,
+          "lng": 91.84442
+        },
+        {
+          "order_id": "ORD-7080",
+          "cod_bdt": "899.50",
+          "area": "Sholoshohor",
+          "lat": 22.3586,
+          "lng": 91.83165
+        },
+        {
+          "order_id": "ORD-7081",
+          "cod_bdt": "480.50",
+          "area": "Pahartali",
+          "lat": 22.37129,
+          "lng": 91.78224
+        },
+        {
+          "order_id": "ORD-7082",
+          "cod_bdt": "1999.99",
+          "area": "Sholoshohor",
+          "lat": 22.36422,
+          "lng": 91.82723
+        },
+        {
+          "order_id": "ORD-7083",
+          "cod_bdt": "1525.75",
+          "area": "Kotwali",
+          "lat": 22.33808,
+          "lng": 91.84149
+        },
+        {
+          "order_id": "ORD-7084",
+          "cod_bdt": "3200.00",
+          "area": "Pahartali",
+          "lat": 22.36764,
+          "lng": 91.77864
+        },
+        {
+          "order_id": "ORD-7085",
+          "cod_bdt": "990.00",
+          "area": "Oxygen",
+          "lat": 22.39292,
+          "lng": 91.829
+        },
+        {
+          "order_id": "ORD-7086",
+          "cod_bdt": "1299.99",
+          "area": "Patenga",
+          "lat": 22.24233,
+          "lng": 91.79008
+        }
+      ],
+      "cash_returned_bdt": "45016.44"
+    },
+    {
+      "case_id": "PUB-12",
+      "courier": "Pathao Courier",
+      "rider": "Nayeem",
+      "handover_time": "2026-08-26T12:00",
+      "parcels": [
+        {
+          "order_id": "ORD-3066",
+          "cod_bdt": "2450.00",
+          "area": "Kotwali",
+          "lat": 22.34017,
+          "lng": 91.84213
+        },
+        {
+          "order_id": "ORD-3067",
+          "cod_bdt": "720.00",
+          "area": "Agrabad",
+          "lat": 22.32362,
+          "lng": 91.81148
+        },
+        {
+          "order_id": "ORD-3068",
+          "cod_bdt": "1780.25",
+          "area": "Pahartali",
+          "lat": 22.36219,
+          "lng": 91.7871
+        },
+        {
+          "order_id": "ORD-3069",
+          "cod_bdt": "480.50",
+          "area": "Chawkbazar",
+          "lat": 22.35518,
+          "lng": 91.83436
+        },
+        {
+          "order_id": "ORD-3070",
+          "cod_bdt": "899.50",
+          "area": "Chawkbazar",
+          "lat": 22.35911,
+          "lng": 91.84036
+        },
+        {
+          "order_id": "ORD-3071",
+          "cod_bdt": "3200.00",
+          "area": "Halishahar",
+          "lat": 22.32849,
+          "lng": 91.77877
+        },
+        {
+          "order_id": "ORD-3072",
+          "cod_bdt": "480.50",
+          "area": "Agrabad",
+          "lat": 22.33122,
+          "lng": 91.80986
+        },
+        {
+          "order_id": "ORD-3073",
+          "cod_bdt": "2450.00",
+          "area": "Pahartali",
+          "lat": 22.36152,
+          "lng": 91.77872
+        },
+        {
+          "order_id": "ORD-3074",
+          "cod_bdt": "1250.00",
+          "area": "Oxygen",
+          "lat": 22.38998,
+          "lng": 91.83524
+        },
+        {
+          "order_id": "ORD-3075",
+          "cod_bdt": "3200.00",
+          "area": "Muradpur",
+          "lat": 22.36485,
+          "lng": 91.84145
+        },
+        {
+          "order_id": "ORD-3076",
+          "cod_bdt": "1150.00",
+          "area": "Agrabad",
+          "lat": 22.32963,
+          "lng": 91.80735
+        },
+        {
+          "order_id": "ORD-3077",
+          "cod_bdt": "3200.00",
+          "area": "Kotwali",
+          "lat": 22.33328,
+          "lng": 91.83925
+        },
+        {
+          "order_id": "ORD-3078",
+          "cod_bdt": "1525.75",
+          "area": "Oxygen",
+          "lat": 22.39452,
+          "lng": 91.8286
+        },
+        {
+          "order_id": "ORD-3079",
+          "cod_bdt": "3200.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34413,
+          "lng": 91.82853
+        },
+        {
+          "order_id": "ORD-3080",
+          "cod_bdt": "560.25",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35248,
+          "lng": 91.82711
+        },
+        {
+          "order_id": "ORD-3081",
+          "cod_bdt": "899.50",
+          "area": "Chawkbazar",
+          "lat": 22.35858,
+          "lng": 91.83656
+        },
+        {
+          "order_id": "ORD-3082",
+          "cod_bdt": "1150.00",
+          "area": "Nasirabad",
+          "lat": 22.36318,
+          "lng": 91.81769
+        },
+        {
+          "order_id": "ORD-3083",
+          "cod_bdt": "560.25",
+          "area": "Muradpur",
+          "lat": 22.36428,
+          "lng": 91.84318
+        },
+        {
+          "order_id": "ORD-3084",
+          "cod_bdt": "1150.00",
+          "area": "Patenga",
+          "lat": 22.23885,
+          "lng": 91.79833
+        },
+        {
+          "order_id": "ORD-3085",
+          "cod_bdt": "1525.75",
+          "area": "Agrabad",
+          "lat": 22.32701,
+          "lng": 91.80821
+        },
+        {
+          "order_id": "ORD-3086",
+          "cod_bdt": "899.50",
+          "area": "Chandgaon",
+          "lat": 22.37448,
+          "lng": 91.85071
+        },
+        {
+          "order_id": "ORD-3087",
+          "cod_bdt": "1299.99",
+          "area": "Patenga",
+          "lat": 22.23487,
+          "lng": 91.79179
+        },
+        {
+          "order_id": "ORD-3088",
+          "cod_bdt": "650.00",
+          "area": "Sholoshohor",
+          "lat": 22.36787,
+          "lng": 91.83098
+        },
+        {
+          "order_id": "ORD-3089",
+          "cod_bdt": "1250.00",
+          "area": "Oxygen",
+          "lat": 22.39092,
+          "lng": 91.83015
+        },
+        {
+          "order_id": "ORD-3090",
+          "cod_bdt": "480.50",
+          "area": "Muradpur",
+          "lat": 22.36541,
+          "lng": 91.83391
+        },
+        {
+          "order_id": "ORD-3091",
+          "cod_bdt": "1299.99",
+          "area": "Agrabad",
+          "lat": 22.32336,
+          "lng": 91.8064
+        },
+        {
+          "order_id": "ORD-3092",
+          "cod_bdt": "2875.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34913,
+          "lng": 91.82635
+        },
+        {
+          "order_id": "ORD-3093",
+          "cod_bdt": "720.00",
+          "area": "Chandgaon",
+          "lat": 22.38377,
+          "lng": 91.85137
+        },
+        {
+          "order_id": "ORD-3094",
+          "cod_bdt": "480.50",
+          "area": "Agrabad",
+          "lat": 22.32879,
+          "lng": 91.80794
+        },
+        {
+          "order_id": "ORD-3095",
+          "cod_bdt": "1150.00",
+          "area": "Agrabad",
+          "lat": 22.3287,
+          "lng": 91.80732
+        },
+        {
+          "order_id": "ORD-3096",
+          "cod_bdt": "3200.00",
+          "area": "GEC Circle",
+          "lat": 22.36285,
+          "lng": 91.8159
+        },
+        {
+          "order_id": "ORD-3097",
+          "cod_bdt": "1250.00",
+          "area": "GEC Circle",
+          "lat": 22.35993,
+          "lng": 91.81846
+        }
+      ],
+      "cash_returned_bdt": "47387.23"
+    },
+    {
+      "case_id": "PUB-13",
+      "courier": "RedX",
+      "rider": "Riad",
+      "handover_time": "2026-08-25T11:45",
+      "parcels": [
+        {
+          "order_id": "ORD-4665",
+          "cod_bdt": "560.25",
+          "area": "Dewanhat",
+          "lat": 22.34157,
+          "lng": 91.80937
+        },
+        {
+          "order_id": "ORD-4666",
+          "cod_bdt": "480.50",
+          "area": "Muradpur",
+          "lat": 22.3695,
+          "lng": 91.8381
+        },
+        {
+          "order_id": "ORD-4667",
+          "cod_bdt": "1250.00",
+          "area": "Bahaddarhat",
+          "lat": 22.37234,
+          "lng": 91.83812
+        },
+        {
+          "order_id": "ORD-4668",
+          "cod_bdt": "650.00",
+          "area": "Agrabad",
+          "lat": 22.32751,
+          "lng": 91.81706
+        },
+        {
+          "order_id": "ORD-4669",
+          "cod_bdt": "990.00",
+          "area": "Bahaddarhat",
+          "lat": 22.37179,
+          "lng": 91.84127
+        },
+        {
+          "order_id": "ORD-4670",
+          "cod_bdt": "3200.00",
+          "area": "Oxygen",
+          "lat": 22.38625,
+          "lng": 91.82845
+        },
+        {
+          "order_id": "ORD-4671",
+          "cod_bdt": "1150.00",
+          "area": "Bahaddarhat",
+          "lat": 22.36739,
+          "lng": 91.84786
+        },
+        {
+          "order_id": "ORD-4672",
+          "cod_bdt": "2450.00",
+          "area": "Oxygen",
+          "lat": 22.39463,
+          "lng": 91.82849
+        },
+        {
+          "order_id": "ORD-4673",
+          "cod_bdt": "2450.00",
+          "area": "Oxygen",
+          "lat": 22.38777,
+          "lng": 91.83002
+        },
+        {
+          "order_id": "ORD-4674",
+          "cod_bdt": "2875.00",
+          "area": "Khulshi",
+          "lat": 22.36054,
+          "lng": 91.80339
+        },
+        {
+          "order_id": "ORD-4675",
+          "cod_bdt": "1150.00",
+          "area": "Patenga",
+          "lat": 22.23569,
+          "lng": 91.79408
+        },
+        {
+          "order_id": "ORD-4676",
+          "cod_bdt": "1780.25",
+          "area": "Oxygen",
+          "lat": 22.38434,
+          "lng": 91.83307
+        },
+        {
+          "order_id": "ORD-4677",
+          "cod_bdt": "1780.25",
+          "area": "Chawkbazar",
+          "lat": 22.35765,
+          "lng": 91.83228
+        },
+        {
+          "order_id": "ORD-4678",
+          "cod_bdt": "899.50",
+          "area": "Pahartali",
+          "lat": 22.36505,
+          "lng": 91.78846
+        },
+        {
+          "order_id": "ORD-4679",
+          "cod_bdt": "1780.25",
+          "area": "GEC Circle",
+          "lat": 22.35627,
+          "lng": 91.82654
+        },
+        {
+          "order_id": "ORD-4680",
+          "cod_bdt": "480.50",
+          "area": "Halishahar",
+          "lat": 22.32578,
+          "lng": 91.78301
+        },
+        {
+          "order_id": "ORD-4681",
+          "cod_bdt": "480.50",
+          "area": "Chawkbazar",
+          "lat": 22.35791,
+          "lng": 91.84172
+        },
+        {
+          "order_id": "ORD-4682",
+          "cod_bdt": "480.50",
+          "area": "Bahaddarhat",
+          "lat": 22.37685,
+          "lng": 91.83996
+        },
+        {
+          "order_id": "ORD-4683",
+          "cod_bdt": "1250.00",
+          "area": "Bahaddarhat",
+          "lat": 22.37233,
+          "lng": 91.8399
+        },
+        {
+          "order_id": "ORD-4684",
+          "cod_bdt": "1525.75",
+          "area": "Kotwali",
+          "lat": 22.33986,
+          "lng": 91.83437
+        },
+        {
+          "order_id": "ORD-4685",
+          "cod_bdt": "480.50",
+          "area": "Kotwali",
+          "lat": 22.33711,
+          "lng": 91.84155
+        },
+        {
+          "order_id": "ORD-4686",
+          "cod_bdt": "1525.75",
+          "area": "Muradpur",
+          "lat": 22.36123,
+          "lng": 91.83888
+        },
+        {
+          "order_id": "ORD-4687",
+          "cod_bdt": "1780.25",
+          "area": "Dewanhat",
+          "lat": 22.34096,
+          "lng": 91.8039
+        },
+        {
+          "order_id": "ORD-4688",
+          "cod_bdt": "3200.00",
+          "area": "Oxygen",
+          "lat": 22.39398,
+          "lng": 91.83664
+        },
+        {
+          "order_id": "ORD-4689",
+          "cod_bdt": "990.00",
+          "area": "Nasirabad",
+          "lat": 22.36873,
+          "lng": 91.81777
+        },
+        {
+          "order_id": "ORD-4690",
+          "cod_bdt": "3200.00",
+          "area": "Sholoshohor",
+          "lat": 22.36065,
+          "lng": 91.8282
+        },
+        {
+          "order_id": "ORD-4691",
+          "cod_bdt": "1150.00",
+          "area": "Khulshi",
+          "lat": 22.36623,
+          "lng": 91.79633
+        },
+        {
+          "order_id": "ORD-4692",
+          "cod_bdt": "2875.00",
+          "area": "Muradpur",
+          "lat": 22.36166,
+          "lng": 91.83869
+        },
+        {
+          "order_id": "ORD-4693",
+          "cod_bdt": "3200.00",
+          "area": "Chandgaon",
+          "lat": 22.3763,
+          "lng": 91.8601
+        },
+        {
+          "order_id": "ORD-4694",
+          "cod_bdt": "650.00",
+          "area": "Khulshi",
+          "lat": 22.36367,
+          "lng": 91.79932
+        },
+        {
+          "order_id": "ORD-4695",
+          "cod_bdt": "2450.00",
+          "area": "Patenga",
+          "lat": 22.23728,
+          "lng": 91.79223
+        },
+        {
+          "order_id": "ORD-4696",
+          "cod_bdt": "1299.99",
+          "area": "Chandgaon",
+          "lat": 22.38418,
+          "lng": 91.8615
+        },
+        {
+          "order_id": "ORD-4697",
+          "cod_bdt": "1780.25",
+          "area": "Bahaddarhat",
+          "lat": 22.37752,
+          "lng": 91.84062
+        },
+        {
+          "order_id": "ORD-4698",
+          "cod_bdt": "3200.00",
+          "area": "Dewanhat",
+          "lat": 22.34519,
+          "lng": 91.80843
+        },
+        {
+          "order_id": "ORD-4699",
+          "cod_bdt": "2875.00",
+          "area": "Agrabad",
+          "lat": 22.32027,
+          "lng": 91.81348
+        },
+        {
+          "order_id": "ORD-4700",
+          "cod_bdt": "1299.99",
+          "area": "Muradpur",
+          "lat": 22.36842,
+          "lng": 91.84388
+        }
+      ],
+      "cash_returned_bdt": "59619.48"
+    },
+    {
+      "case_id": "PUB-14",
+      "courier": "RedX",
+      "rider": "Faisal",
+      "handover_time": "2026-08-24T11:45",
+      "parcels": [
+        {
+          "order_id": "ORD-6720",
+          "cod_bdt": "990.00",
+          "area": "Sholoshohor",
+          "lat": 22.36094,
+          "lng": 91.82837
+        },
+        {
+          "order_id": "ORD-6721",
+          "cod_bdt": "1250.00",
+          "area": "Bahaddarhat",
+          "lat": 22.36988,
+          "lng": 91.84642
+        },
+        {
+          "order_id": "ORD-6722",
+          "cod_bdt": "1525.75",
+          "area": "Agrabad",
+          "lat": 22.33197,
+          "lng": 91.81293
+        },
+        {
+          "order_id": "ORD-6723",
+          "cod_bdt": "1299.99",
+          "area": "Dewanhat",
+          "lat": 22.3446,
+          "lng": 91.81107
+        },
+        {
+          "order_id": "ORD-6724",
+          "cod_bdt": "1250.00",
+          "area": "Muradpur",
+          "lat": 22.36572,
+          "lng": 91.83817
+        },
+        {
+          "order_id": "ORD-6725",
+          "cod_bdt": "1525.75",
+          "area": "Sholoshohor",
+          "lat": 22.36694,
+          "lng": 91.8254
+        },
+        {
+          "order_id": "ORD-6726",
+          "cod_bdt": "3200.00",
+          "area": "Sholoshohor",
+          "lat": 22.35781,
+          "lng": 91.83048
+        },
+        {
+          "order_id": "ORD-6727",
+          "cod_bdt": "1780.25",
+          "area": "Bahaddarhat",
+          "lat": 22.37247,
+          "lng": 91.83833
+        },
+        {
+          "order_id": "ORD-6728",
+          "cod_bdt": "2875.00",
+          "area": "Muradpur",
+          "lat": 22.36881,
+          "lng": 91.83742
+        },
+        {
+          "order_id": "ORD-6729",
+          "cod_bdt": "1999.99",
+          "area": "Halishahar",
+          "lat": 22.3338,
+          "lng": 91.78239
+        },
+        {
+          "order_id": "ORD-6730",
+          "cod_bdt": "560.25",
+          "area": "GEC Circle",
+          "lat": 22.35354,
+          "lng": 91.82648
+        },
+        {
+          "order_id": "ORD-6731",
+          "cod_bdt": "1299.99",
+          "area": "Dewanhat",
+          "lat": 22.33651,
+          "lng": 91.80592
+        },
+        {
+          "order_id": "ORD-6732",
+          "cod_bdt": "1999.99",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34792,
+          "lng": 91.82314
+        },
+        {
+          "order_id": "ORD-6733",
+          "cod_bdt": "1250.00",
+          "area": "Chandgaon",
+          "lat": 22.37497,
+          "lng": 91.85671
+        },
+        {
+          "order_id": "ORD-6734",
+          "cod_bdt": "899.50",
+          "area": "Chandgaon",
+          "lat": 22.38568,
+          "lng": 91.85102
+        },
+        {
+          "order_id": "ORD-6735",
+          "cod_bdt": "720.00",
+          "area": "Nasirabad",
+          "lat": 22.36912,
+          "lng": 91.81934
+        },
+        {
+          "order_id": "ORD-6736",
+          "cod_bdt": "2875.00",
+          "area": "Kotwali",
+          "lat": 22.33413,
+          "lng": 91.84275
+        },
+        {
+          "order_id": "ORD-6737",
+          "cod_bdt": "1525.75",
+          "area": "Dewanhat",
+          "lat": 22.34593,
+          "lng": 91.80682
+        },
+        {
+          "order_id": "ORD-6738",
+          "cod_bdt": "1250.00",
+          "area": "Muradpur",
+          "lat": 22.36361,
+          "lng": 91.83888
+        },
+        {
+          "order_id": "ORD-6739",
+          "cod_bdt": "1999.99",
+          "area": "Halishahar",
+          "lat": 22.32373,
+          "lng": 91.77983
+        },
+        {
+          "order_id": "ORD-6740",
+          "cod_bdt": "480.50",
+          "area": "Bahaddarhat",
+          "lat": 22.37301,
+          "lng": 91.84363
+        },
+        {
+          "order_id": "ORD-6741",
+          "cod_bdt": "560.25",
+          "area": "Kotwali",
+          "lat": 22.33088,
+          "lng": 91.84371
+        },
+        {
+          "order_id": "ORD-6742",
+          "cod_bdt": "1999.99",
+          "area": "Dewanhat",
+          "lat": 22.33502,
+          "lng": 91.8029
+        },
+        {
+          "order_id": "ORD-6743",
+          "cod_bdt": "1299.99",
+          "area": "GEC Circle",
+          "lat": 22.35318,
+          "lng": 91.81677
+        },
+        {
+          "order_id": "ORD-6744",
+          "cod_bdt": "480.50",
+          "area": "Kotwali",
+          "lat": 22.33659,
+          "lng": 91.84098
+        }
+      ],
+      "cash_returned_bdt": "36897.93"
+    },
+    {
+      "case_id": "PUB-15",
+      "courier": "Pathao Courier",
+      "rider": "Sumon",
+      "handover_time": "2026-08-24T11:45",
+      "parcels": [
+        {
+          "order_id": "ORD-6958",
+          "cod_bdt": "1780.25",
+          "area": "Patenga",
+          "lat": 22.23717,
+          "lng": 91.79326
+        },
+        {
+          "order_id": "ORD-6959",
+          "cod_bdt": "480.50",
+          "area": "Khulshi",
+          "lat": 22.36562,
+          "lng": 91.80513
+        },
+        {
+          "order_id": "ORD-6960",
+          "cod_bdt": "1150.00",
+          "area": "Bahaddarhat",
+          "lat": 22.36837,
+          "lng": 91.84673
+        },
+        {
+          "order_id": "ORD-6961",
+          "cod_bdt": "650.00",
+          "area": "GEC Circle",
+          "lat": 22.35734,
+          "lng": 91.82135
+        },
+        {
+          "order_id": "ORD-6962",
+          "cod_bdt": "1250.00",
+          "area": "Pahartali",
+          "lat": 22.37135,
+          "lng": 91.77713
+        },
+        {
+          "order_id": "ORD-6963",
+          "cod_bdt": "720.00",
+          "area": "Patenga",
+          "lat": 22.23608,
+          "lng": 91.79327
+        },
+        {
+          "order_id": "ORD-6964",
+          "cod_bdt": "650.00",
+          "area": "GEC Circle",
+          "lat": 22.36336,
+          "lng": 91.82378
+        },
+        {
+          "order_id": "ORD-6965",
+          "cod_bdt": "1299.99",
+          "area": "Halishahar",
+          "lat": 22.32732,
+          "lng": 91.7755
+        },
+        {
+          "order_id": "ORD-6966",
+          "cod_bdt": "560.25",
+          "area": "Patenga",
+          "lat": 22.24497,
+          "lng": 91.79027
+        },
+        {
+          "order_id": "ORD-6967",
+          "cod_bdt": "480.50",
+          "area": "Pahartali",
+          "lat": 22.36833,
+          "lng": 91.77976
+        },
+        {
+          "order_id": "ORD-6968",
+          "cod_bdt": "560.25",
+          "area": "Bahaddarhat",
+          "lat": 22.37691,
+          "lng": 91.84748
+        },
+        {
+          "order_id": "ORD-6969",
+          "cod_bdt": "990.00",
+          "area": "Pahartali",
+          "lat": 22.36833,
+          "lng": 91.78641
+        },
+        {
+          "order_id": "ORD-6970",
+          "cod_bdt": "1150.00",
+          "area": "Halishahar",
+          "lat": 22.33405,
+          "lng": 91.78524
+        },
+        {
+          "order_id": "ORD-6971",
+          "cod_bdt": "3200.00",
+          "area": "Sholoshohor",
+          "lat": 22.35671,
+          "lng": 91.8317
+        },
+        {
+          "order_id": "ORD-6972",
+          "cod_bdt": "1150.00",
+          "area": "Oxygen",
+          "lat": 22.39378,
+          "lng": 91.82699
+        },
+        {
+          "order_id": "ORD-6973",
+          "cod_bdt": "1525.75",
+          "area": "Chawkbazar",
+          "lat": 22.35173,
+          "lng": 91.83005
+        },
+        {
+          "order_id": "ORD-6974",
+          "cod_bdt": "2450.00",
+          "area": "Patenga",
+          "lat": 22.24051,
+          "lng": 91.79087
+        },
+        {
+          "order_id": "ORD-6975",
+          "cod_bdt": "1525.75",
+          "area": "Oxygen",
+          "lat": 22.39547,
+          "lng": 91.83584
+        },
+        {
+          "order_id": "ORD-6976",
+          "cod_bdt": "1780.25",
+          "area": "Agrabad",
+          "lat": 22.32809,
+          "lng": 91.80722
+        },
+        {
+          "order_id": "ORD-6977",
+          "cod_bdt": "1250.00",
+          "area": "Khulshi",
+          "lat": 22.36289,
+          "lng": 91.79566
+        },
+        {
+          "order_id": "ORD-6978",
+          "cod_bdt": "560.25",
+          "area": "Halishahar",
+          "lat": 22.32486,
+          "lng": 91.78085
+        },
+        {
+          "order_id": "ORD-6979",
+          "cod_bdt": "720.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34664,
+          "lng": 91.8307
+        },
+        {
+          "order_id": "ORD-6980",
+          "cod_bdt": "1999.99",
+          "area": "Bahaddarhat",
+          "lat": 22.36942,
+          "lng": 91.84387
+        },
+        {
+          "order_id": "ORD-6981",
+          "cod_bdt": "650.00",
+          "area": "Oxygen",
+          "lat": 22.39574,
+          "lng": 91.83551
+        },
+        {
+          "order_id": "ORD-6982",
+          "cod_bdt": "2875.00",
+          "area": "Chawkbazar",
+          "lat": 22.35042,
+          "lng": 91.84146
+        },
+        {
+          "order_id": "ORD-6983",
+          "cod_bdt": "2875.00",
+          "area": "Bahaddarhat",
+          "lat": 22.36693,
+          "lng": 91.83899
+        },
+        {
+          "order_id": "ORD-6984",
+          "cod_bdt": "3200.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34931,
+          "lng": 91.82752
+        },
+        {
+          "order_id": "ORD-6985",
+          "cod_bdt": "1525.75",
+          "area": "Kotwali",
+          "lat": 22.33583,
+          "lng": 91.83482
+        },
+        {
+          "order_id": "ORD-6986",
+          "cod_bdt": "2875.00",
+          "area": "Bahaddarhat",
+          "lat": 22.37167,
+          "lng": 91.84746
+        },
+        {
+          "order_id": "ORD-6987",
+          "cod_bdt": "720.00",
+          "area": "Chandgaon",
+          "lat": 22.37703,
+          "lng": 91.85266
+        }
+      ],
+      "cash_returned_bdt": "42104.48"
+    },
+    {
+      "case_id": "PUB-16",
+      "courier": "Steadfast",
+      "rider": "Rasel",
+      "handover_time": "2026-08-24T12:30",
+      "parcels": [
+        {
+          "order_id": "ORD-3055",
+          "cod_bdt": "1299.99",
+          "area": "Chandgaon",
+          "lat": 22.385,
+          "lng": 91.8519
+        },
+        {
+          "order_id": "ORD-3056",
+          "cod_bdt": "1250.00",
+          "area": "Nasirabad",
+          "lat": 22.36602,
+          "lng": 91.81861
+        },
+        {
+          "order_id": "ORD-3057",
+          "cod_bdt": "1525.75",
+          "area": "Agrabad",
+          "lat": 22.32892,
+          "lng": 91.81451
+        },
+        {
+          "order_id": "ORD-3058",
+          "cod_bdt": "2875.00",
+          "area": "Muradpur",
+          "lat": 22.35889,
+          "lng": 91.83653
+        },
+        {
+          "order_id": "ORD-3059",
+          "cod_bdt": "560.25",
+          "area": "Khulshi",
+          "lat": 22.36681,
+          "lng": 91.80472
+        },
+        {
+          "order_id": "ORD-3060",
+          "cod_bdt": "1150.00",
+          "area": "Sholoshohor",
+          "lat": 22.36302,
+          "lng": 91.82439
+        },
+        {
+          "order_id": "ORD-3061",
+          "cod_bdt": "720.00",
+          "area": "Chawkbazar",
+          "lat": 22.34939,
+          "lng": 91.84157
+        },
+        {
+          "order_id": "ORD-3062",
+          "cod_bdt": "3200.00",
+          "area": "Halishahar",
+          "lat": 22.32979,
+          "lng": 91.78509
+        },
+        {
+          "order_id": "ORD-3063",
+          "cod_bdt": "2450.00",
+          "area": "Khulshi",
+          "lat": 22.3619,
+          "lng": 91.80238
+        },
+        {
+          "order_id": "ORD-3064",
+          "cod_bdt": "480.50",
+          "area": "Chawkbazar",
+          "lat": 22.35568,
+          "lng": 91.84023
+        },
+        {
+          "order_id": "ORD-3065",
+          "cod_bdt": "1999.99",
+          "area": "Sholoshohor",
+          "lat": 22.35669,
+          "lng": 91.82695
+        },
+        {
+          "order_id": "ORD-3066",
+          "cod_bdt": "899.50",
+          "area": "Chandgaon",
+          "lat": 22.3808,
+          "lng": 91.85342
+        },
+        {
+          "order_id": "ORD-3067",
+          "cod_bdt": "899.50",
+          "area": "Dewanhat",
+          "lat": 22.34032,
+          "lng": 91.80945
+        },
+        {
+          "order_id": "ORD-3068",
+          "cod_bdt": "480.50",
+          "area": "Chandgaon",
+          "lat": 22.38356,
+          "lng": 91.85741
+        },
+        {
+          "order_id": "ORD-3069",
+          "cod_bdt": "1525.75",
+          "area": "Khulshi",
+          "lat": 22.36908,
+          "lng": 91.79708
+        },
+        {
+          "order_id": "ORD-3070",
+          "cod_bdt": "899.50",
+          "area": "Muradpur",
+          "lat": 22.36047,
+          "lng": 91.83539
+        },
+        {
+          "order_id": "ORD-3071",
+          "cod_bdt": "990.00",
+          "area": "Bahaddarhat",
+          "lat": 22.36607,
+          "lng": 91.84664
+        },
+        {
+          "order_id": "ORD-3072",
+          "cod_bdt": "2875.00",
+          "area": "Nasirabad",
+          "lat": 22.36265,
+          "lng": 91.81863
+        },
+        {
+          "order_id": "ORD-3073",
+          "cod_bdt": "1780.25",
+          "area": "GEC Circle",
+          "lat": 22.35702,
+          "lng": 91.81928
+        },
+        {
+          "order_id": "ORD-3074",
+          "cod_bdt": "3200.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35186,
+          "lng": 91.81996
+        },
+        {
+          "order_id": "ORD-3075",
+          "cod_bdt": "1999.99",
+          "area": "Chawkbazar",
+          "lat": 22.35361,
+          "lng": 91.8394
+        },
+        {
+          "order_id": "ORD-3076",
+          "cod_bdt": "560.25",
+          "area": "Sholoshohor",
+          "lat": 22.35763,
+          "lng": 91.8255
+        },
+        {
+          "order_id": "ORD-3077",
+          "cod_bdt": "3200.00",
+          "area": "Sholoshohor",
+          "lat": 22.36558,
+          "lng": 91.82271
+        },
+        {
+          "order_id": "ORD-3078",
+          "cod_bdt": "3200.00",
+          "area": "Khulshi",
+          "lat": 22.37141,
+          "lng": 91.80572
+        },
+        {
+          "order_id": "ORD-3079",
+          "cod_bdt": "1780.25",
+          "area": "Khulshi",
+          "lat": 22.36393,
+          "lng": 91.79855
+        },
+        {
+          "order_id": "ORD-3080",
+          "cod_bdt": "650.00",
+          "area": "GEC Circle",
+          "lat": 22.36413,
+          "lng": 91.82688
+        },
+        {
+          "order_id": "ORD-3081",
+          "cod_bdt": "480.50",
+          "area": "Patenga",
+          "lat": 22.23743,
+          "lng": 91.7994
+        },
+        {
+          "order_id": "ORD-3082",
+          "cod_bdt": "1999.99",
+          "area": "Dewanhat",
+          "lat": 22.33982,
+          "lng": 91.8127
+        },
+        {
+          "order_id": "ORD-3083",
+          "cod_bdt": "720.00",
+          "area": "Chawkbazar",
+          "lat": 22.35169,
+          "lng": 91.83421
+        },
+        {
+          "order_id": "ORD-3084",
+          "cod_bdt": "1250.00",
+          "area": "Oxygen",
+          "lat": 22.3858,
+          "lng": 91.83639
+        },
+        {
+          "order_id": "ORD-3085",
+          "cod_bdt": "990.00",
+          "area": "Muradpur",
+          "lat": 22.35951,
+          "lng": 91.83849
+        },
+        {
+          "order_id": "ORD-3086",
+          "cod_bdt": "899.50",
+          "area": "Chandgaon",
+          "lat": 22.37827,
+          "lng": 91.8616
+        },
+        {
+          "order_id": "ORD-3087",
+          "cod_bdt": "990.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34542,
+          "lng": 91.82776
+        },
+        {
+          "order_id": "ORD-3088",
+          "cod_bdt": "560.25",
+          "area": "Khulshi",
+          "lat": 22.36641,
+          "lng": 91.79488
+        },
+        {
+          "order_id": "ORD-3089",
+          "cod_bdt": "1299.99",
+          "area": "Dewanhat",
+          "lat": 22.33695,
+          "lng": 91.80874
+        },
+        {
+          "order_id": "ORD-3090",
+          "cod_bdt": "990.00",
+          "area": "Bahaddarhat",
+          "lat": 22.36698,
+          "lng": 91.83603
+        },
+        {
+          "order_id": "ORD-3091",
+          "cod_bdt": "990.00",
+          "area": "Chandgaon",
+          "lat": 22.37411,
+          "lng": 91.85588
+        }
+      ],
+      "cash_returned_bdt": "51172.20"
+    },
+    {
+      "case_id": "PUB-17",
+      "courier": "RedX",
+      "rider": "Nayeem",
+      "handover_time": "2026-08-28T11:00",
+      "parcels": [
+        {
+          "order_id": "ORD-2688",
+          "cod_bdt": "899.50",
+          "area": "Kotwali",
+          "lat": 22.32993,
+          "lng": 91.84191
+        },
+        {
+          "order_id": "ORD-2689",
+          "cod_bdt": "560.25",
+          "area": "Sholoshohor",
+          "lat": 22.35656,
+          "lng": 91.82912
+        },
+        {
+          "order_id": "ORD-2690",
+          "cod_bdt": "899.50",
+          "area": "Sholoshohor",
+          "lat": 22.36025,
+          "lng": 91.83169
+        },
+        {
+          "order_id": "ORD-2691",
+          "cod_bdt": "2875.00",
+          "area": "Kotwali",
+          "lat": 22.33741,
+          "lng": 91.83741
+        },
+        {
+          "order_id": "ORD-2692",
+          "cod_bdt": "480.50",
+          "area": "Pahartali",
+          "lat": 22.36865,
+          "lng": 91.78357
+        },
+        {
+          "order_id": "ORD-2693",
+          "cod_bdt": "720.00",
+          "area": "Pahartali",
+          "lat": 22.3606,
+          "lng": 91.77997
+        },
+        {
+          "order_id": "ORD-2694",
+          "cod_bdt": "1250.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34548,
+          "lng": 91.82908
+        },
+        {
+          "order_id": "ORD-2695",
+          "cod_bdt": "560.25",
+          "area": "GEC Circle",
+          "lat": 22.36403,
+          "lng": 91.8165
+        },
+        {
+          "order_id": "ORD-2696",
+          "cod_bdt": "899.50",
+          "area": "Khulshi",
+          "lat": 22.36609,
+          "lng": 91.79718
+        },
+        {
+          "order_id": "ORD-2697",
+          "cod_bdt": "1999.99",
+          "area": "Nasirabad",
+          "lat": 22.36919,
+          "lng": 91.8122
+        },
+        {
+          "order_id": "ORD-2698",
+          "cod_bdt": "3200.00",
+          "area": "Kotwali",
+          "lat": 22.33924,
+          "lng": 91.84006
+        },
+        {
+          "order_id": "ORD-2699",
+          "cod_bdt": "1150.00",
+          "area": "Chawkbazar",
+          "lat": 22.3552,
+          "lng": 91.83818
+        },
+        {
+          "order_id": "ORD-2700",
+          "cod_bdt": "899.50",
+          "area": "Patenga",
+          "lat": 22.2426,
+          "lng": 91.79049
+        },
+        {
+          "order_id": "ORD-2701",
+          "cod_bdt": "3200.00",
+          "area": "Chawkbazar",
+          "lat": 22.35539,
+          "lng": 91.83674
+        },
+        {
+          "order_id": "ORD-2702",
+          "cod_bdt": "2875.00",
+          "area": "Chandgaon",
+          "lat": 22.37678,
+          "lng": 91.86181
+        },
+        {
+          "order_id": "ORD-2703",
+          "cod_bdt": "650.00",
+          "area": "Nasirabad",
+          "lat": 22.35939,
+          "lng": 91.82348
+        },
+        {
+          "order_id": "ORD-2704",
+          "cod_bdt": "3200.00",
+          "area": "Pahartali",
+          "lat": 22.3719,
+          "lng": 91.78258
+        },
+        {
+          "order_id": "ORD-2705",
+          "cod_bdt": "1999.99",
+          "area": "Dewanhat",
+          "lat": 22.34285,
+          "lng": 91.80864
+        },
+        {
+          "order_id": "ORD-2706",
+          "cod_bdt": "720.00",
+          "area": "Bahaddarhat",
+          "lat": 22.37766,
+          "lng": 91.84072
+        },
+        {
+          "order_id": "ORD-2707",
+          "cod_bdt": "3200.00",
+          "area": "Nasirabad",
+          "lat": 22.3675,
+          "lng": 91.81359
+        },
+        {
+          "order_id": "ORD-2708",
+          "cod_bdt": "720.00",
+          "area": "Halishahar",
+          "lat": 22.32321,
+          "lng": 91.78088
+        },
+        {
+          "order_id": "ORD-2709",
+          "cod_bdt": "560.25",
+          "area": "Kotwali",
+          "lat": 22.33751,
+          "lng": 91.84334
+        },
+        {
+          "order_id": "ORD-2710",
+          "cod_bdt": "1150.00",
+          "area": "Chawkbazar",
+          "lat": 22.35943,
+          "lng": 91.8349
+        },
+        {
+          "order_id": "ORD-2711",
+          "cod_bdt": "1999.99",
+          "area": "Halishahar",
+          "lat": 22.3322,
+          "lng": 91.78
+        },
+        {
+          "order_id": "ORD-2712",
+          "cod_bdt": "560.25",
+          "area": "Lalkhan Bazar",
+          "lat": 22.3482,
+          "lng": 91.82731
+        },
+        {
+          "order_id": "ORD-2713",
+          "cod_bdt": "899.50",
+          "area": "Halishahar",
+          "lat": 22.33404,
+          "lng": 91.78142
+        },
+        {
+          "order_id": "ORD-2714",
+          "cod_bdt": "990.00",
+          "area": "Bahaddarhat",
+          "lat": 22.37279,
+          "lng": 91.84536
+        },
+        {
+          "order_id": "ORD-2715",
+          "cod_bdt": "1780.25",
+          "area": "Bahaddarhat",
+          "lat": 22.36737,
+          "lng": 91.8377
+        },
+        {
+          "order_id": "ORD-2716",
+          "cod_bdt": "480.50",
+          "area": "Pahartali",
+          "lat": 22.37078,
+          "lng": 91.78257
+        },
+        {
+          "order_id": "ORD-2717",
+          "cod_bdt": "2450.00",
+          "area": "Bahaddarhat",
+          "lat": 22.36878,
+          "lng": 91.84633
+        },
+        {
+          "order_id": "ORD-2718",
+          "cod_bdt": "1150.00",
+          "area": "Patenga",
+          "lat": 22.2341,
+          "lng": 91.80184
+        },
+        {
+          "order_id": "ORD-2719",
+          "cod_bdt": "1999.99",
+          "area": "Chandgaon",
+          "lat": 22.37555,
+          "lng": 91.85471
+        },
+        {
+          "order_id": "ORD-2720",
+          "cod_bdt": "720.00",
+          "area": "Chawkbazar",
+          "lat": 22.35626,
+          "lng": 91.83964
+        }
+      ],
+      "cash_returned_bdt": "46449.71"
+    },
+    {
+      "case_id": "PUB-18",
+      "courier": "RedX",
+      "rider": "Faisal",
+      "handover_time": "2026-08-26T11:30",
+      "parcels": [
+        {
+          "order_id": "ORD-8950",
+          "cod_bdt": "480.50",
+          "area": "Sholoshohor",
+          "lat": 22.36442,
+          "lng": 91.8322
+        },
+        {
+          "order_id": "ORD-8951",
+          "cod_bdt": "560.25",
+          "area": "Oxygen",
+          "lat": 22.38921,
+          "lng": 91.83269
+        },
+        {
+          "order_id": "ORD-8952",
+          "cod_bdt": "990.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35325,
+          "lng": 91.82206
+        },
+        {
+          "order_id": "ORD-8953",
+          "cod_bdt": "1150.00",
+          "area": "Nasirabad",
+          "lat": 22.35909,
+          "lng": 91.81832
+        },
+        {
+          "order_id": "ORD-8954",
+          "cod_bdt": "1250.00",
+          "area": "GEC Circle",
+          "lat": 22.36,
+          "lng": 91.82669
+        },
+        {
+          "order_id": "ORD-8955",
+          "cod_bdt": "480.50",
+          "area": "Pahartali",
+          "lat": 22.36104,
+          "lng": 91.78426
+        },
+        {
+          "order_id": "ORD-8956",
+          "cod_bdt": "3200.00",
+          "area": "Nasirabad",
+          "lat": 22.36152,
+          "lng": 91.82207
+        },
+        {
+          "order_id": "ORD-8957",
+          "cod_bdt": "1525.75",
+          "area": "Khulshi",
+          "lat": 22.36715,
+          "lng": 91.80245
+        },
+        {
+          "order_id": "ORD-8958",
+          "cod_bdt": "1250.00",
+          "area": "Khulshi",
+          "lat": 22.36929,
+          "lng": 91.80437
+        },
+        {
+          "order_id": "ORD-8959",
+          "cod_bdt": "1299.99",
+          "area": "Pahartali",
+          "lat": 22.37083,
+          "lng": 91.78092
+        },
+        {
+          "order_id": "ORD-8960",
+          "cod_bdt": "1999.99",
+          "area": "Chandgaon",
+          "lat": 22.37464,
+          "lng": 91.85687
+        },
+        {
+          "order_id": "ORD-8961",
+          "cod_bdt": "1525.75",
+          "area": "Halishahar",
+          "lat": 22.33317,
+          "lng": 91.78295
+        },
+        {
+          "order_id": "ORD-8962",
+          "cod_bdt": "1250.00",
+          "area": "Pahartali",
+          "lat": 22.36942,
+          "lng": 91.78754
+        },
+        {
+          "order_id": "ORD-8963",
+          "cod_bdt": "480.50",
+          "area": "Muradpur",
+          "lat": 22.36982,
+          "lng": 91.83743
+        },
+        {
+          "order_id": "ORD-8964",
+          "cod_bdt": "2450.00",
+          "area": "Sholoshohor",
+          "lat": 22.36609,
+          "lng": 91.8249
+        },
+        {
+          "order_id": "ORD-8965",
+          "cod_bdt": "1999.99",
+          "area": "Bahaddarhat",
+          "lat": 22.36824,
+          "lng": 91.84269
+        },
+        {
+          "order_id": "ORD-8966",
+          "cod_bdt": "2875.00",
+          "area": "Dewanhat",
+          "lat": 22.33523,
+          "lng": 91.81009
+        },
+        {
+          "order_id": "ORD-8967",
+          "cod_bdt": "1525.75",
+          "area": "Halishahar",
+          "lat": 22.32557,
+          "lng": 91.78136
+        },
+        {
+          "order_id": "ORD-8968",
+          "cod_bdt": "3200.00",
+          "area": "Agrabad",
+          "lat": 22.32101,
+          "lng": 91.80619
+        },
+        {
+          "order_id": "ORD-8969",
+          "cod_bdt": "899.50",
+          "area": "Chawkbazar",
+          "lat": 22.35454,
+          "lng": 91.83742
+        },
+        {
+          "order_id": "ORD-8970",
+          "cod_bdt": "990.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35169,
+          "lng": 91.82064
+        },
+        {
+          "order_id": "ORD-8971",
+          "cod_bdt": "650.00",
+          "area": "Agrabad",
+          "lat": 22.32976,
+          "lng": 91.80667
+        },
+        {
+          "order_id": "ORD-8972",
+          "cod_bdt": "480.50",
+          "area": "Kotwali",
+          "lat": 22.33879,
+          "lng": 91.84062
+        },
+        {
+          "order_id": "ORD-8973",
+          "cod_bdt": "1250.00",
+          "area": "Chawkbazar",
+          "lat": 22.35795,
+          "lng": 91.83451
+        },
+        {
+          "order_id": "ORD-8974",
+          "cod_bdt": "1299.99",
+          "area": "Bahaddarhat",
+          "lat": 22.37661,
+          "lng": 91.83607
+        },
+        {
+          "order_id": "ORD-8975",
+          "cod_bdt": "560.25",
+          "area": "Nasirabad",
+          "lat": 22.3685,
+          "lng": 91.8169
+        },
+        {
+          "order_id": "ORD-8976",
+          "cod_bdt": "720.00",
+          "area": "Agrabad",
+          "lat": 22.32347,
+          "lng": 91.80927
+        },
+        {
+          "order_id": "ORD-8977",
+          "cod_bdt": "560.25",
+          "area": "Kotwali",
+          "lat": 22.33386,
+          "lng": 91.83534
+        },
+        {
+          "order_id": "ORD-8978",
+          "cod_bdt": "1150.00",
+          "area": "Chawkbazar",
+          "lat": 22.35926,
+          "lng": 91.83136
+        },
+        {
+          "order_id": "ORD-8979",
+          "cod_bdt": "560.25",
+          "area": "Nasirabad",
+          "lat": 22.36187,
+          "lng": 91.82207
+        },
+        {
+          "order_id": "ORD-8980",
+          "cod_bdt": "3200.00",
+          "area": "Dewanhat",
+          "lat": 22.33836,
+          "lng": 91.80375
+        },
+        {
+          "order_id": "ORD-8981",
+          "cod_bdt": "1299.99",
+          "area": "Chandgaon",
+          "lat": 22.38452,
+          "lng": 91.85943
+        }
+      ],
+      "cash_returned_bdt": "40664.70"
+    },
+    {
+      "case_id": "PUB-19",
+      "courier": "Pathao Courier",
+      "rider": "Nayeem",
+      "handover_time": "2026-08-26T10:30",
+      "parcels": [
+        {
+          "order_id": "ORD-8635",
+          "cod_bdt": "1250.00",
+          "area": "Agrabad",
+          "lat": 22.33131,
+          "lng": 91.81419
+        },
+        {
+          "order_id": "ORD-8636",
+          "cod_bdt": "720.00",
+          "area": "Agrabad",
+          "lat": 22.33146,
+          "lng": 91.81759
+        },
+        {
+          "order_id": "ORD-8637",
+          "cod_bdt": "1250.00",
+          "area": "Agrabad",
+          "lat": 22.32866,
+          "lng": 91.81263
+        },
+        {
+          "order_id": "ORD-8638",
+          "cod_bdt": "2875.00",
+          "area": "Chandgaon",
+          "lat": 22.37427,
+          "lng": 91.8503
+        },
+        {
+          "order_id": "ORD-8639",
+          "cod_bdt": "899.50",
+          "area": "Halishahar",
+          "lat": 22.33345,
+          "lng": 91.77647
+        },
+        {
+          "order_id": "ORD-8640",
+          "cod_bdt": "1150.00",
+          "area": "Chandgaon",
+          "lat": 22.3755,
+          "lng": 91.85699
+        },
+        {
+          "order_id": "ORD-8641",
+          "cod_bdt": "560.25",
+          "area": "Khulshi",
+          "lat": 22.37091,
+          "lng": 91.79807
+        },
+        {
+          "order_id": "ORD-8642",
+          "cod_bdt": "1780.25",
+          "area": "Sholoshohor",
+          "lat": 22.35781,
+          "lng": 91.82875
+        },
+        {
+          "order_id": "ORD-8643",
+          "cod_bdt": "1525.75",
+          "area": "Nasirabad",
+          "lat": 22.36396,
+          "lng": 91.81464
+        },
+        {
+          "order_id": "ORD-8644",
+          "cod_bdt": "1999.99",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35219,
+          "lng": 91.82175
+        },
+        {
+          "order_id": "ORD-8645",
+          "cod_bdt": "990.00",
+          "area": "Chawkbazar",
+          "lat": 22.35739,
+          "lng": 91.83024
+        },
+        {
+          "order_id": "ORD-8646",
+          "cod_bdt": "1999.99",
+          "area": "Halishahar",
+          "lat": 22.32725,
+          "lng": 91.77705
+        },
+        {
+          "order_id": "ORD-8647",
+          "cod_bdt": "1150.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.3502,
+          "lng": 91.8247
+        },
+        {
+          "order_id": "ORD-8648",
+          "cod_bdt": "1780.25",
+          "area": "Muradpur",
+          "lat": 22.36518,
+          "lng": 91.83776
+        },
+        {
+          "order_id": "ORD-8649",
+          "cod_bdt": "1999.99",
+          "area": "Oxygen",
+          "lat": 22.38494,
+          "lng": 91.83742
+        },
+        {
+          "order_id": "ORD-8650",
+          "cod_bdt": "2875.00",
+          "area": "Halishahar",
+          "lat": 22.33285,
+          "lng": 91.78222
+        },
+        {
+          "order_id": "ORD-8651",
+          "cod_bdt": "2450.00",
+          "area": "Bahaddarhat",
+          "lat": 22.36784,
+          "lng": 91.84533
+        },
+        {
+          "order_id": "ORD-8652",
+          "cod_bdt": "480.50",
+          "area": "Patenga",
+          "lat": 22.23597,
+          "lng": 91.79172
+        },
+        {
+          "order_id": "ORD-8653",
+          "cod_bdt": "1150.00",
+          "area": "Dewanhat",
+          "lat": 22.34002,
+          "lng": 91.80459
+        },
+        {
+          "order_id": "ORD-8654",
+          "cod_bdt": "720.00",
+          "area": "Agrabad",
+          "lat": 22.3264,
+          "lng": 91.81647
+        },
+        {
+          "order_id": "ORD-8655",
+          "cod_bdt": "560.25",
+          "area": "Chandgaon",
+          "lat": 22.38058,
+          "lng": 91.85704
+        },
+        {
+          "order_id": "ORD-8656",
+          "cod_bdt": "990.00",
+          "area": "Oxygen",
+          "lat": 22.38803,
+          "lng": 91.82605
+        },
+        {
+          "order_id": "ORD-8657",
+          "cod_bdt": "3200.00",
+          "area": "Chawkbazar",
+          "lat": 22.35098,
+          "lng": 91.83059
+        },
+        {
+          "order_id": "ORD-8658",
+          "cod_bdt": "2875.00",
+          "area": "Muradpur",
+          "lat": 22.36305,
+          "lng": 91.84108
+        },
+        {
+          "order_id": "ORD-8659",
+          "cod_bdt": "480.50",
+          "area": "Patenga",
+          "lat": 22.23413,
+          "lng": 91.79061
+        },
+        {
+          "order_id": "ORD-8660",
+          "cod_bdt": "990.00",
+          "area": "Oxygen",
+          "lat": 22.38836,
+          "lng": 91.83024
+        },
+        {
+          "order_id": "ORD-8661",
+          "cod_bdt": "650.00",
+          "area": "Khulshi",
+          "lat": 22.37029,
+          "lng": 91.79862
+        },
+        {
+          "order_id": "ORD-8662",
+          "cod_bdt": "650.00",
+          "area": "Sholoshohor",
+          "lat": 22.36523,
+          "lng": 91.83023
+        },
+        {
+          "order_id": "ORD-8663",
+          "cod_bdt": "650.00",
+          "area": "Muradpur",
+          "lat": 22.36825,
+          "lng": 91.83796
+        },
+        {
+          "order_id": "ORD-8664",
+          "cod_bdt": "720.00",
+          "area": "Dewanhat",
+          "lat": 22.34287,
+          "lng": 91.80728
+        },
+        {
+          "order_id": "ORD-8665",
+          "cod_bdt": "560.25",
+          "area": "Muradpur",
+          "lat": 22.36074,
+          "lng": 91.83846
+        },
+        {
+          "order_id": "ORD-8666",
+          "cod_bdt": "899.50",
+          "area": "GEC Circle",
+          "lat": 22.35693,
+          "lng": 91.8193
+        },
+        {
+          "order_id": "ORD-8667",
+          "cod_bdt": "3200.00",
+          "area": "Dewanhat",
+          "lat": 22.34562,
+          "lng": 91.80559
+        },
+        {
+          "order_id": "ORD-8668",
+          "cod_bdt": "2875.00",
+          "area": "Halishahar",
+          "lat": 22.3269,
+          "lng": 91.77652
+        },
+        {
+          "order_id": "ORD-8669",
+          "cod_bdt": "480.50",
+          "area": "Agrabad",
+          "lat": 22.32642,
+          "lng": 91.8146
+        }
+      ],
+      "cash_returned_bdt": "48137.47"
+    },
+    {
+      "case_id": "PUB-20",
+      "courier": "Steadfast",
+      "rider": "Riad",
+      "handover_time": "2026-08-29T11:00",
+      "parcels": [
+        {
+          "order_id": "ORD-3427",
+          "cod_bdt": "1780.25",
+          "area": "Kotwali",
+          "lat": 22.33103,
+          "lng": 91.83698
+        },
+        {
+          "order_id": "ORD-3428",
+          "cod_bdt": "990.00",
+          "area": "Dewanhat",
+          "lat": 22.33636,
+          "lng": 91.81292
+        },
+        {
+          "order_id": "ORD-3429",
+          "cod_bdt": "1999.99",
+          "area": "Oxygen",
+          "lat": 22.39024,
+          "lng": 91.83139
+        },
+        {
+          "order_id": "ORD-3430",
+          "cod_bdt": "2875.00",
+          "area": "Chawkbazar",
+          "lat": 22.35778,
+          "lng": 91.83849
+        },
+        {
+          "order_id": "ORD-3431",
+          "cod_bdt": "1150.00",
+          "area": "Halishahar",
+          "lat": 22.33179,
+          "lng": 91.77667
+        },
+        {
+          "order_id": "ORD-3432",
+          "cod_bdt": "2875.00",
+          "area": "Dewanhat",
+          "lat": 22.34152,
+          "lng": 91.80508
+        },
+        {
+          "order_id": "ORD-3433",
+          "cod_bdt": "1780.25",
+          "area": "Agrabad",
+          "lat": 22.33165,
+          "lng": 91.81012
+        },
+        {
+          "order_id": "ORD-3434",
+          "cod_bdt": "3200.00",
+          "area": "Khulshi",
+          "lat": 22.37121,
+          "lng": 91.79954
+        },
+        {
+          "order_id": "ORD-3435",
+          "cod_bdt": "1780.25",
+          "area": "Sholoshohor",
+          "lat": 22.35968,
+          "lng": 91.82998
+        },
+        {
+          "order_id": "ORD-3436",
+          "cod_bdt": "720.00",
+          "area": "Chawkbazar",
+          "lat": 22.35648,
+          "lng": 91.83958
+        },
+        {
+          "order_id": "ORD-3437",
+          "cod_bdt": "1999.99",
+          "area": "Kotwali",
+          "lat": 22.33767,
+          "lng": 91.84001
+        },
+        {
+          "order_id": "ORD-3438",
+          "cod_bdt": "650.00",
+          "area": "Muradpur",
+          "lat": 22.36358,
+          "lng": 91.8383
+        },
+        {
+          "order_id": "ORD-3439",
+          "cod_bdt": "3200.00",
+          "area": "Agrabad",
+          "lat": 22.32155,
+          "lng": 91.81273
+        },
+        {
+          "order_id": "ORD-3440",
+          "cod_bdt": "650.00",
+          "area": "GEC Circle",
+          "lat": 22.36312,
+          "lng": 91.817
+        },
+        {
+          "order_id": "ORD-3441",
+          "cod_bdt": "990.00",
+          "area": "Sholoshohor",
+          "lat": 22.35941,
+          "lng": 91.83161
+        },
+        {
+          "order_id": "ORD-3442",
+          "cod_bdt": "1999.99",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35039,
+          "lng": 91.81959
+        },
+        {
+          "order_id": "ORD-3443",
+          "cod_bdt": "1150.00",
+          "area": "Dewanhat",
+          "lat": 22.34376,
+          "lng": 91.80672
+        },
+        {
+          "order_id": "ORD-3444",
+          "cod_bdt": "1780.25",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34999,
+          "lng": 91.83095
+        },
+        {
+          "order_id": "ORD-3445",
+          "cod_bdt": "1299.99",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35243,
+          "lng": 91.82642
+        },
+        {
+          "order_id": "ORD-3446",
+          "cod_bdt": "1299.99",
+          "area": "Nasirabad",
+          "lat": 22.36797,
+          "lng": 91.8139
+        },
+        {
+          "order_id": "ORD-3447",
+          "cod_bdt": "1999.99",
+          "area": "Agrabad",
+          "lat": 22.32195,
+          "lng": 91.81083
+        },
+        {
+          "order_id": "ORD-3448",
+          "cod_bdt": "1525.75",
+          "area": "Muradpur",
+          "lat": 22.36888,
+          "lng": 91.83695
+        },
+        {
+          "order_id": "ORD-3449",
+          "cod_bdt": "990.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34543,
+          "lng": 91.82319
+        },
+        {
+          "order_id": "ORD-3450",
+          "cod_bdt": "1299.99",
+          "area": "Nasirabad",
+          "lat": 22.35819,
+          "lng": 91.81419
+        },
+        {
+          "order_id": "ORD-3451",
+          "cod_bdt": "1999.99",
+          "area": "Kotwali",
+          "lat": 22.33564,
+          "lng": 91.84143
+        },
+        {
+          "order_id": "ORD-3452",
+          "cod_bdt": "2875.00",
+          "area": "Chawkbazar",
+          "lat": 22.35487,
+          "lng": 91.83142
+        },
+        {
+          "order_id": "ORD-3453",
+          "cod_bdt": "1250.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34972,
+          "lng": 91.82448
+        },
+        {
+          "order_id": "ORD-3454",
+          "cod_bdt": "1150.00",
+          "area": "Sholoshohor",
+          "lat": 22.3641,
+          "lng": 91.82692
+        },
+        {
+          "order_id": "ORD-3455",
+          "cod_bdt": "3200.00",
+          "area": "GEC Circle",
+          "lat": 22.35986,
+          "lng": 91.82214
+        },
+        {
+          "order_id": "ORD-3456",
+          "cod_bdt": "2450.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34734,
+          "lng": 91.82768
+        },
+        {
+          "order_id": "ORD-3457",
+          "cod_bdt": "1150.00",
+          "area": "Agrabad",
+          "lat": 22.32913,
+          "lng": 91.80764
+        },
+        {
+          "order_id": "ORD-3458",
+          "cod_bdt": "480.50",
+          "area": "Chawkbazar",
+          "lat": 22.34802,
+          "lng": 91.83911
+        },
+        {
+          "order_id": "ORD-3459",
+          "cod_bdt": "480.50",
+          "area": "Patenga",
+          "lat": 22.24294,
+          "lng": 91.80148
+        },
+        {
+          "order_id": "ORD-3460",
+          "cod_bdt": "480.50",
+          "area": "Chandgaon",
+          "lat": 22.37417,
+          "lng": 91.8506
+        },
+        {
+          "order_id": "ORD-3461",
+          "cod_bdt": "480.50",
+          "area": "Halishahar",
+          "lat": 22.33493,
+          "lng": 91.77559
+        },
+        {
+          "order_id": "ORD-3462",
+          "cod_bdt": "899.50",
+          "area": "GEC Circle",
+          "lat": 22.35547,
+          "lng": 91.8215
+        },
+        {
+          "order_id": "ORD-3463",
+          "cod_bdt": "480.50",
+          "area": "Khulshi",
+          "lat": 22.36794,
+          "lng": 91.79843
+        },
+        {
+          "order_id": "ORD-3464",
+          "cod_bdt": "2875.00",
+          "area": "Agrabad",
+          "lat": 22.32055,
+          "lng": 91.81255
+        },
+        {
+          "order_id": "ORD-3465",
+          "cod_bdt": "1525.75",
+          "area": "Pahartali",
+          "lat": 22.3705,
+          "lng": 91.77852
+        }
+      ],
+      "cash_returned_bdt": "61964.42"
+    },
+    {
+      "case_id": "PUB-21",
+      "courier": "Steadfast",
+      "rider": "Tuhin",
+      "handover_time": "2026-08-27T09:00",
+      "parcels": [
+        {
+          "order_id": "ORD-7047",
+          "cod_bdt": "3200.00",
+          "area": "Nasirabad",
+          "lat": 22.36644,
+          "lng": 91.82171
+        },
+        {
+          "order_id": "ORD-7048",
+          "cod_bdt": "2450.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35468,
+          "lng": 91.82742
+        },
+        {
+          "order_id": "ORD-7049",
+          "cod_bdt": "1150.00",
+          "area": "Muradpur",
+          "lat": 22.36564,
+          "lng": 91.8412
+        },
+        {
+          "order_id": "ORD-7050",
+          "cod_bdt": "1299.99",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35107,
+          "lng": 91.82661
+        },
+        {
+          "order_id": "ORD-7051",
+          "cod_bdt": "1525.75",
+          "area": "Khulshi",
+          "lat": 22.35955,
+          "lng": 91.80165
+        },
+        {
+          "order_id": "ORD-7052",
+          "cod_bdt": "650.00",
+          "area": "Khulshi",
+          "lat": 22.36955,
+          "lng": 91.8037
+        },
+        {
+          "order_id": "ORD-7053",
+          "cod_bdt": "990.00",
+          "area": "Agrabad",
+          "lat": 22.32379,
+          "lng": 91.80627
+        },
+        {
+          "order_id": "ORD-7054",
+          "cod_bdt": "650.00",
+          "area": "Muradpur",
+          "lat": 22.3655,
+          "lng": 91.84102
+        },
+        {
+          "order_id": "ORD-7055",
+          "cod_bdt": "1150.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35182,
+          "lng": 91.82644
+        },
+        {
+          "order_id": "ORD-7056",
+          "cod_bdt": "720.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34485,
+          "lng": 91.81977
+        },
+        {
+          "order_id": "ORD-7057",
+          "cod_bdt": "1525.75",
+          "area": "Agrabad",
+          "lat": 22.32383,
+          "lng": 91.81501
+        },
+        {
+          "order_id": "ORD-7058",
+          "cod_bdt": "1299.99",
+          "area": "Khulshi",
+          "lat": 22.3632,
+          "lng": 91.80435
+        },
+        {
+          "order_id": "ORD-7059",
+          "cod_bdt": "1150.00",
+          "area": "Pahartali",
+          "lat": 22.36811,
+          "lng": 91.78034
+        },
+        {
+          "order_id": "ORD-7060",
+          "cod_bdt": "990.00",
+          "area": "Kotwali",
+          "lat": 22.33,
+          "lng": 91.83513
+        },
+        {
+          "order_id": "ORD-7061",
+          "cod_bdt": "1150.00",
+          "area": "Kotwali",
+          "lat": 22.33901,
+          "lng": 91.84237
+        },
+        {
+          "order_id": "ORD-7062",
+          "cod_bdt": "560.25",
+          "area": "Oxygen",
+          "lat": 22.3914,
+          "lng": 91.83582
+        },
+        {
+          "order_id": "ORD-7063",
+          "cod_bdt": "1299.99",
+          "area": "Patenga",
+          "lat": 22.24139,
+          "lng": 91.79724
+        },
+        {
+          "order_id": "ORD-7064",
+          "cod_bdt": "1250.00",
+          "area": "Chawkbazar",
+          "lat": 22.35773,
+          "lng": 91.83864
+        },
+        {
+          "order_id": "ORD-7065",
+          "cod_bdt": "1999.99",
+          "area": "Agrabad",
+          "lat": 22.3294,
+          "lng": 91.81214
+        },
+        {
+          "order_id": "ORD-7066",
+          "cod_bdt": "1150.00",
+          "area": "GEC Circle",
+          "lat": 22.36275,
+          "lng": 91.81801
+        },
+        {
+          "order_id": "ORD-7067",
+          "cod_bdt": "1250.00",
+          "area": "Sholoshohor",
+          "lat": 22.36562,
+          "lng": 91.823
+        },
+        {
+          "order_id": "ORD-7068",
+          "cod_bdt": "1299.99",
+          "area": "Chandgaon",
+          "lat": 22.38533,
+          "lng": 91.85678
+        },
+        {
+          "order_id": "ORD-7069",
+          "cod_bdt": "2450.00",
+          "area": "Patenga",
+          "lat": 22.23772,
+          "lng": 91.79959
+        },
+        {
+          "order_id": "ORD-7070",
+          "cod_bdt": "899.50",
+          "area": "Nasirabad",
+          "lat": 22.36746,
+          "lng": 91.82043
+        },
+        {
+          "order_id": "ORD-7071",
+          "cod_bdt": "899.50",
+          "area": "Bahaddarhat",
+          "lat": 22.36818,
+          "lng": 91.84376
+        },
+        {
+          "order_id": "ORD-7072",
+          "cod_bdt": "650.00",
+          "area": "Sholoshohor",
+          "lat": 22.35994,
+          "lng": 91.83204
+        },
+        {
+          "order_id": "ORD-7073",
+          "cod_bdt": "990.00",
+          "area": "Patenga",
+          "lat": 22.24371,
+          "lng": 91.79841
+        },
+        {
+          "order_id": "ORD-7074",
+          "cod_bdt": "1299.99",
+          "area": "Pahartali",
+          "lat": 22.36221,
+          "lng": 91.78333
+        },
+        {
+          "order_id": "ORD-7075",
+          "cod_bdt": "560.25",
+          "area": "Oxygen",
+          "lat": 22.38625,
+          "lng": 91.83514
+        },
+        {
+          "order_id": "ORD-7076",
+          "cod_bdt": "1250.00",
+          "area": "Bahaddarhat",
+          "lat": 22.37617,
+          "lng": 91.84799
+        },
+        {
+          "order_id": "ORD-7077",
+          "cod_bdt": "2875.00",
+          "area": "Oxygen",
+          "lat": 22.38403,
+          "lng": 91.83737
+        },
+        {
+          "order_id": "ORD-7078",
+          "cod_bdt": "3200.00",
+          "area": "Patenga",
+          "lat": 22.23642,
+          "lng": 91.79797
+        },
+        {
+          "order_id": "ORD-7079",
+          "cod_bdt": "990.00",
+          "area": "Halishahar",
+          "lat": 22.32388,
+          "lng": 91.78348
+        },
+        {
+          "order_id": "ORD-7080",
+          "cod_bdt": "990.00",
+          "area": "Sholoshohor",
+          "lat": 22.36283,
+          "lng": 91.82843
+        },
+        {
+          "order_id": "ORD-7081",
+          "cod_bdt": "720.00",
+          "area": "Nasirabad",
+          "lat": 22.36461,
+          "lng": 91.81378
+        },
+        {
+          "order_id": "ORD-7082",
+          "cod_bdt": "3200.00",
+          "area": "Chandgaon",
+          "lat": 22.37537,
+          "lng": 91.85197
+        }
+      ],
+      "cash_returned_bdt": "49685.44"
+    },
+    {
+      "case_id": "PUB-22",
+      "courier": "Pathao Courier",
+      "rider": "Rasel",
+      "handover_time": "2026-08-29T10:00",
+      "parcels": [
+        {
+          "order_id": "ORD-3322",
+          "cod_bdt": "990.00",
+          "area": "Oxygen",
+          "lat": 22.3905,
+          "lng": 91.83573
+        },
+        {
+          "order_id": "ORD-3323",
+          "cod_bdt": "560.25",
+          "area": "Pahartali",
+          "lat": 22.37162,
+          "lng": 91.77927
+        },
+        {
+          "order_id": "ORD-3324",
+          "cod_bdt": "1150.00",
+          "area": "Bahaddarhat",
+          "lat": 22.36613,
+          "lng": 91.84294
+        },
+        {
+          "order_id": "ORD-3325",
+          "cod_bdt": "560.25",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34867,
+          "lng": 91.82829
+        },
+        {
+          "order_id": "ORD-3326",
+          "cod_bdt": "899.50",
+          "area": "Agrabad",
+          "lat": 22.32975,
+          "lng": 91.80904
+        },
+        {
+          "order_id": "ORD-3327",
+          "cod_bdt": "650.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35212,
+          "lng": 91.83006
+        },
+        {
+          "order_id": "ORD-3328",
+          "cod_bdt": "899.50",
+          "area": "GEC Circle",
+          "lat": 22.36235,
+          "lng": 91.81714
+        },
+        {
+          "order_id": "ORD-3329",
+          "cod_bdt": "1525.75",
+          "area": "Oxygen",
+          "lat": 22.39204,
+          "lng": 91.82636
+        },
+        {
+          "order_id": "ORD-3330",
+          "cod_bdt": "1780.25",
+          "area": "Halishahar",
+          "lat": 22.32578,
+          "lng": 91.77996
+        },
+        {
+          "order_id": "ORD-3331",
+          "cod_bdt": "1299.99",
+          "area": "Dewanhat",
+          "lat": 22.33463,
+          "lng": 91.81131
+        },
+        {
+          "order_id": "ORD-3332",
+          "cod_bdt": "1999.99",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35549,
+          "lng": 91.82616
+        },
+        {
+          "order_id": "ORD-3333",
+          "cod_bdt": "3200.00",
+          "area": "Oxygen",
+          "lat": 22.38817,
+          "lng": 91.82713
+        },
+        {
+          "order_id": "ORD-3334",
+          "cod_bdt": "480.50",
+          "area": "Oxygen",
+          "lat": 22.38841,
+          "lng": 91.82703
+        },
+        {
+          "order_id": "ORD-3335",
+          "cod_bdt": "1525.75",
+          "area": "Chandgaon",
+          "lat": 22.37742,
+          "lng": 91.85841
+        },
+        {
+          "order_id": "ORD-3336",
+          "cod_bdt": "1999.99",
+          "area": "Sholoshohor",
+          "lat": 22.36384,
+          "lng": 91.83286
+        },
+        {
+          "order_id": "ORD-3337",
+          "cod_bdt": "990.00",
+          "area": "Muradpur",
+          "lat": 22.36672,
+          "lng": 91.84136
+        },
+        {
+          "order_id": "ORD-3338",
+          "cod_bdt": "1299.99",
+          "area": "Oxygen",
+          "lat": 22.39002,
+          "lng": 91.83041
+        },
+        {
+          "order_id": "ORD-3339",
+          "cod_bdt": "650.00",
+          "area": "GEC Circle",
+          "lat": 22.35413,
+          "lng": 91.81929
+        },
+        {
+          "order_id": "ORD-3340",
+          "cod_bdt": "720.00",
+          "area": "Muradpur",
+          "lat": 22.36348,
+          "lng": 91.83548
+        },
+        {
+          "order_id": "ORD-3341",
+          "cod_bdt": "1150.00",
+          "area": "Halishahar",
+          "lat": 22.32823,
+          "lng": 91.77751
+        }
+      ],
+      "cash_returned_bdt": "24331.71"
+    },
+    {
+      "case_id": "PUB-23",
+      "courier": "Steadfast",
+      "rider": "Nayeem",
+      "handover_time": "2026-08-26T11:45",
+      "parcels": [
+        {
+          "order_id": "ORD-3472",
+          "cod_bdt": "480.50",
+          "area": "Chandgaon",
+          "lat": 22.37451,
+          "lng": 91.85498
+        },
+        {
+          "order_id": "ORD-3473",
+          "cod_bdt": "1780.25",
+          "area": "Muradpur",
+          "lat": 22.3617,
+          "lng": 91.84199
+        },
+        {
+          "order_id": "ORD-3474",
+          "cod_bdt": "1299.99",
+          "area": "Bahaddarhat",
+          "lat": 22.37504,
+          "lng": 91.84682
+        },
+        {
+          "order_id": "ORD-3475",
+          "cod_bdt": "1999.99",
+          "area": "Kotwali",
+          "lat": 22.33303,
+          "lng": 91.8421
+        },
+        {
+          "order_id": "ORD-3476",
+          "cod_bdt": "899.50",
+          "area": "Kotwali",
+          "lat": 22.33667,
+          "lng": 91.83799
+        },
+        {
+          "order_id": "ORD-3477",
+          "cod_bdt": "560.25",
+          "area": "Khulshi",
+          "lat": 22.35964,
+          "lng": 91.79914
+        },
+        {
+          "order_id": "ORD-3478",
+          "cod_bdt": "480.50",
+          "area": "Halishahar",
+          "lat": 22.3323,
+          "lng": 91.77894
+        },
+        {
+          "order_id": "ORD-3479",
+          "cod_bdt": "650.00",
+          "area": "Chawkbazar",
+          "lat": 22.35068,
+          "lng": 91.83244
+        },
+        {
+          "order_id": "ORD-3480",
+          "cod_bdt": "899.50",
+          "area": "Agrabad",
+          "lat": 22.32745,
+          "lng": 91.80754
+        },
+        {
+          "order_id": "ORD-3481",
+          "cod_bdt": "1150.00",
+          "area": "Sholoshohor",
+          "lat": 22.36696,
+          "lng": 91.82837
+        },
+        {
+          "order_id": "ORD-3482",
+          "cod_bdt": "1250.00",
+          "area": "Chawkbazar",
+          "lat": 22.35911,
+          "lng": 91.83617
+        },
+        {
+          "order_id": "ORD-3483",
+          "cod_bdt": "1780.25",
+          "area": "Chawkbazar",
+          "lat": 22.35446,
+          "lng": 91.83542
+        },
+        {
+          "order_id": "ORD-3484",
+          "cod_bdt": "2450.00",
+          "area": "Agrabad",
+          "lat": 22.32824,
+          "lng": 91.80974
+        },
+        {
+          "order_id": "ORD-3485",
+          "cod_bdt": "2450.00",
+          "area": "Nasirabad",
+          "lat": 22.36012,
+          "lng": 91.82379
+        },
+        {
+          "order_id": "ORD-3486",
+          "cod_bdt": "650.00",
+          "area": "Sholoshohor",
+          "lat": 22.35695,
+          "lng": 91.83189
+        },
+        {
+          "order_id": "ORD-3487",
+          "cod_bdt": "560.25",
+          "area": "Bahaddarhat",
+          "lat": 22.37193,
+          "lng": 91.8417
+        },
+        {
+          "order_id": "ORD-3488",
+          "cod_bdt": "2875.00",
+          "area": "Halishahar",
+          "lat": 22.32384,
+          "lng": 91.77941
+        },
+        {
+          "order_id": "ORD-3489",
+          "cod_bdt": "2875.00",
+          "area": "Oxygen",
+          "lat": 22.39117,
+          "lng": 91.82864
+        },
+        {
+          "order_id": "ORD-3490",
+          "cod_bdt": "1299.99",
+          "area": "Oxygen",
+          "lat": 22.38971,
+          "lng": 91.82651
+        },
+        {
+          "order_id": "ORD-3491",
+          "cod_bdt": "990.00",
+          "area": "Sholoshohor",
+          "lat": 22.36127,
+          "lng": 91.82792
+        },
+        {
+          "order_id": "ORD-3492",
+          "cod_bdt": "990.00",
+          "area": "Patenga",
+          "lat": 22.2389,
+          "lng": 91.79739
+        },
+        {
+          "order_id": "ORD-3493",
+          "cod_bdt": "2450.00",
+          "area": "Pahartali",
+          "lat": 22.36278,
+          "lng": 91.77938
+        },
+        {
+          "order_id": "ORD-3494",
+          "cod_bdt": "1780.25",
+          "area": "Khulshi",
+          "lat": 22.3668,
+          "lng": 91.80238
+        },
+        {
+          "order_id": "ORD-3495",
+          "cod_bdt": "1999.99",
+          "area": "Sholoshohor",
+          "lat": 22.36079,
+          "lng": 91.83336
+        },
+        {
+          "order_id": "ORD-3496",
+          "cod_bdt": "1250.00",
+          "area": "Oxygen",
+          "lat": 22.38584,
+          "lng": 91.82965
+        },
+        {
+          "order_id": "ORD-3497",
+          "cod_bdt": "480.50",
+          "area": "Pahartali",
+          "lat": 22.36001,
+          "lng": 91.78382
+        },
+        {
+          "order_id": "ORD-3498",
+          "cod_bdt": "1150.00",
+          "area": "Oxygen",
+          "lat": 22.38896,
+          "lng": 91.82988
+        },
+        {
+          "order_id": "ORD-3499",
+          "cod_bdt": "1150.00",
+          "area": "Khulshi",
+          "lat": 22.36806,
+          "lng": 91.79531
+        },
+        {
+          "order_id": "ORD-3500",
+          "cod_bdt": "2875.00",
+          "area": "Bahaddarhat",
+          "lat": 22.366,
+          "lng": 91.83911
+        },
+        {
+          "order_id": "ORD-3501",
+          "cod_bdt": "650.00",
+          "area": "Patenga",
+          "lat": 22.24236,
+          "lng": 91.79773
+        },
+        {
+          "order_id": "ORD-3502",
+          "cod_bdt": "3200.00",
+          "area": "Chandgaon",
+          "lat": 22.38029,
+          "lng": 91.85197
+        },
+        {
+          "order_id": "ORD-3503",
+          "cod_bdt": "3200.00",
+          "area": "Sholoshohor",
+          "lat": 22.36484,
+          "lng": 91.82379
+        },
+        {
+          "order_id": "ORD-3504",
+          "cod_bdt": "1780.25",
+          "area": "Patenga",
+          "lat": 22.24119,
+          "lng": 91.79224
+        },
+        {
+          "order_id": "ORD-3505",
+          "cod_bdt": "1250.00",
+          "area": "Halishahar",
+          "lat": 22.331,
+          "lng": 91.77613
+        },
+        {
+          "order_id": "ORD-3506",
+          "cod_bdt": "480.50",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35441,
+          "lng": 91.82084
+        },
+        {
+          "order_id": "ORD-3507",
+          "cod_bdt": "480.50",
+          "area": "Chandgaon",
+          "lat": 22.37736,
+          "lng": 91.85726
+        },
+        {
+          "order_id": "ORD-3508",
+          "cod_bdt": "1299.99",
+          "area": "Halishahar",
+          "lat": 22.33047,
+          "lng": 91.77925
+        },
+        {
+          "order_id": "ORD-3509",
+          "cod_bdt": "480.50",
+          "area": "Muradpur",
+          "lat": 22.36911,
+          "lng": 91.83422
+        },
+        {
+          "order_id": "ORD-3510",
+          "cod_bdt": "560.25",
+          "area": "Oxygen",
+          "lat": 22.38876,
+          "lng": 91.82707
+        }
+      ],
+      "cash_returned_bdt": "54388.70"
+    },
+    {
+      "case_id": "PUB-24",
+      "courier": "Steadfast",
+      "rider": "Sumon",
+      "handover_time": "2026-08-30T12:15",
+      "parcels": [
+        {
+          "order_id": "ORD-6065",
+          "cod_bdt": "1780.25",
+          "area": "Oxygen",
+          "lat": 22.38833,
+          "lng": 91.82641
+        },
+        {
+          "order_id": "ORD-6066",
+          "cod_bdt": "1999.99",
+          "area": "Patenga",
+          "lat": 22.23624,
+          "lng": 91.79178
+        },
+        {
+          "order_id": "ORD-6067",
+          "cod_bdt": "2875.00",
+          "area": "Patenga",
+          "lat": 22.24111,
+          "lng": 91.8016
+        },
+        {
+          "order_id": "ORD-6068",
+          "cod_bdt": "720.00",
+          "area": "Nasirabad",
+          "lat": 22.358,
+          "lng": 91.82324
+        },
+        {
+          "order_id": "ORD-6069",
+          "cod_bdt": "3200.00",
+          "area": "Dewanhat",
+          "lat": 22.33911,
+          "lng": 91.81159
+        },
+        {
+          "order_id": "ORD-6070",
+          "cod_bdt": "2450.00",
+          "area": "Bahaddarhat",
+          "lat": 22.37587,
+          "lng": 91.84029
+        },
+        {
+          "order_id": "ORD-6071",
+          "cod_bdt": "2450.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.3465,
+          "lng": 91.8198
+        },
+        {
+          "order_id": "ORD-6072",
+          "cod_bdt": "2450.00",
+          "area": "Bahaddarhat",
+          "lat": 22.36836,
+          "lng": 91.84133
+        },
+        {
+          "order_id": "ORD-6073",
+          "cod_bdt": "1999.99",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35327,
+          "lng": 91.82898
+        },
+        {
+          "order_id": "ORD-6074",
+          "cod_bdt": "2450.00",
+          "area": "Patenga",
+          "lat": 22.24135,
+          "lng": 91.79304
+        },
+        {
+          "order_id": "ORD-6075",
+          "cod_bdt": "1525.75",
+          "area": "GEC Circle",
+          "lat": 22.3645,
+          "lng": 91.8169
+        },
+        {
+          "order_id": "ORD-6076",
+          "cod_bdt": "650.00",
+          "area": "Bahaddarhat",
+          "lat": 22.376,
+          "lng": 91.84318
+        },
+        {
+          "order_id": "ORD-6077",
+          "cod_bdt": "650.00",
+          "area": "GEC Circle",
+          "lat": 22.36332,
+          "lng": 91.82515
+        },
+        {
+          "order_id": "ORD-6078",
+          "cod_bdt": "2875.00",
+          "area": "GEC Circle",
+          "lat": 22.35682,
+          "lng": 91.81964
+        },
+        {
+          "order_id": "ORD-6079",
+          "cod_bdt": "480.50",
+          "area": "Chandgaon",
+          "lat": 22.37935,
+          "lng": 91.85827
+        },
+        {
+          "order_id": "ORD-6080",
+          "cod_bdt": "650.00",
+          "area": "Dewanhat",
+          "lat": 22.34531,
+          "lng": 91.80615
+        },
+        {
+          "order_id": "ORD-6081",
+          "cod_bdt": "2450.00",
+          "area": "Agrabad",
+          "lat": 22.32273,
+          "lng": 91.81678
+        },
+        {
+          "order_id": "ORD-6082",
+          "cod_bdt": "480.50",
+          "area": "Halishahar",
+          "lat": 22.33493,
+          "lng": 91.78382
+        },
+        {
+          "order_id": "ORD-6083",
+          "cod_bdt": "480.50",
+          "area": "Sholoshohor",
+          "lat": 22.35848,
+          "lng": 91.82874
+        },
+        {
+          "order_id": "ORD-6084",
+          "cod_bdt": "899.50",
+          "area": "Halishahar",
+          "lat": 22.323,
+          "lng": 91.7781
+        },
+        {
+          "order_id": "ORD-6085",
+          "cod_bdt": "2450.00",
+          "area": "Agrabad",
+          "lat": 22.33008,
+          "lng": 91.81322
+        },
+        {
+          "order_id": "ORD-6086",
+          "cod_bdt": "1999.99",
+          "area": "Chandgaon",
+          "lat": 22.37791,
+          "lng": 91.86179
+        },
+        {
+          "order_id": "ORD-6087",
+          "cod_bdt": "1999.99",
+          "area": "Muradpur",
+          "lat": 22.3625,
+          "lng": 91.84055
+        },
+        {
+          "order_id": "ORD-6088",
+          "cod_bdt": "650.00",
+          "area": "Pahartali",
+          "lat": 22.3622,
+          "lng": 91.78874
+        },
+        {
+          "order_id": "ORD-6089",
+          "cod_bdt": "480.50",
+          "area": "Agrabad",
+          "lat": 22.32114,
+          "lng": 91.80905
+        },
+        {
+          "order_id": "ORD-6090",
+          "cod_bdt": "560.25",
+          "area": "Chawkbazar",
+          "lat": 22.35452,
+          "lng": 91.83516
+        },
+        {
+          "order_id": "ORD-6091",
+          "cod_bdt": "560.25",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35129,
+          "lng": 91.81961
+        },
+        {
+          "order_id": "ORD-6092",
+          "cod_bdt": "1250.00",
+          "area": "Patenga",
+          "lat": 22.24062,
+          "lng": 91.79971
+        },
+        {
+          "order_id": "ORD-6093",
+          "cod_bdt": "1299.99",
+          "area": "Bahaddarhat",
+          "lat": 22.37271,
+          "lng": 91.84658
+        },
+        {
+          "order_id": "ORD-6094",
+          "cod_bdt": "560.25",
+          "area": "Kotwali",
+          "lat": 22.33219,
+          "lng": 91.83233
+        }
+      ],
+      "cash_returned_bdt": "44078.20"
+    },
+    {
+      "case_id": "PUB-25",
+      "courier": "Pathao Courier",
+      "rider": "Faisal",
+      "handover_time": "2026-08-30T09:30",
+      "parcels": [
+        {
+          "order_id": "ORD-7056",
+          "cod_bdt": "3200.00",
+          "area": "Chawkbazar",
+          "lat": 22.35263,
+          "lng": 91.83071
+        },
+        {
+          "order_id": "ORD-7057",
+          "cod_bdt": "720.00",
+          "area": "Pahartali",
+          "lat": 22.3695,
+          "lng": 91.78581
+        },
+        {
+          "order_id": "ORD-7058",
+          "cod_bdt": "3200.00",
+          "area": "Agrabad",
+          "lat": 22.33123,
+          "lng": 91.80732
+        },
+        {
+          "order_id": "ORD-7059",
+          "cod_bdt": "1150.00",
+          "area": "GEC Circle",
+          "lat": 22.36021,
+          "lng": 91.8249
+        },
+        {
+          "order_id": "ORD-7060",
+          "cod_bdt": "1999.99",
+          "area": "Chandgaon",
+          "lat": 22.37421,
+          "lng": 91.85336
+        },
+        {
+          "order_id": "ORD-7061",
+          "cod_bdt": "2450.00",
+          "area": "Agrabad",
+          "lat": 22.3263,
+          "lng": 91.81285
+        },
+        {
+          "order_id": "ORD-7062",
+          "cod_bdt": "2875.00",
+          "area": "Agrabad",
+          "lat": 22.32698,
+          "lng": 91.8148
+        },
+        {
+          "order_id": "ORD-7063",
+          "cod_bdt": "1150.00",
+          "area": "GEC Circle",
+          "lat": 22.36015,
+          "lng": 91.82255
+        },
+        {
+          "order_id": "ORD-7064",
+          "cod_bdt": "720.00",
+          "area": "Muradpur",
+          "lat": 22.36213,
+          "lng": 91.8355
+        },
+        {
+          "order_id": "ORD-7065",
+          "cod_bdt": "720.00",
+          "area": "GEC Circle",
+          "lat": 22.35789,
+          "lng": 91.81716
+        },
+        {
+          "order_id": "ORD-7066",
+          "cod_bdt": "560.25",
+          "area": "Sholoshohor",
+          "lat": 22.3643,
+          "lng": 91.83138
+        },
+        {
+          "order_id": "ORD-7067",
+          "cod_bdt": "1525.75",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35143,
+          "lng": 91.82591
+        },
+        {
+          "order_id": "ORD-7068",
+          "cod_bdt": "720.00",
+          "area": "Bahaddarhat",
+          "lat": 22.3735,
+          "lng": 91.83834
+        },
+        {
+          "order_id": "ORD-7069",
+          "cod_bdt": "720.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35595,
+          "lng": 91.82417
+        },
+        {
+          "order_id": "ORD-7070",
+          "cod_bdt": "1299.99",
+          "area": "Dewanhat",
+          "lat": 22.33735,
+          "lng": 91.80489
+        },
+        {
+          "order_id": "ORD-7071",
+          "cod_bdt": "990.00",
+          "area": "Kotwali",
+          "lat": 22.34008,
+          "lng": 91.83847
+        },
+        {
+          "order_id": "ORD-7072",
+          "cod_bdt": "2450.00",
+          "area": "Chandgaon",
+          "lat": 22.37436,
+          "lng": 91.85423
+        },
+        {
+          "order_id": "ORD-7073",
+          "cod_bdt": "650.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.35021,
+          "lng": 91.82931
+        },
+        {
+          "order_id": "ORD-7074",
+          "cod_bdt": "1250.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34639,
+          "lng": 91.82163
+        },
+        {
+          "order_id": "ORD-7075",
+          "cod_bdt": "3200.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34531,
+          "lng": 91.82442
+        },
+        {
+          "order_id": "ORD-7076",
+          "cod_bdt": "3200.00",
+          "area": "GEC Circle",
+          "lat": 22.3644,
+          "lng": 91.81515
+        },
+        {
+          "order_id": "ORD-7077",
+          "cod_bdt": "1150.00",
+          "area": "GEC Circle",
+          "lat": 22.35462,
+          "lng": 91.82014
+        },
+        {
+          "order_id": "ORD-7078",
+          "cod_bdt": "480.50",
+          "area": "Nasirabad",
+          "lat": 22.36196,
+          "lng": 91.81854
+        },
+        {
+          "order_id": "ORD-7079",
+          "cod_bdt": "899.50",
+          "area": "GEC Circle",
+          "lat": 22.35981,
+          "lng": 91.8256
+        },
+        {
+          "order_id": "ORD-7080",
+          "cod_bdt": "1250.00",
+          "area": "Patenga",
+          "lat": 22.23815,
+          "lng": 91.79107
+        },
+        {
+          "order_id": "ORD-7081",
+          "cod_bdt": "1299.99",
+          "area": "Halishahar",
+          "lat": 22.33047,
+          "lng": 91.77794
+        },
+        {
+          "order_id": "ORD-7082",
+          "cod_bdt": "1250.00",
+          "area": "Chawkbazar",
+          "lat": 22.35116,
+          "lng": 91.83026
+        },
+        {
+          "order_id": "ORD-7083",
+          "cod_bdt": "1250.00",
+          "area": "Lalkhan Bazar",
+          "lat": 22.34502,
+          "lng": 91.82653
+        },
+        {
+          "order_id": "ORD-7084",
+          "cod_bdt": "720.00",
+          "area": "Nasirabad",
+          "lat": 22.36696,
+          "lng": 91.82373
+        },
+        {
+          "order_id": "ORD-7085",
+          "cod_bdt": "1150.00",
+          "area": "Khulshi",
+          "lat": 22.35971,
+          "lng": 91.79943
+        },
+        {
+          "order_id": "ORD-7086",
+          "cod_bdt": "720.00",
+          "area": "Chandgaon",
+          "lat": 22.37992,
+          "lng": 91.85792
+        },
+        {
+          "order_id": "ORD-7087",
+          "cod_bdt": "3200.00",
+          "area": "Muradpur",
+          "lat": 22.35969,
+          "lng": 91.83961
+        },
+        {
+          "order_id": "ORD-7088",
+          "cod_bdt": "990.00",
+          "area": "Kotwali",
+          "lat": 22.32969,
+          "lng": 91.84093
+        },
+        {
+          "order_id": "ORD-7089",
+          "cod_bdt": "1525.75",
+          "area": "Chawkbazar",
+          "lat": 22.34812,
+          "lng": 91.83981
+        },
+        {
+          "order_id": "ORD-7090",
+          "cod_bdt": "1250.00",
+          "area": "GEC Circle",
+          "lat": 22.36309,
+          "lng": 91.82371
+        },
+        {
+          "order_id": "ORD-7091",
+          "cod_bdt": "1299.99",
+          "area": "Khulshi",
+          "lat": 22.36047,
+          "lng": 91.80411
+        }
+      ],
+      "cash_returned_bdt": "52686.71"
+    }
+  ]
+}
