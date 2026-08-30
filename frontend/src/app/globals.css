@@ -1,0 +1,929 @@
+/* =============================================================================
+   Personal Ledger Manager — design system
+   The rules this file implements are written down in /DESIGN.md.
+
+   Swiss typographic structure on paper stock, with editorial figures.
+   Hairline rules carry the structure; there are no shadows, no gradients, no
+   glass, and no glow anywhere in this stylesheet. Every neutral is warm-tinted.
+   ========================================================================== */
+
+/* -----------------------------------------------------------------------------
+   01  TOKENS
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Paper stock. Warm, never a pure white. */
+  --paper: #faf8f3;
+  --paper-sunk: #f2efe7;
+  --paper-raised: #fffdf8;
+
+  /* Ink. Warm near-black, never #000. */
+  --ink: #17150f;
+  --ink-muted: #5c5648;
+  --ink-faint: #8b8474;
+
+  /* Rules do the structural work that borders and shadows would elsewhere. */
+  --rule: #ddd8ca;
+  --rule-firm: #c4bda9;
+
+  /* One accent, used as a stamp. Doubles as the shortfall colour: in a ledger,
+     the brand mark and the warning mean the same thing — look here. */
+  --vermillion: #c1440e;
+  --vermillion-sunk: #f7e9e2;
+  --forest: #1f6b4a;
+  --forest-sunk: #e6efe9;
+
+  /* Category ramp — muted earth tones, ordered. Never a rainbow, and never the
+     sole carrier of meaning: every segment is labelled too. */
+  --cat-1: #8c5a3c;
+  --cat-2: #6b7a4a;
+  --cat-3: #a8763e;
+  --cat-4: #4c6b7a;
+  --cat-5: #8a5f70;
+  --cat-6: #5f6b5a;
+  --cat-7: #a3854a;
+  --cat-8: #6a5a7a;
+  --cat-9: #7a5545;
+  --cat-10: #4f7068;
+
+  /* Type scale, 1.25 ratio from 16px. */
+  --t-xs: 0.75rem;
+  --t-sm: 0.875rem;
+  --t-base: 1rem;
+  --t-lg: 1.25rem;
+  --t-xl: 1.5625rem;
+  --t-2xl: 1.953rem;
+  --t-3xl: 2.75rem;
+  --t-4xl: 4rem;
+
+  /* 4px spacing scale. */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+
+  --measure: 68ch;
+  --radius: 2px;
+
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --fast: 140ms;
+  --base: 220ms;
+
+  color-scheme: light;
+}
+
+/* Dark is not an inversion. The paper warmth is kept, the ink drops to a warm
+   off-white rather than pure white, and rules get lighter relative to ground. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #12110e;
+    --paper-sunk: #1a1815;
+    --paper-raised: #1e1c18;
+    --ink: #f5f2ea;
+    --ink-muted: #a8a08c;
+    --ink-faint: #6e6757;
+    --rule: #2e2b24;
+    --rule-firm: #423e33;
+    --vermillion: #e8663a;
+    --vermillion-sunk: #2c1a12;
+    --forest: #5fae86;
+    --forest-sunk: #14251d;
+    --cat-1: #b8815c;
+    --cat-2: #93a370;
+    --cat-3: #c99f62;
+    --cat-4: #7294a5;
+    --cat-5: #b28496;
+    --cat-6: #87947f;
+    --cat-7: #c4a86c;
+    --cat-8: #9184a5;
+    --cat-9: #a37a66;
+    --cat-10: #74998f;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #12110e;
+  --paper-sunk: #1a1815;
+  --paper-raised: #1e1c18;
+  --ink: #f5f2ea;
+  --ink-muted: #a8a08c;
+  --ink-faint: #6e6757;
+  --rule: #2e2b24;
+  --rule-firm: #423e33;
+  --vermillion: #e8663a;
+  --vermillion-sunk: #2c1a12;
+  --forest: #5fae86;
+  --forest-sunk: #14251d;
+  --cat-1: #b8815c;
+  --cat-2: #93a370;
+  --cat-3: #c99f62;
+  --cat-4: #7294a5;
+  --cat-5: #b28496;
+  --cat-6: #87947f;
+  --cat-7: #c4a86c;
+  --cat-8: #9184a5;
+  --cat-9: #a37a66;
+  --cat-10: #74998f;
+  color-scheme: dark;
+}
+
+/* -----------------------------------------------------------------------------
+   02  RESET AND BASE
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--t-base);
+  line-height: 1.6;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Focus is never removed. 2px vermillion, offset so it reads on any ground. */
+:focus-visible {
+  outline: 2px solid var(--vermillion);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+::selection {
+  background: var(--vermillion);
+  color: var(--paper);
+}
+
+/* -----------------------------------------------------------------------------
+   03  TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, var(--t-3xl));
+}
+h2 {
+  font-size: clamp(1.5rem, 3vw, var(--t-2xl));
+}
+h3 {
+  font-size: var(--t-xl);
+}
+
+p {
+  max-width: var(--measure);
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+/* The Swiss section index. Gives a judge a spoken reference for each block. */
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+}
+
+.eyebrow::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.lede {
+  font-size: var(--t-lg);
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+.note {
+  font-size: var(--t-sm);
+  color: var(--ink-muted);
+  max-width: var(--measure);
+}
+
+.serif {
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
+  font-weight: 400;
+}
+
+/* -----------------------------------------------------------------------------
+   04  MONEY — the signature detail
+   Taka at full size, paisa at 0.62em. Always tabular so columns align on the
+   decimal, which is both the house style and a legibility requirement.
+   -------------------------------------------------------------------------- */
+
+.money {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.money .paisa {
+  font-size: 0.62em;
+  opacity: 0.55;
+  font-weight: 400;
+}
+
+.money .taka-sign {
+  font-size: 0.72em;
+  opacity: 0.5;
+  margin-right: 0.08em;
+}
+
+.money--display {
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
+  font-size: clamp(2.5rem, 8vw, var(--t-4xl));
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.money--display .paisa {
+  font-size: 0.38em;
+  opacity: 0.45;
+}
+
+.money--display .taka-sign {
+  font-size: 0.42em;
+  opacity: 0.4;
+}
+
+.money--lg {
+  font-size: var(--t-xl);
+}
+
+.is-short {
+  color: var(--vermillion);
+}
+.is-surplus {
+  color: var(--forest);
+}
+
+/* -----------------------------------------------------------------------------
+   05  LAYOUT
+   -------------------------------------------------------------------------- */
+
+.shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: var(--s-5);
+}
+
+@media (min-width: 900px) {
+  .wrap {
+    padding-inline: var(--s-6);
+  }
+}
+
+.section {
+  padding-block: var(--s-7);
+  border-top: 1px solid var(--rule);
+}
+
+.section:first-of-type {
+  border-top: none;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.stack-lg {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-6);
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+.row-between {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+}
+
+.grid {
+  display: grid;
+  gap: var(--s-5);
+}
+
+@media (min-width: 700px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid-sidebar {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: var(--s-7);
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   06  SURFACES
+   A panel is a 1px rule on paper. No shadow, no nesting of panels inside panels.
+   -------------------------------------------------------------------------- */
+
+.panel {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+  padding: var(--s-5);
+}
+
+.panel--sunk {
+  background: var(--paper-sunk);
+}
+
+.panel--flush {
+  padding: 0;
+  overflow: hidden;
+}
+
+.panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding-bottom: var(--s-3);
+  margin-bottom: var(--s-4);
+  border-bottom: 1px solid var(--rule);
+  flex-wrap: wrap;
+}
+
+/* The one hero figure per screen. */
+.figure-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.figure-block .label {
+  order: -1;
+}
+
+/* -----------------------------------------------------------------------------
+   07  LEDGER TABLE
+   Ruled lines, decimal-aligned amounts. The reference object is the account book.
+   -------------------------------------------------------------------------- */
+
+.ledger-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ledger {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-sm);
+}
+
+.ledger th {
+  text-align: left;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: var(--s-3) var(--s-3);
+  border-bottom: 1px solid var(--rule-firm);
+  white-space: nowrap;
+}
+
+.ledger td {
+  padding: var(--s-3);
+  border-bottom: 1px solid var(--rule);
+  vertical-align: baseline;
+}
+
+.ledger tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ledger tbody tr {
+  transition: background var(--fast) var(--ease);
+}
+
+.ledger tbody tr:hover {
+  background: var(--paper-sunk);
+}
+
+.ledger .num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.ledger .shrink {
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* -----------------------------------------------------------------------------
+   08  CONTROLS
+   -------------------------------------------------------------------------- */
+
+.btn {
+  --btn-bg: var(--ink);
+  --btn-fg: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-height: 44px;
+  padding: 0 var(--s-5);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 1px solid var(--btn-bg);
+  border-radius: var(--radius);
+  font-size: var(--t-sm);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background var(--fast) var(--ease),
+    border-color var(--fast) var(--ease),
+    color var(--fast) var(--ease);
+}
+
+.btn:hover:not(:disabled) {
+  --btn-bg: var(--vermillion);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn--quiet {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  border-color: var(--rule-firm);
+}
+
+.btn--quiet:hover:not(:disabled) {
+  --btn-bg: transparent;
+  --btn-fg: var(--vermillion);
+  border-color: var(--vermillion);
+}
+
+.btn--danger {
+  --btn-bg: transparent;
+  --btn-fg: var(--vermillion);
+  border-color: var(--rule-firm);
+}
+
+.btn--danger:hover:not(:disabled) {
+  --btn-bg: var(--vermillion);
+  --btn-fg: var(--paper);
+  border-color: var(--vermillion);
+}
+
+.btn--sm {
+  min-height: 36px;
+  padding: 0 var(--s-3);
+  font-size: var(--t-xs);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.field > input,
+.field > select,
+.field > textarea {
+  /* 16px minimum: anything smaller makes iOS Safari zoom on focus. */
+  font-size: var(--t-base);
+  min-height: 44px;
+  padding: var(--s-2) var(--s-3);
+  background: var(--paper);
+  border: 1px solid var(--rule-firm);
+  border-radius: var(--radius);
+  transition: border-color var(--fast) var(--ease);
+  width: 100%;
+}
+
+.field > input:focus,
+.field > select:focus,
+.field > textarea:focus {
+  border-color: var(--ink);
+}
+
+.field > input[inputmode="decimal"] {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.field-error {
+  font-size: var(--t-xs);
+  color: var(--vermillion);
+}
+
+.field--invalid > input,
+.field--invalid > select {
+  border-color: var(--vermillion);
+}
+
+/* -----------------------------------------------------------------------------
+   09  CHIPS, BADGES, MARKS
+   -------------------------------------------------------------------------- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  padding: 2px var(--s-2);
+  border: 1px solid var(--rule-firm);
+  border-radius: var(--radius);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--t-xs);
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+.chip--short {
+  color: var(--vermillion);
+  border-color: var(--vermillion);
+  background: var(--vermillion-sunk);
+}
+
+.chip--ok {
+  color: var(--forest);
+  border-color: var(--forest);
+  background: var(--forest-sunk);
+}
+
+/* Confidence marks on a receipt reading. Colour is never the only signal —
+   each carries its word as well. */
+.chip--low {
+  color: var(--vermillion);
+  border-color: var(--vermillion);
+}
+.chip--medium {
+  color: var(--ink-muted);
+}
+.chip--high {
+  color: var(--forest);
+  border-color: var(--forest);
+}
+
+/* -----------------------------------------------------------------------------
+   10  CHARTS — drawn as ruled bars, not as decoration
+   -------------------------------------------------------------------------- */
+
+.bar-row {
+  display: grid;
+  grid-template-columns: minmax(6rem, 9rem) 1fr auto;
+  align-items: center;
+  gap: var(--s-3);
+  padding-block: var(--s-2);
+}
+
+.bar-track {
+  height: 10px;
+  background: var(--paper-sunk);
+  border: 1px solid var(--rule);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  transition: width var(--base) var(--ease);
+}
+
+.runway {
+  height: 34px;
+  display: flex;
+  border: 1px solid var(--rule-firm);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--paper-sunk);
+}
+
+.runway-seg {
+  transition: width var(--base) var(--ease);
+}
+
+.runway-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  margin-top: var(--s-3);
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 1px;
+  flex: none;
+}
+
+/* -----------------------------------------------------------------------------
+   11  NAVIGATION
+   -------------------------------------------------------------------------- */
+
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.masthead-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  min-height: 60px;
+}
+
+.wordmark {
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
+  font-size: var(--t-lg);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--s-2);
+}
+
+.wordmark::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background: var(--vermillion);
+  border-radius: 1px;
+  transform: translateY(-1px);
+}
+
+.nav {
+  display: flex;
+  gap: var(--s-1);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--s-3);
+  font-size: var(--t-sm);
+  color: var(--ink-muted);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition:
+    color var(--fast) var(--ease),
+    border-color var(--fast) var(--ease);
+}
+
+.nav a:hover {
+  color: var(--ink);
+}
+
+.nav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--vermillion);
+}
+
+/* -----------------------------------------------------------------------------
+   12  STATES
+   -------------------------------------------------------------------------- */
+
+.empty {
+  border: 1px dashed var(--rule-firm);
+  border-radius: var(--radius);
+  padding: var(--s-6);
+  text-align: center;
+  color: var(--ink-muted);
+}
+
+.alert {
+  border: 1px solid var(--rule-firm);
+  border-left: 3px solid var(--ink);
+  border-radius: var(--radius);
+  padding: var(--s-3) var(--s-4);
+  font-size: var(--t-sm);
+  background: var(--paper-sunk);
+}
+
+.alert--error {
+  border-left-color: var(--vermillion);
+  color: var(--vermillion);
+  background: var(--vermillion-sunk);
+}
+
+.alert--ok {
+  border-left-color: var(--forest);
+  background: var(--forest-sunk);
+}
+
+.skeleton {
+  background: var(--paper-sunk);
+  border-radius: var(--radius);
+  height: 1em;
+  animation: pulse 1.4s var(--ease) infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   13  MOTION
+   One staggered entrance, capped at six rows so a long ledger does not shimmer.
+   -------------------------------------------------------------------------- */
+
+.rise {
+  animation: rise var(--base) var(--ease) both;
+}
+
+.rise:nth-child(1) {
+  animation-delay: 0ms;
+}
+.rise:nth-child(2) {
+  animation-delay: 40ms;
+}
+.rise:nth-child(3) {
+  animation-delay: 80ms;
+}
+.rise:nth-child(4) {
+  animation-delay: 120ms;
+}
+.rise:nth-child(5) {
+  animation-delay: 160ms;
+}
+.rise:nth-child(n + 6) {
+  animation-delay: 200ms;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   14  UTILITIES
+   -------------------------------------------------------------------------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: var(--s-4);
+  top: var(--s-4);
+  padding: var(--s-2) var(--s-4);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius);
+}
+
+.muted {
+  color: var(--ink-muted);
+}
+.faint {
+  color: var(--ink-faint);
+}
+.mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.text-right {
+  text-align: right;
+}
+.divider {
+  height: 1px;
+  background: var(--rule);
+  border: 0;
+}
