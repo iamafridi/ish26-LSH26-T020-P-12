@@ -3,7 +3,9 @@ import express, { type Express } from "express";
 import helmet from "helmet";
 
 import { authRouter } from "./modules/auth/auth.routes.js";
+import { expenseRouter } from "./modules/expenses/expense.routes.js";
 import { healthRouter } from "./modules/health/health.routes.js";
+import { salaryRouter } from "./modules/salaries/salary.routes.js";
 import { errorHandler } from "./shared/middleware/error-handler.js";
 import { notFound } from "./shared/middleware/not-found.js";
 
@@ -28,6 +30,8 @@ export function createApp(options: AppOptions = {}): Express {
 
   app.use("/api/v1/health", healthRouter);
   app.use("/api/v1/auth", authRouter);
+  app.use("/api/v1/salaries", salaryRouter);
+  app.use("/api/v1/expenses", expenseRouter);
 
   app.use(notFound);
   app.use(errorHandler);

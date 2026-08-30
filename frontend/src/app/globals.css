@@ -25,7 +25,7 @@ body {
 }
 
 a { color: inherit; }
-button, input { font: inherit; }
+button, input, select, textarea { font: inherit; }
 
 button,
 .primary-link {
@@ -163,6 +163,79 @@ h1 {
 .status-dot.connected { background: var(--primary); }
 .status-dot.failed { background: var(--danger); }
 
+.salary-panel,
+.filter-panel,
+.expense-summary,
+.expense-list,
+.form-dialog {
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  background: var(--surface);
+}
+
+.salary-panel { display: grid; gap: 1rem; padding: 1.5rem; }
+.section-heading,
+.page-heading-row,
+.expense-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.section-heading > div:first-child { display: grid; gap: 0.4rem; }
+.section-heading strong { font-family: Georgia, serif; font-size: clamp(1.7rem, 4vw, 2.5rem); }
+.section-heading h2 { margin: 0; font-family: Georgia, serif; font-size: 2rem; }
+.section-heading input,
+.filter-panel input,
+.filter-panel select,
+.inline-form input,
+.form-stack select,
+.form-stack textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  color: var(--ink);
+  background: white;
+}
+.inline-form { display: flex; align-items: end; gap: 0.75rem; flex-wrap: wrap; }
+.inline-form label { display: grid; flex: 1 1 220px; gap: 0.4rem; font-weight: 700; }
+.text-button,
+.danger-button,
+.close-button {
+  padding: 0.35rem;
+  color: var(--primary);
+  background: transparent;
+  border-radius: 0.35rem;
+}
+.text-button:hover, .close-button:hover { color: var(--primary-dark); background: transparent; transform: none; }
+.danger-button { color: var(--danger); }
+.danger-button:hover { color: #7a2020; background: transparent; transform: none; }
+.close-button { font-size: 1.7rem; }
+
+.expense-workspace { display: grid; gap: 1.3rem; }
+.page-heading-row h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); }
+.filter-panel { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.85rem; padding: 1rem; }
+.filter-panel label { display: grid; gap: 0.4rem; color: var(--muted); font-size: 0.85rem; font-weight: 700; }
+.expense-summary { padding: 1rem 1.25rem; }
+.expense-summary span { color: var(--muted); }
+.expense-summary strong { font-family: Georgia, serif; font-size: 1.35rem; }
+.expense-list { overflow: hidden; }
+.expense-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--line); }
+.expense-row:last-child { border-bottom: 0; }
+.expense-category-mark { width: 2.5rem; height: 2.5rem; display: grid; place-items: center; border-radius: 0.8rem; color: var(--primary-dark); background: var(--accent); font-family: Georgia, serif; font-weight: 800; }
+.expense-main { display: grid; gap: 0.25rem; }
+.expense-main span, .expense-main small { color: var(--muted); }
+.expense-amount { white-space: nowrap; }
+.row-actions { display: flex; gap: 0.4rem; }
+
+.dialog-backdrop { position: fixed; z-index: 30; inset: 0; display: grid; place-items: center; padding: 1rem; background: rgb(10 20 14 / 55%); }
+.form-dialog { width: min(100%, 570px); max-height: calc(100vh - 2rem); overflow-y: auto; padding: clamp(1.2rem, 4vw, 2rem); box-shadow: var(--shadow); }
+.form-actions { display: flex; justify-content: flex-end; gap: 0.75rem; }
+.secondary-button.visible { display: inline-block; margin: 0; color: var(--primary); background: white; }
+.empty-card strong { color: var(--ink); }
+.empty-card p { margin-bottom: 0; }
+
 @media (max-width: 760px) {
   .feature-grid, .placeholder-grid { grid-template-columns: 1fr; }
   .app-shell { display: block; padding-bottom: 74px; }
@@ -179,6 +252,19 @@ h1 {
   .sidebar nav { display: grid; grid-template-columns: repeat(3, 1fr); }
   .nav-link { padding: 0.65rem 0.3rem; text-align: center; font-size: 0.8rem; }
   .topbar { min-height: 56px; padding: 0 1rem; }
+  .page-heading-row { align-items: flex-end; }
+  .filter-panel { grid-template-columns: 1fr 1fr; }
+  .expense-row { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .expense-amount { grid-column: 3; grid-row: 1; }
+  .row-actions { grid-column: 2 / -1; }
+  .section-heading { align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .filter-panel { grid-template-columns: 1fr; }
+  .expense-row { grid-template-columns: auto minmax(0, 1fr); }
+  .expense-amount, .row-actions { grid-column: 2; }
+  .expense-amount { grid-row: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
