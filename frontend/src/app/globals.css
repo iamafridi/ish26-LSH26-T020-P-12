@@ -304,6 +304,23 @@ h1 {
 .largest-list article { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.9rem; padding: 0.9rem 0; border-top: 1px solid var(--line); }
 .largest-list article > div { display: grid; gap: 0.2rem; }
 .rank { width: 2rem; height: 2rem; display: grid; place-items: center; border-radius: 50%; color: var(--primary-dark); background: var(--accent); font-weight: 800; }
+.method-badge { border-radius: 999px; padding: 0.4rem 0.7rem; color: var(--primary-dark); background: var(--accent); font-size: 0.8rem; font-weight: 800; }
+.forecast-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.8rem; margin-top: 1.2rem; }
+.forecast-grid > div { display: grid; gap: 0.5rem; border-radius: 0.9rem; padding: 1rem; background: var(--background); }
+.forecast-grid span, .forecast-explanation, .insight-item p, .insight-card .card-heading > span { color: var(--muted); }
+.forecast-grid strong { font-family: Georgia, serif; font-size: clamp(1.15rem, 2vw, 1.5rem); }
+.forecast-grid .negative { background: #fff1ed; }
+.forecast-grid .negative strong { color: var(--danger); }
+.forecast-grid .positive { background: #edf8f0; }
+.forecast-grid .positive strong { color: var(--primary); }
+.forecast-explanation { margin: 1rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+.insight-list { display: grid; gap: 0.7rem; margin-top: 1.2rem; }
+.insight-item { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1rem; border: 1px solid var(--line); border-left: 4px solid #809087; border-radius: 0.85rem; padding: 1rem; }
+.insight-item.warning { border-left-color: var(--danger); }
+.insight-item.positive { border-left-color: var(--primary); }
+.insight-item > span { color: var(--muted); font-family: Georgia, serif; font-size: 1.2rem; }
+.insight-item > div { display: grid; gap: 0.35rem; }
+.insight-item p { margin: 0; line-height: 1.5; }
 
 @media (max-width: 760px) {
   .feature-grid, .placeholder-grid { grid-template-columns: 1fr; }
@@ -330,6 +347,7 @@ h1 {
   .receipt-grid { grid-template-columns: 1fr; }
   .receipt-preview { min-height: 300px; }
   .metric-grid { grid-template-columns: 1fr 1fr; }
+  .forecast-grid { grid-template-columns: 1fr 1fr; }
   .dashboard-grid { grid-template-columns: 1fr; }
 }
 
@@ -339,6 +357,7 @@ h1 {
   .expense-amount, .row-actions { grid-column: 2; }
   .expense-amount { grid-row: auto; }
   .metric-grid { grid-template-columns: 1fr; }
+  .forecast-grid { grid-template-columns: 1fr; }
   .category-item { grid-template-columns: 1fr auto; }
   .category-track { grid-column: 1 / -1; grid-row: 2; }
 }

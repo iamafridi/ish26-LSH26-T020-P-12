@@ -47,3 +47,12 @@ export async function aggregatePeriodTotal(
   ]).exec();
   return result[0]?.totalPaisa ?? 0;
 }
+
+export async function aggregatePeriodCategories(firebaseUid: string, month: string, throughDay: number) {
+  const cutoff = `${month}-${String(throughDay).padStart(2, "0")}`;
+  return ExpenseModel.aggregate<{ _id: string; totalPaisa: number; count: number }>([
+    { $match: { firebaseUid, month, date: { $lte: cutoff } } },
+    { $group: { _id: "$category", totalPaisa: { $sum: "$amountPaisa" }, count: { $sum: 1 } } },
+    { $sort: { totalPaisa: -1, _id: 1 } },
+  ]).exec();
+}

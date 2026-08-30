@@ -34,6 +34,22 @@ export interface DashboardData {
     fullMonth: DashboardComparison;
     samePeriod: (DashboardComparison & { throughDay: number }) | null;
   };
+  forecast: {
+    status: "current" | "complete" | "future";
+    method: "daily-pace";
+    elapsedDays: number | null;
+    remainingDays: number | null;
+    dailyAverage: string | null;
+    expectedRemaining: string | null;
+    expectedMonthEnd: string | null;
+    expectedBalance: string | null;
+  };
+  insights: Array<{
+    id: string;
+    tone: "warning" | "positive" | "neutral";
+    title: string;
+    text: string;
+  }>;
 }
 
 export interface DashboardResponse {
