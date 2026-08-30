@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: lsh26-t020-p12-api
+    runtime: node
+    plan: free
+    region: singapore
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Set in the Render dashboard, never here:
+      #   MONGODB_URI, FIREBASE_PROJECT_ID, FRONTEND_URL, ANTHROPIC_API_KEY
+      - key: MONGODB_URI
+        sync: false
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false

@@ -1,0 +1,110 @@
+{
+  "team_id": "LSH26-T020",
+  "team_name": "El Drago",
+  "problem_id": "P12",
+  "problem_name": "Personal Ledger Manager",
+  "repository": "lsh26-t020-p12",
+  "live_url": "FILL: Vercel URL",
+  "api_url": "FILL: Render URL",
+  "stack": {
+    "frontend": "Next.js 15, React 19, TypeScript",
+    "backend": "Express 5, TypeScript, MongoDB (Mongoose)",
+    "auth": "Firebase Authentication; server-side ID token verification against Google's public certificates",
+    "ocr": "Anthropic Claude vision, behind a provider port",
+    "hosting": { "frontend": "Vercel", "backend": "Render", "database": "MongoDB Atlas" }
+  },
+  "setup": {
+    "install": "npm install",
+    "env": [
+      "backend/.env from backend/.env.example",
+      "frontend/.env.local from frontend/.env.example"
+    ],
+    "run": "npm run dev",
+    "verify": "npm run verify --workspace backend",
+    "differential_verify": "npm run verify:diff --workspace backend"
+  },
+  "required_items": [
+    {
+      "id": 1,
+      "requirement": "Set a monthly salary and add expenses, including by uploading a photo of a bill or receipt; read the amount, date and shop name; show what was read; let the user correct any field before saving.",
+      "implemented": true,
+      "where": [
+        "frontend/src/app/(app)/settings/page.tsx",
+        "frontend/src/app/(app)/receipts/page.tsx",
+        "frontend/src/components/expense-form.tsx",
+        "backend/src/modules/receipts/receipt.routes.ts",
+        "backend/src/shared/ocr/prompt.ts",
+        "backend/src/modules/salary/salary.service.ts"
+      ],
+      "notes": "The scan endpoint returns a draft and has no access to the expense collection; an expense is written only by a separate POST carrying user-confirmed values, so the correct-before-save gate is enforced by the API's shape rather than by the client. Each field carries a confidence mark and the raw text read; an unreadable field arrives empty rather than guessed."
+    },
+    {
+      "id": 2,
+      "requirement": "Monthly dashboard: total spent against salary, breakdown by category, largest expenses, change compared to last month.",
+      "implemented": true,
+      "where": [
+        "backend/src/core/ledger.ts",
+        "backend/src/modules/dashboard/dashboard.service.ts",
+        "frontend/src/app/(app)/dashboard/page.tsx"
+      ],
+      "notes": "Category movement covers categories present in either month, so a category that vanished still shows as a fall instead of disappearing."
+    },
+    {
+      "id": 3,
+      "requirement": "Forecast and written insights from the actual numbers: expected spending for the rest of the month, expected money left or short at month end, and at least three insights naming specific categories and amounts.",
+      "implemented": true,
+      "where": [
+        "backend/src/core/forecast.ts",
+        "backend/src/core/insights.ts",
+        "frontend/src/app/(app)/insights/page.tsx"
+      ],
+      "notes": "Six rule-based generators, each naming a specific category and amount and carrying an evidence object with the exact values quoted. No language model is involved in any figure. All 25 public cases yield at least three insights, asserted by the verification harness."
+    },
+    {
+      "id": 4,
+      "requirement": "Savings pockets with a name, target amount, item details and monthly contribution; an expected completion date based on the forecast; and what a DPS at a stated rate would return over that time.",
+      "implemented": true,
+      "where": [
+        "backend/src/core/dps.ts",
+        "backend/src/core/pockets.ts",
+        "frontend/src/app/(app)/pockets/page.tsx"
+      ],
+      "notes": "Two completion dates per pocket: the one the stated contribution implies and the one the forecast can actually fund, with surplus shared proportionally across pockets. The DPS runs the same contribution over the same months under the dataset's stated rule, with the full month-by-month schedule shown in the interface. The rate is user-editable."
+    }
+  ],
+  "verification": {
+    "engine_over_public_dataset": {
+      "command": "npm run verify --workspace backend",
+      "cases": 25,
+      "result": "pass",
+      "asserts": [
+        "every case parses",
+        "no NaN or Infinity anywhere in the report",
+        "every money field is canonical two-decimal-place",
+        "every case yields at least three insights"
+      ]
+    },
+    "differential_against_independent_implementation": {
+      "command": "npm run verify:diff --workspace backend",
+      "cases": 25,
+      "result": "pass",
+      "notes": "An independent Python implementation in backend/scripts/reference/, written from the specification text without reading the TypeScript, agrees on every independently specified field across all 25 cases."
+    }
+  },
+  "money_handling": {
+    "representation": "decimal.js Decimal in the engine; canonical two-decimal-place strings at every boundary and in MongoDB",
+    "rounding": "half-up to the paisa, applied at a single point",
+    "rationale": "IEEE-754 cannot represent 0.01, and the DPS rule compounds a freshly rounded interest figure each month. BSON double storage would corrupt amounts in the database itself.",
+    "float_usage": "Only for chart pixel geometry, isolated in frontend/src/lib/money.ts and documented as never reaching a label, a calculation, or storage."
+  },
+  "security": {
+    "secrets_committed": false,
+    "firebase_private_key_required": false,
+    "notes": "ID tokens are verified against Google's published public certificates, so no service-account private key exists anywhere in this system. Issuer and audience are both checked. Every route derives the user id from the verified token; no route accepts a user id from the client."
+  },
+  "ai_assistance": {
+    "used": true,
+    "disclosed_in": ["EVENT.md", "LICENSES.md"],
+    "notes": "An AI coding assistant was used as a pair-programming tool. All decisions, interpretation and acceptance were the team's. Separately, the running product calls a vision model to read receipt photographs; it performs no arithmetic and its output must be reviewed by the user before anything is saved."
+  }
+}

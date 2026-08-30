@@ -149,14 +149,27 @@ export function DpsCurve({
     return `${x.toFixed(1)},${y.toFixed(1)}`;
   };
 
-  const balance = schedule
-    .map((row, index) => point(index, toChartWidth(row.closing_balance_bdt)))
-    .join(" ");
+  const balancePoints = schedule.map((row, index) =>
+    point(index, toChartWidth(row.closing_balance_bdt)),
+  );
 
   // The same contributions with no interest — the comparison that makes the
   // interest figure mean something.
   const deposit = toChartWidth(schedule[0]?.deposit_bdt ?? "0.00");
-  const plain = schedule.map((_, index) => point(index, deposit * (index + 1))).join(" ");
+  const plainPoints = schedule.map((_, index) => point(index, deposit * (index + 1)));
+
+  const balance = balancePoints.join(" ");
+  const plain = plainPoints.join(" ");
+
+  /**
+   * The band between the two lines is the interest.
+   *
+   * Over a short term the two curves sit within a couple of percent of each
+   * other and read as one line, which makes the chart say nothing. Shading the
+   * gap keeps the axes honest — no truncated baseline, no exaggerated scale —
+   * while making the quantity the panel is about actually visible.
+   */
+  const gain = `${plainPoints.join(" ")} ${[...balancePoints].reverse().join(" ")}`;
 
   const last = schedule[schedule.length - 1];
 
@@ -168,8 +181,22 @@ export function DpsCurve({
       role="img"
       aria-label={`Balance over ${schedule.length} months, reaching ${formatMoney(last?.closing_balance_bdt ?? "0.00")} against ${formatMoney(String((deposit * schedule.length).toFixed(2)))} deposited.`}
     >
-      <polyline points={plain} fill="none" stroke="var(--rule-firm)" strokeWidth="1.5" strokeDasharray="4 3" vectorEffect="non-scaling-stroke" />
-      <polyline points={balance} fill="none" stroke="var(--forest)" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+      <polygon points={gain} fill="var(--forest)" opacity="0.16" />
+      <polyline
+        points={plain}
+        fill="none"
+        stroke="var(--rule-firm)"
+        strokeWidth="1.5"
+        strokeDasharray="4 3"
+        vectorEffect="non-scaling-stroke"
+      />
+      <polyline
+        points={balance}
+        fill="none"
+        stroke="var(--forest)"
+        strokeWidth="2"
+        vectorEffect="non-scaling-stroke"
+      />
     </svg>
   );
 }
