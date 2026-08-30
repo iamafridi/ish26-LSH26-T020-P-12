@@ -18,9 +18,18 @@ interface PocketInput {
   name: string;
   itemDetails: string;
   targetAmount: string;
-  currentSavedAmount?: string;
+  currentSavedAmount?: string | undefined;
   monthlyContribution: string;
   annualRatePercent: string;
+}
+
+interface PocketUpdateInput {
+  name?: string | undefined;
+  itemDetails?: string | undefined;
+  targetAmount?: string | undefined;
+  currentSavedAmount?: string | undefined;
+  monthlyContribution?: string | undefined;
+  annualRatePercent?: string | undefined;
 }
 
 function percentToBasisPoints(percent: string): number {
@@ -136,7 +145,7 @@ export async function getProjectedPocket(firebaseUid: string, id: string) {
   return pocket;
 }
 
-export async function updatePocket(firebaseUid: string, id: string, input: Partial<PocketInput>) {
+export async function updatePocket(firebaseUid: string, id: string, input: PocketUpdateInput) {
   const existing = await findOwnedPocket(firebaseUid, id);
   if (!existing) throw new AppError(404, "NOT_FOUND", "Savings pocket not found.");
   const write: Partial<PocketWrite> = {};

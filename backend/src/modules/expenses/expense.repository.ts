@@ -2,9 +2,9 @@ import { ExpenseModel, type ExpenseDocument } from "./expense.model.js";
 import type { ExpenseCategory } from "./expense.constants.js";
 
 export interface ExpenseFilters {
-  month?: string;
-  category?: ExpenseCategory;
-  search?: string;
+  month?: string | undefined;
+  category?: ExpenseCategory | undefined;
+  search?: string | undefined;
   sort: "date-desc" | "date-asc" | "amount-desc" | "amount-asc";
 }
 
@@ -25,10 +25,14 @@ const sortMap = {
 } as const;
 
 export async function listOwnedExpenses(firebaseUid: string, filters: ExpenseFilters): Promise<ExpenseDocument[]> {
-  const query: Record<string, unknown> = { firebaseUid };
-  if (filters.month) query.month = filters.month;
-  if (filters.category) query.category = filters.category;
-  if (filters.search) query.shop = { $regex: filters.search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), $options: "i" };
+  const query = {
+    firebaseUid,
+    ...(filters.month ? { month: filters.month } : {}),
+    ...(filters.category ? { category: filters.category } : {}),
+    ...(filters.search
+      ? { shop: { $regex: filters.search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), $options: "i" } }
+      : {}),
+  };
   return ExpenseModel.find(query).sort(sortMap[filters.sort]).lean<ExpenseDocument[]>().exec();
 }
 
@@ -42,7 +46,7 @@ export async function createOwnedExpense(
   source: "manual" | "receipt" = "manual",
 ): Promise<ExpenseDocument> {
   const expense = await ExpenseModel.create({ firebaseUid, ...input, source });
-  return expense.toObject() as ExpenseDocument;
+  return expense.toObject();
 }
 
 export async function updateOwnedExpense(firebaseUid: string, id: string, input: Partial<ExpenseWrite>): Promise<ExpenseDocument | null> {

@@ -1,10 +1,11 @@
 import { Router } from "express";
 
 import { authenticate } from "../../shared/middleware/authenticate.js";
+import { ensureDatabaseConnection } from "../../shared/middleware/database-connection.js";
 import { create, getOne, list, remove, update } from "./expense.controller.js";
 
 export const expenseRouter = Router();
-expenseRouter.use(authenticate);
+expenseRouter.use(authenticate, ensureDatabaseConnection);
 expenseRouter.get("/", list);
 expenseRouter.post("/", create);
 expenseRouter.get("/:id", getOne);

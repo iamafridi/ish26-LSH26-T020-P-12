@@ -133,6 +133,9 @@ h1 {
 }
 .form-stack input:focus { outline: 3px solid rgb(216 242 106 / 65%); border-color: var(--primary); }
 .form-error { margin: 0; color: var(--danger); font-size: 0.9rem; }
+.success-message { border-radius: 0.8rem; padding: 1rem; color: var(--primary-dark); background: #edf8f0; line-height: 1.5; }
+.auth-links { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.9rem; }
+.auth-links a { color: var(--primary); }
 
 .app-shell { min-height: 100vh; display: grid; grid-template-columns: 250px minmax(0, 1fr); }
 .sidebar {

@@ -4,6 +4,7 @@ import multer from "multer";
 
 import { AppError } from "../../shared/errors/app-error.js";
 import { authenticate } from "../../shared/middleware/authenticate.js";
+import { ensureDatabaseConnection } from "../../shared/middleware/database-connection.js";
 import { confirm, extract } from "./receipt.controller.js";
 
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 5 * 1024 * 1024, files: 1 } });
@@ -25,4 +26,4 @@ function receiveReceipt(request: Request, response: Response, next: NextFunction
 
 export const receiptRouter = Router();
 receiptRouter.post("/extract", authenticate, extractionLimit, receiveReceipt, extract);
-receiptRouter.post("/confirm", authenticate, confirm);
+receiptRouter.post("/confirm", authenticate, ensureDatabaseConnection, confirm);

@@ -13,5 +13,5 @@
     "types": ["node", "vitest/globals"],
     "baseUrl": "."
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts", "eslint.config.mjs"]
+  "include": ["src/**/*.ts", "tests/**/*.ts", "scripts/**/*.ts", "eslint.config.mjs"]
 }

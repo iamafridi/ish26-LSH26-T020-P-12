@@ -3,10 +3,11 @@
   "teamId": "LSH26-T020",
   "problemId": "P12",
   "problemName": "Personal Ledger Manager",
-  "status": "planning",
+  "status": "ready-for-deployment",
   "entrypoints": {
-    "application": null,
-    "source": null
+    "frontend": "frontend/src/app/page.tsx",
+    "backend": "backend/src/index.ts",
+    "application": null
   },
   "requiredFeatures": [
     "monthly-salary-and-expenses",
@@ -15,5 +16,5 @@
     "spending-forecast-and-specific-insights",
     "savings-pockets-and-dps-projection"
   ],
-  "notes": ""
+  "notes": "Set the application URL after deployment. Local setup and verification commands are documented in README.md."
 }

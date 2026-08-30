@@ -50,7 +50,10 @@ export function SavingsPocketManager() {
     }
   }, [user]);
 
-  useEffect(() => { void load(); }, [load]);
+  useEffect(() => {
+    const timer = window.setTimeout(() => void load(), 0);
+    return () => window.clearTimeout(timer);
+  }, [load]);
 
   function updateField<TKey extends keyof PocketInput>(key: TKey, value: PocketInput[TKey]) {
     setForm((current) => ({ ...current, [key]: value }));

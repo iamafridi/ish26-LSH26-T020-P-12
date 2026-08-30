@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 
 import { useAuth } from "../hooks/use-auth";
@@ -17,6 +18,7 @@ export function LoginForm() {
   const { signIn, configurationError } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -65,6 +67,7 @@ export function LoginForm() {
       <button type="submit" disabled={submitting || Boolean(configurationError)}>
         {submitting ? "Signing in…" : "Sign in"}
       </button>
+      <div className="auth-links"><Link href="/forgot-password">Forgot password?</Link><Link href="/register">Create an account</Link></div>
     </form>
   );
 }

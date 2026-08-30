@@ -19,7 +19,7 @@ export function findOwnedPocket(firebaseUid: string, id: string): Promise<Saving
 
 export async function createOwnedPocket(firebaseUid: string, input: PocketWrite): Promise<SavingsPocketDocument> {
   const pocket = await SavingsPocketModel.create({ firebaseUid, ...input });
-  return pocket.toObject() as SavingsPocketDocument;
+  return pocket.toObject();
 }
 
 export function updateOwnedPocket(firebaseUid: string, id: string, input: Partial<PocketWrite>): Promise<SavingsPocketDocument | null> {

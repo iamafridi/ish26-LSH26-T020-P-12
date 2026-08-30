@@ -1,4 +1,6 @@
-import { model, models, Schema, type InferSchemaType } from "mongoose";
+import mongoose, { model, Schema, type InferSchemaType, type Model } from "mongoose";
+
+const { models } = mongoose;
 
 const salarySchema = new Schema(
   {
@@ -17,4 +19,6 @@ export type SalaryDocument = InferSchemaType<typeof salarySchema> & {
   updatedAt: Date;
 };
 
-export const SalaryModel = models.Salary ?? model("Salary", salarySchema);
+type SalaryFields = InferSchemaType<typeof salarySchema>;
+export const SalaryModel: Model<SalaryFields> =
+  (models.Salary as Model<SalaryFields> | undefined) ?? model<SalaryFields>("Salary", salarySchema);

@@ -7,9 +7,12 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc -p tsconfig.build.json",
     "start": "node dist/server.js",
-    "lint": "eslint src tests",
+    "lint": "eslint src tests scripts",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:dataset": "vitest run tests/public-dataset.test.ts",
+    "demo:user": "tsx scripts/create-demo-user.ts",
+    "seed:public": "tsx scripts/seed-public.ts"
   },
   "dependencies": {
     "@google-cloud/vision": "^6.0.0",
