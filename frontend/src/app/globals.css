@@ -322,6 +322,38 @@ h1 {
 .insight-item > div { display: grid; gap: 0.35rem; }
 .insight-item p { margin: 0; line-height: 1.5; }
 
+.pockets-page { display: grid; gap: 1.5rem; }
+.pockets-page .page-heading-row > div { max-width: 850px; }
+.pockets-page .page-heading-row h1 { font-size: clamp(2.4rem, 5vw, 4.4rem); }
+.pockets-page .page-heading-row p:last-child { color: var(--muted); }
+.pocket-capacity { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; border: 1px solid var(--line); border-radius: 1.25rem; padding: 1.25rem; background: var(--surface); }
+.pocket-capacity > div { display: grid; gap: 0.4rem; }
+.pocket-capacity span, .progress-label, .completion-callout span, .completion-callout small, .contribution-comparison span, .dps-panel span, .dps-panel > small, .dps-panel > p { color: var(--muted); }
+.pocket-capacity strong { font-family: Georgia, serif; font-size: 1.45rem; }
+.pocket-capacity > p { grid-column: 1 / -1; margin: 0; border-top: 1px solid var(--line); padding-top: 1rem; color: var(--muted); }
+.pocket-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-items: start; }
+.pocket-card { display: grid; gap: 1.2rem; border: 1px solid var(--line); border-radius: 1.25rem; padding: 1.25rem; background: var(--surface); }
+.pocket-card-heading { display: flex; justify-content: space-between; align-items: start; gap: 1rem; }
+.pocket-card-heading > div:first-child { display: grid; gap: 0.25rem; }
+.pocket-card-heading > div:first-child > span { color: var(--primary); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.pocket-card h2 { margin: 0; font-family: Georgia, serif; font-size: clamp(1.5rem, 3vw, 2rem); }
+.progress-label { display: flex; justify-content: space-between; gap: 0.5rem; font-size: 0.82rem; }
+.progress-label strong { color: var(--ink); }
+.pocket-progress { height: 0.75rem; overflow: hidden; border-radius: 999px; background: #e5e8e2; }
+.pocket-progress span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+.completion-callout { display: grid; gap: 0.3rem; border-radius: 0.9rem; padding: 1rem; background: var(--background); }
+.completion-callout.active { background: #edf8f0; }
+.completion-callout.not-affordable { background: #fff1ed; }
+.completion-callout.complete { background: #f3f8d9; }
+.contribution-comparison, .dps-values { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+.contribution-comparison > div, .dps-values > div { display: grid; gap: 0.3rem; border-radius: 0.8rem; padding: 0.8rem; background: var(--background); }
+.dps-panel { display: grid; gap: 0.9rem; border-top: 1px solid var(--line); padding-top: 1.1rem; }
+.dps-panel h3 { margin: 0.25rem 0 0; font-family: Georgia, serif; font-size: 1.3rem; }
+.dps-panel > p, .dps-panel > small { margin: 0; line-height: 1.5; }
+.dps-values { grid-template-columns: repeat(3, 1fr); }
+.dps-values strong { font-size: 0.95rem; }
+.form-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+
 @media (max-width: 760px) {
   .feature-grid, .placeholder-grid { grid-template-columns: 1fr; }
   .app-shell { display: block; padding-bottom: 74px; }
@@ -349,6 +381,7 @@ h1 {
   .metric-grid { grid-template-columns: 1fr 1fr; }
   .forecast-grid { grid-template-columns: 1fr 1fr; }
   .dashboard-grid { grid-template-columns: 1fr; }
+  .pocket-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
@@ -360,6 +393,11 @@ h1 {
   .forecast-grid { grid-template-columns: 1fr; }
   .category-item { grid-template-columns: 1fr auto; }
   .category-track { grid-column: 1 / -1; grid-row: 2; }
+  .pocket-capacity, .form-columns { grid-template-columns: 1fr; }
+  .pocket-capacity > p { grid-column: 1; }
+  .contribution-comparison, .dps-values { grid-template-columns: 1fr; }
+  .progress-label { display: grid; grid-template-columns: 1fr auto; }
+  .progress-label > span:last-child { grid-column: 1 / -1; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -8,6 +8,7 @@ import { expenseRouter } from "./modules/expenses/expense.routes.js";
 import { healthRouter } from "./modules/health/health.routes.js";
 import { receiptRouter } from "./modules/receipts/receipt.routes.js";
 import { salaryRouter } from "./modules/salaries/salary.routes.js";
+import { savingsPocketRouter } from "./modules/savings-pockets/savings-pocket.routes.js";
 import { errorHandler } from "./shared/middleware/error-handler.js";
 import { notFound } from "./shared/middleware/not-found.js";
 
@@ -36,6 +37,7 @@ export function createApp(options: AppOptions = {}): Express {
   app.use("/api/v1/salaries", salaryRouter);
   app.use("/api/v1/expenses", expenseRouter);
   app.use("/api/v1/receipts", receiptRouter);
+  app.use("/api/v1/savings-pockets", savingsPocketRouter);
 
   app.use(notFound);
   app.use(errorHandler);

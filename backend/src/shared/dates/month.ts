@@ -17,3 +17,9 @@ export function dhakaToday(): string {
     day: "2-digit",
   }).format(new Date());
 }
+
+export function addMonths(month: string, count: number): string {
+  const [yearText, monthText] = month.split("-");
+  const date = new Date(Date.UTC(Number(yearText), Number(monthText) - 1 + count, 1));
+  return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, "0")}`;
+}
