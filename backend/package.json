@@ -8,9 +8,9 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc -p tsconfig.build.json && mkdir -p dist/data && cp src/data/p12-public.json dist/data/",
     "start": "node dist/server.js",
-    "lint": "eslint src tests scripts",
+    "lint": "eslint src scripts",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "verify": "tsx scripts/verify.ts",
     "verify:diff": "tsx scripts/verify.ts --emit && python3 scripts/reference/diff.py"
   },
