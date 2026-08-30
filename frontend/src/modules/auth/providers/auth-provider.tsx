@@ -1,7 +1,9 @@
 "use client";
 
 import {
+  createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut as firebaseSignOut,
   type User,
@@ -40,6 +42,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       configurationError,
       signIn: async (email, password) => {
         await signInWithEmailAndPassword(getFirebaseAuth(), email, password);
+      },
+      register: async (email, password) => {
+        await createUserWithEmailAndPassword(getFirebaseAuth(), email, password);
+      },
+      resetPassword: async (email) => {
+        await sendPasswordResetEmail(getFirebaseAuth(), email);
       },
       signOut: async () => {
         await firebaseSignOut(getFirebaseAuth());

@@ -1,4 +1,6 @@
-import { model, models, Schema, type InferSchemaType } from "mongoose";
+import mongoose, { model, Schema, type InferSchemaType, type Model } from "mongoose";
+
+const { models } = mongoose;
 
 const savingsPocketSchema = new Schema(
   {
@@ -21,4 +23,7 @@ export type SavingsPocketDocument = InferSchemaType<typeof savingsPocketSchema> 
   updatedAt: Date;
 };
 
-export const SavingsPocketModel = models.SavingsPocket ?? model("SavingsPocket", savingsPocketSchema);
+type SavingsPocketFields = InferSchemaType<typeof savingsPocketSchema>;
+export const SavingsPocketModel: Model<SavingsPocketFields> =
+  (models.SavingsPocket as Model<SavingsPocketFields> | undefined) ??
+  model<SavingsPocketFields>("SavingsPocket", savingsPocketSchema);

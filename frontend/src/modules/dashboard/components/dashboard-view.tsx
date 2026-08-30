@@ -42,7 +42,10 @@ export function DashboardView() {
     }
   }, [month, user]);
 
-  useEffect(() => { void loadDashboard(); }, [loadDashboard]);
+  useEffect(() => {
+    const timer = window.setTimeout(() => void loadDashboard(), 0);
+    return () => window.clearTimeout(timer);
+  }, [loadDashboard]);
 
   const primaryComparison = dashboard?.comparison.samePeriod ?? dashboard?.comparison.fullMonth;
 

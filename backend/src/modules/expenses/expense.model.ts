@@ -1,4 +1,6 @@
-import { model, models, Schema, type InferSchemaType } from "mongoose";
+import mongoose, { model, Schema, type InferSchemaType, type Model } from "mongoose";
+
+const { models } = mongoose;
 
 import { EXPENSE_CATEGORIES } from "./expense.constants.js";
 
@@ -25,4 +27,6 @@ export type ExpenseDocument = InferSchemaType<typeof expenseSchema> & {
   updatedAt: Date;
 };
 
-export const ExpenseModel = models.Expense ?? model("Expense", expenseSchema);
+export type ExpenseFields = InferSchemaType<typeof expenseSchema>;
+export const ExpenseModel: Model<ExpenseFields> =
+  (models.Expense as Model<ExpenseFields> | undefined) ?? model<ExpenseFields>("Expense", expenseSchema);

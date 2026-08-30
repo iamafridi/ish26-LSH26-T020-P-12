@@ -17,7 +17,15 @@ interface ExpenseInput {
   date: string;
   shop: string;
   category: ExpenseCategory;
-  note?: string;
+  note?: string | undefined;
+}
+
+interface ExpenseUpdateInput {
+  amount?: string | undefined;
+  date?: string | undefined;
+  shop?: string | undefined;
+  category?: ExpenseCategory | undefined;
+  note?: string | undefined;
 }
 
 function ensureNotFuture(date: string): void {
@@ -72,7 +80,7 @@ export async function createReceiptExpense(firebaseUid: string, input: ExpenseIn
   return serializeExpense(await createOwnedExpense(firebaseUid, toWrite(input), "receipt"));
 }
 
-export async function updateExpense(firebaseUid: string, id: string, input: Partial<ExpenseInput>) {
+export async function updateExpense(firebaseUid: string, id: string, input: ExpenseUpdateInput) {
   const existing = await findOwnedExpense(firebaseUid, id);
   if (!existing) throw new AppError(404, "NOT_FOUND", "Expense not found.");
 

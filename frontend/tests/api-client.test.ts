@@ -18,11 +18,9 @@ describe("apiRequest", () => {
 
     await apiRequest("/auth/me", { token: "test-token" });
 
-    expect(fetchMock).toHaveBeenCalledWith(
-      "http://localhost:4000/api/v1/auth/me",
-      expect.objectContaining({
-        headers: expect.objectContaining({ Authorization: "Bearer test-token" }),
-      }),
-    );
+    expect(fetchMock).toHaveBeenCalledOnce();
+    const [url, request] = fetchMock.mock.calls[0] as [string, RequestInit];
+    expect(url).toBe("http://localhost:4000/api/v1/auth/me");
+    expect(new Headers(request.headers).get("Authorization")).toBe("Bearer test-token");
   });
 });

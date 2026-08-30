@@ -5,6 +5,8 @@ export interface AuthContextValue {
   loading: boolean;
   configurationError: string | null;
   signIn: (email: string, password: string) => Promise<void>;
+  register: (email: string, password: string) => Promise<void>;
+  resetPassword: (email: string) => Promise<void>;
   signOut: () => Promise<void>;
 }
 
