@@ -6,15 +6,19 @@ import { getEnvironment } from "./config/env.js";
 
 async function startServer(): Promise<void> {
   const environment = getEnvironment();
+
+  // Connect before listening. An instance that accepts traffic before its
+  // database is up answers the first requests with 500s, and on Render that is
+  // exactly the window a health check reads.
   await connectDatabase();
 
-  const server = createServer(createApp({ frontendUrl: environment.FRONTEND_URL }));
+  const server = createServer(createApp());
   server.listen(environment.PORT, () => {
-    console.log(`Personal Ledger API listening on port ${environment.PORT}`);
+    console.log(`Ledger API listening on port ${environment.PORT} [${environment.NODE_ENV}]`);
   });
 
   const shutdown = (signal: string): void => {
-    console.log(`${signal} received. Shutting down.`);
+    console.log(`${signal} received, shutting down.`);
     server.close(() => {
       void disconnectDatabase().finally(() => process.exit(0));
     });

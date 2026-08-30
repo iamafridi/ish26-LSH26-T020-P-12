@@ -1,9 +1,10 @@
-import type { AuthenticatedUser } from "../shared/types/authenticated-user.js";
+import type { VerifiedUser } from "../shared/auth/verify-token.js";
 
 declare global {
   namespace Express {
     interface Request {
-      authenticatedUser?: AuthenticatedUser;
+      /** Set by the `authenticate` middleware. Absent on public routes. */
+      user?: VerifiedUser;
     }
   }
 }
