@@ -19,10 +19,6 @@ export function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function fillDemo() {
-    setEmail("el-drago@lsh.com");
-    setPassword("eldrago123");
-  }
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -70,9 +66,6 @@ export function LoginForm() {
       )}
       <button type="submit" disabled={submitting || Boolean(configurationError)}>
         {submitting ? "Signing in…" : "Sign in"}
-      </button>
-      <button type="button" className="secondary-button visible" onClick={fillDemo} disabled={submitting || Boolean(configurationError)}>
-        Use demo credentials
       </button>
       <div className="auth-links"><Link href="/forgot-password">Forgot password?</Link><Link href="/register">Create an account</Link></div>
     </form>
