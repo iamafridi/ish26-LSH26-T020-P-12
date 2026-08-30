@@ -41,7 +41,7 @@ function assertCanonicalMoney(node: unknown, trail: string, problems: string[]):
   }
 }
 
-const datasetPath = path.join(process.cwd(), "data-p12-public.json");
+const datasetPath = path.join(process.cwd(), "src/data/p12-public.json");
 const dataset = DatasetSchema.parse(JSON.parse(fs.readFileSync(datasetPath, "utf8")));
 
 const only = process.argv[2];
