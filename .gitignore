@@ -1,25 +1,38 @@
-# Local project planning and reference documentation
-/docs/
-/projectplanning.md
-
-# Dependencies and build output
+# dependencies
 node_modules/
-.next/
+.pnp
+.pnp.*
+
+# builds
 dist/
 build/
-coverage/
+.next/
+out/
 *.tsbuildinfo
+next-env.d.ts
 
-# Local environment files (examples remain trackable)
+# environment — never commit a real value
 .env
 .env.*
 !.env.example
 
-# Logs and operating-system files
-*.log
-.DS_Store
-Thumbs.db
+# test + tooling output
+coverage/
+test-results/
+playwright-report/
+__pycache__/
+*.pyc
 
-# Test and deployment caches
-.turbo/
-.vercel/
+# editor / OS / assistant tooling
+.DS_Store
+.vscode/
+.idea/
+.claude/
+.agents/
+AGENTS.md
+CLAUDE.md
+*.log
+npm-debug.log*
+
+# deployment
+.vercel

@@ -1,37 +1,28 @@
+/**
+ * Attaches the verified user to the request, or rejects it.
+ *
+ * Every downstream handler reads `request.user.uid` and nothing else. There is
+ * deliberately no route anywhere that accepts a uid from the body or the query:
+ * such a parameter would be trivially forgeable and would let any signed-in
+ * caller read any other user's ledger.
+ */
 import type { NextFunction, Request, Response } from "express";
 
-import { getFirebaseAdminAuth } from "../../config/firebase-admin.js";
-import { AppError } from "../errors/app-error.js";
+import { unauthenticated } from "../errors/app-error.js";
+import { verifyIdToken } from "../auth/verify-token.js";
 
 export async function authenticate(
   request: Request,
   _response: Response,
   next: NextFunction,
 ): Promise<void> {
-  try {
-    const authorization = request.header("authorization");
-    if (!authorization?.startsWith("Bearer ")) {
-      throw new AppError(401, "UNAUTHENTICATED", "Sign in to continue.");
-    }
+  const user = await verifyIdToken(request.header("authorization"));
 
-    const token = authorization.slice("Bearer ".length).trim();
-    if (!token) {
-      throw new AppError(401, "UNAUTHENTICATED", "Sign in to continue.");
-    }
-
-    const decoded = await getFirebaseAdminAuth().verifyIdToken(token);
-    request.authenticatedUser = {
-      uid: decoded.uid,
-      ...(decoded.email ? { email: decoded.email } : {}),
-      ...(typeof decoded.name === "string" ? { name: decoded.name } : {}),
-    };
-    next();
-  } catch (error) {
-    if (error instanceof AppError) {
-      next(error);
-      return;
-    }
-
-    next(new AppError(401, "UNAUTHENTICATED", "Your session is invalid or expired."));
+  if (!user) {
+    next(unauthenticated("Your session is missing or has expired. Sign in again."));
+    return;
   }
+
+  request.user = user;
+  next();
 }

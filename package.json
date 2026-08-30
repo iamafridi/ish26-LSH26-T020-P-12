@@ -1,24 +1,26 @@
 {
-  "name": "personal-ledger-manager",
-  "version": "0.1.0",
+  "name": "lsh26-t020-p12",
+  "version": "1.0.0",
   "private": true,
+  "description": "Personal Ledger Manager — LSH26-T020, Problem P12",
   "workspaces": [
     "frontend",
     "backend"
   ],
   "scripts": {
-    "dev": "concurrently -n frontend,backend -c cyan,green \"npm run dev --workspace frontend\" \"npm run dev --workspace backend\"",
-    "dev:frontend": "npm run dev --workspace frontend",
+    "dev": "concurrently -n api,web -c magenta,cyan \"npm run dev --workspace backend\" \"npm run dev --workspace frontend\"",
     "dev:backend": "npm run dev --workspace backend",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "build": "npm run build --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
-    "build": "npm run build --workspaces --if-present"
+    "verify": "npm run verify --workspace backend"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=20.0.0"
   }
 }

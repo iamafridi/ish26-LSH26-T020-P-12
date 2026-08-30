@@ -1,103 +1,114 @@
-import { AppError } from "../../shared/errors/app-error.js";
-import { dhakaToday } from "../../shared/dates/month.js";
-import { moneyStringToPaisa, paisaToMoneyString } from "../../shared/money/money.js";
-import type { ExpenseCategory } from "./expense.constants.js";
+/**
+ * Expenses — required item 1's "add expenses", and the raw material every other
+ * required item is computed from.
+ */
+import { z } from "zod";
+
+import { ExpenseModel } from "./expense.model.js";
+import { notFoundError } from "../../shared/errors/app-error.js";
 import {
-  createOwnedExpense,
-  deleteOwnedExpense,
-  findOwnedExpense,
-  listOwnedExpenses,
-  updateOwnedExpense,
-  type ExpenseFilters,
-  type ExpenseWrite,
-} from "./expense.repository.js";
+  CategoryInput,
+  DateInput,
+  MoneyInput,
+  MonthInput,
+  ObjectIdInput,
+} from "../../shared/validation/schemas.js";
 
-interface ExpenseInput {
-  amount: string;
+export const CreateExpenseSchema = z.object({
+  date: DateInput,
+  category: CategoryInput,
+  shop: z.string().trim().min(1, "Where was it spent?").max(120),
+  amount_bdt: MoneyInput,
+  source: z.enum(["manual", "receipt"]).default("manual"),
+  note: z.string().trim().max(500).default(""),
+});
+
+export const UpdateExpenseSchema = CreateExpenseSchema.partial();
+
+export const ListExpenseQuery = z.object({
+  month: MonthInput.optional(),
+  category: CategoryInput.optional(),
+  limit: z.coerce.number().int().min(1).max(500).default(200),
+});
+
+export type CreateExpenseInput = z.output<typeof CreateExpenseSchema>;
+export type UpdateExpenseInput = z.output<typeof UpdateExpenseSchema>;
+
+export interface ExpenseView {
+  id: string;
   date: string;
+  month: string;
+  category: string;
   shop: string;
-  category: ExpenseCategory;
-  note?: string;
+  amount_bdt: string;
+  source: string;
+  note: string;
 }
 
-function ensureNotFuture(date: string): void {
-  if (date > dhakaToday()) {
-    throw new AppError(400, "VALIDATION_ERROR", "Expense date cannot be in the future.");
-  }
-}
-
-function serializeExpense(expense: NonNullable<Awaited<ReturnType<typeof findOwnedExpense>>>) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function toView(doc: any): ExpenseView {
   return {
-    id: expense._id.toString(),
-    amount: paisaToMoneyString(expense.amountPaisa),
-    date: expense.date,
-    shop: expense.shop,
-    category: expense.category,
-    note: expense.note,
-    source: expense.source,
-    createdAt: expense.createdAt.toISOString(),
-    updatedAt: expense.updatedAt.toISOString(),
+    id: String(doc._id),
+    date: doc.date,
+    month: doc.month,
+    category: doc.category,
+    shop: doc.shop,
+    amount_bdt: doc.amount_bdt,
+    source: doc.source ?? "manual",
+    note: doc.note ?? "",
   };
 }
 
-function toWrite(input: ExpenseInput): ExpenseWrite {
-  ensureNotFuture(input.date);
-  const amountPaisa = moneyStringToPaisa(input.amount);
-  if (amountPaisa <= 0) throw new AppError(400, "VALIDATION_ERROR", "Expense amount must be greater than zero.");
-  return {
-    amountPaisa,
-    date: input.date,
-    month: input.date.slice(0, 7),
-    shop: input.shop,
-    category: input.category,
-    note: input.note ?? "",
-  };
+export async function listExpenses(
+  uid: string,
+  query: z.output<typeof ListExpenseQuery>,
+): Promise<ExpenseView[]> {
+  const filter: Record<string, unknown> = { uid };
+  if (query.month) filter["month"] = query.month;
+  if (query.category) filter["category"] = query.category;
+
+  const docs = await ExpenseModel.find(filter).sort({ date: -1, createdAt: -1 }).limit(query.limit).lean();
+  return docs.map(toView);
 }
 
-export async function listExpenses(firebaseUid: string, filters: ExpenseFilters) {
-  return (await listOwnedExpenses(firebaseUid, filters)).map(serializeExpense);
+/** Every expense in either of two months — exactly what the dashboard needs. */
+export async function listExpensesForMonths(uid: string, months: string[]): Promise<ExpenseView[]> {
+  const docs = await ExpenseModel.find({ uid, month: { $in: months } })
+    .sort({ date: 1, createdAt: 1 })
+    .lean();
+  return docs.map(toView);
 }
 
-export async function getExpense(firebaseUid: string, id: string) {
-  const expense = await findOwnedExpense(firebaseUid, id);
-  if (!expense) throw new AppError(404, "NOT_FOUND", "Expense not found.");
-  return serializeExpense(expense);
+export async function createExpense(uid: string, input: CreateExpenseInput): Promise<ExpenseView> {
+  // `month` is derived here and nowhere else, so a date and its month can never
+  // disagree — the bug that would quietly drop a row out of the dashboard.
+  const created = await ExpenseModel.create({ ...input, uid, month: input.date.slice(0, 7) });
+  return toView(created.toObject());
 }
 
-export async function createExpense(firebaseUid: string, input: ExpenseInput) {
-  return serializeExpense(await createOwnedExpense(firebaseUid, toWrite(input)));
+export async function updateExpense(
+  uid: string,
+  id: string,
+  input: UpdateExpenseInput,
+): Promise<ExpenseView> {
+  ObjectIdInput.parse(id);
+
+  const patch: Record<string, unknown> = { ...input };
+  if (input.date) patch["month"] = input.date.slice(0, 7);
+
+  // The uid is part of the filter, not just the payload: an authenticated user
+  // must not be able to edit another user's row by guessing its id.
+  const updated = await ExpenseModel.findOneAndUpdate({ _id: id, uid }, patch, {
+    new: true,
+    runValidators: true,
+  }).lean();
+
+  if (!updated) throw notFoundError("That expense does not exist.");
+  return toView(updated);
 }
 
-export async function createReceiptExpense(firebaseUid: string, input: ExpenseInput) {
-  return serializeExpense(await createOwnedExpense(firebaseUid, toWrite(input), "receipt"));
-}
-
-export async function updateExpense(firebaseUid: string, id: string, input: Partial<ExpenseInput>) {
-  const existing = await findOwnedExpense(firebaseUid, id);
-  if (!existing) throw new AppError(404, "NOT_FOUND", "Expense not found.");
-
-  const write: Partial<ExpenseWrite> = {};
-  if (input.amount !== undefined) {
-    const amountPaisa = moneyStringToPaisa(input.amount);
-    if (amountPaisa <= 0) throw new AppError(400, "VALIDATION_ERROR", "Expense amount must be greater than zero.");
-    write.amountPaisa = amountPaisa;
-  }
-  if (input.date !== undefined) {
-    ensureNotFuture(input.date);
-    write.date = input.date;
-    write.month = input.date.slice(0, 7);
-  }
-  if (input.shop !== undefined) write.shop = input.shop;
-  if (input.category !== undefined) write.category = input.category;
-  if (input.note !== undefined) write.note = input.note;
-
-  const updated = await updateOwnedExpense(firebaseUid, id, write);
-  if (!updated) throw new AppError(404, "NOT_FOUND", "Expense not found.");
-  return serializeExpense(updated);
-}
-
-export async function removeExpense(firebaseUid: string, id: string): Promise<void> {
-  if (!(await deleteOwnedExpense(firebaseUid, id))) {
-    throw new AppError(404, "NOT_FOUND", "Expense not found.");
-  }
+export async function deleteExpense(uid: string, id: string): Promise<void> {
+  ObjectIdInput.parse(id);
+  const result = await ExpenseModel.deleteOne({ _id: id, uid });
+  if (result.deletedCount === 0) throw notFoundError("That expense does not exist.");
 }
