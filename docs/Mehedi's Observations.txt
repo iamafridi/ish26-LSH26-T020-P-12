@@ -1,0 +1,81 @@
+Mehedi's Observations
+===========
+
+Below are my findings while testing. You need to go through all of these, analyse, troubleshoot, fix, verify and test to confirm the fix. Do not guess, rather do test and confirm the fixes.
+
+1. Jobs:
+- No way to delete any job. Must have the option to delete any job.
+
+2. Bills:
+- If any job has invoice number, that invoice value must come to the Bill when selecting the C-Number while creating any bill in the Commission on the Invoice Value's "invoice value" field.
+
+- If any Bill has "Attach Additional Letter", after creating the bill whether issued or in draft state, only "Edit Letter" option is there, but it needs to have options of "Edit Letter" and "Amend Bill" and "Delete Letter" and "Cancelled Bill" option as well. User must be able to edit/update, cancel both bill and letter. Do not just fix and guess, test every possible options with draft, issued and with any other possible options and combinations.
+
+- For all bills option, instead of loading more bills, should we use pagination? Please consider future scope when there will be thousands of thousands of bills and then pagination probably can be a better option. So think deeper and then decide whether to stick with load more bills option or go with paginations.
+
+- On Bills Page the first field of "C Number, invoice no or bill number" field doesn't load the list while searching. If it is not loaded based on what is giving in to that field as input, then it is almost impossible to memorise the whole number. The list must load based on the input.
+
+- For the last bill as the latest one, if no other new bill is there on top of it, then user must be given a chance to delete the bill to use the same bill number if he does mistake while creating the bill. If you don't give him a chance to delete it, if he makes any mistakes, then he needs to cancel the bill and can't be able to use the bill number anymore. So, you need to keep that in mind and make changes accordingly.
+
+- Also, Amend Bill doesn't give the user any chance to add/remove any fields. It must take the user to the bill creation window so that he can make all kinds of changes the same way he can create a bill. So, that amend bill gives the user every option to make changes on the bill, just like creating a new bill. Hope you understand the issue here.
+
+3. Money Received:
+- While creating "New Receipt" from "Money received from client", currently Client is a search field but it shouldn't be a search field, rather a drop-down field. 
+
+- And While creating "New Receipt" from "Money received from client", currently apply the money to bills is loading all the bills related to that client Which can be a critical issue later when any client have lots of bills so it will be better not to load rather give option to apply money to particular bills by putting a button That will allow the user to add multiple bills and put whatever amount is related to those bills one by one.
+
+- Money Received currently have no option to edit or delete any receipt. User must be able to edit or delete (confirms double to delete) any receipt.
+
+4. Advances:
+While creating New Advances, Client field shouldn't be a search field (currently a search field), it must be a dropdown field.
+
+5. Advance Ledger:
+- After running report, The Totals row shows wrong values, probably column values shifted right one column. Double check the issue and confirm Totals row shows correct values for each column.
+
+6. Expenses:
+- While creating new expenses, currently only one C number can be assigned to that expenses, but multiple C Number can be related to one single expense. So, must provide option to select multiple C Number while creating expenses.
+
+- Moreover, While creating new expenses, currently there are two options:
+	-- How the money went out and 
+	-- Paid By
+ Which is quite confusing. Shouldn't it just be one option? Please think deeper and take decision accordingly as there may some connections from one of these fields to other forms or reports. So, take a close look on that and then decide. Removing one, must not break anything anywhere.
+
+7. Staff Ledger:
+- Ledger shows "Voucher no." But no link. It should link to that voucher/expense so that user can click on that voucher and check what was about it.
+
+8. Loans:
+- While creating loans, Currently Lender is a search box, but it should be a drop-down.
+
+- For "Record Payment", there is no way to edit/update or delete any payment history. User must be able to edit/update or delete any payment history so that, if he makes any mistakes while entering data, he can make edit/update or delete.
+
+- It only shows how much principal amount has returned, but not shows how much more extra money has already been paid as commissions, profit or another kind of payment etc. It must shows in both loan details and in the main loan window as well so that, user knows how much total money is already given for that loan including principal and the additional money.
+
+9. Reports:
+- For all reports, Client should be a dropdown field and user should allow to select multiple clients at once if he wants. C Number, Invoice number, Bill No should automatically load list based on the search inputs. 
+
+- Income Report shows blank value for Client Column. Must fix the issue.
+
+- Breadcrumb menus are not working properly all the time. For example, Dashboard>Reports>Income. User can only click on Dashboard, but not on Reports. But it should be clickable as well. And that is applicable for every breadcrumb menus everywhere.
+
+- Report filtering doesn't work properly everywhere. For example, Receivable Aging Report. I tried to filter with particular Client, but it is not working rather showing report for all clients. I found this kind of inconsistency all over the report hub. You must fix, verify and test every possible filter combinations for all sorts of reports everywhere.
+
+10. Clients:
+- While adding a new client, it throws an error invalid input. Only Client Name should be mandatory. No need to put Opening Balance to make it confusing.
+
+11. Staff:
+- While adding a Staff member, throws an error "Something went wrong while saving. Try again, and if the problem continues, contact support.". Fix, verify and test the issue.
+
+===============
+2nd Set of Observations.
+
+1. Billing Parameters:
+- Deactivated parameters can't be reactivated as there is no such option. Must be an option to activate and deactivate.
+
+2. Jobs:
+- While creating or editing any job, the field invoice value has a symbol of TAKA or BDT, where as it will always be USD, so the symbol of that field should be change to $.
+
+3. New Bill:
+- While Creating new bill the subtotal deductions and net payable at the bottom gets automatically updated for all the fields except commissions Whatever changes I make on the commission percentage field, the subtotal deduction and net payable doesn't automatically get Get updated, but after saving the draft or issuing the bill, that value gets changed later, but it should be updated automatically just like the other fields.
+
+4. Issuing a Bill:
+- While creating a bill using a template where there are fourteen, fifteen fields already added, but some of the fields will not have any value, and these are not mandatory fields only the commission field is mandatory, but when without putting any values trying to issue the bill it says need to put values for the other fields where I haven't given any values like landing charges, sorting charges, scale charge, VGM charges etc. those field will be there, but the value will be zero if I don't put any value, so it should get fixed. For your information, I did  put 0 as default value, but the value doesn't come while creating a bill rather the fields get empty value and thus not allowing to issue the bill.
