@@ -1,12 +1,8 @@
-import handler from "@vercel/node";
+import type { IncomingMessage, ServerResponse } from "node:http";
 import { createApp } from "../src/app.js";
 
-let app: ReturnType<typeof createApp>;
-try {
-  app = createApp();
-} catch (error) {
-  console.error("[api/index] Failed to create app:", error);
-  throw error;
-}
+const app = createApp();
 
-export default handler(app);
+export default function handler(request: IncomingMessage, response: ServerResponse): void {
+  app(request, response);
+}

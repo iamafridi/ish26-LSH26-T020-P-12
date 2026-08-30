@@ -34,7 +34,6 @@
   },
   "devDependencies": {
     "@types/supertest": "^6.0.3",
-    "@vercel/node": "^10.0.0",
     "eslint": "^9.37.0",
     "supertest": "^7.1.4",
     "tsx": "^4.20.6",
