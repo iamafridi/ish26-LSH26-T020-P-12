@@ -9,6 +9,15 @@ import { api, ApiError } from "@/lib/api";
 import { currentMonth, monthLabel } from "@/lib/use-dashboard";
 import type { Expense } from "@/lib/types";
 
+/**
+ * Rows per page.
+ *
+ * The published cases carry 41–61 expenses across two months, so a real month
+ * lands somewhere around twenty-five. Twenty keeps a page inside one screen on a
+ * laptop without making the paging feel constant.
+ */
+const PAGE_SIZE = 20;
+
 export default function ExpensesPage() {
   const [month, setMonth] = useState(currentMonth());
   const [expenses, setExpenses] = useState<Expense[]>([]);
@@ -16,6 +25,7 @@ export default function ExpensesPage() {
   const [error, setError] = useState<string | null>(null);
   const [adding, setAdding] = useState(false);
   const [draft, setDraft] = useState<ExpenseDraft>(emptyDraft(""));
+  const [page, setPage] = useState(1);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -33,6 +43,19 @@ export default function ExpensesPage() {
   useEffect(() => {
     void load();
   }, [load]);
+
+  // A month change must reset the page, or switching from a month with four
+  // pages to one with a single page lands on an empty page 4.
+  useEffect(() => {
+    setPage(1);
+  }, [month]);
+
+  const pageCount = Math.max(1, Math.ceil(expenses.length / PAGE_SIZE));
+  // Deleting the last row on the final page would otherwise strand the view on a
+  // page that no longer exists, so the current page is clamped on every render.
+  const safePage = Math.min(page, pageCount);
+  const start = (safePage - 1) * PAGE_SIZE;
+  const visible = expenses.slice(start, start + PAGE_SIZE);
 
   async function remove(id: string) {
     // Optimistic, with a restore on failure: deleting a row should feel
@@ -125,7 +148,7 @@ export default function ExpensesPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {expenses.map((expense) => (
+                  {visible.map((expense) => (
                     <tr key={expense.id}>
                       <td className="mono faint nowrap" style={{ fontSize: "var(--t-xs)" }}>
                         {expense.date}
@@ -165,6 +188,58 @@ export default function ExpensesPage() {
                 </tbody>
               </table>
             </div>
+
+            {pageCount > 1 ? (
+              <nav className="pager" aria-label="Expense pages">
+                <p className="label pager-count">
+                  {start + 1}&ndash;{Math.min(start + PAGE_SIZE, expenses.length)} of{" "}
+                  {expenses.length}
+                </p>
+
+                <div className="row" style={{ gap: "var(--s-2)" }}>
+                  <button
+                    type="button"
+                    className="btn btn--quiet btn--sm"
+                    onClick={() => setPage(safePage - 1)}
+                    disabled={safePage === 1}
+                  >
+                    Previous
+                  </button>
+
+                  {/* Numbered pages, but only while the count stays legible.
+                      Past that, the position readout above carries the meaning
+                      and a page-number strip would just wrap onto three lines. */}
+                  {pageCount <= 7 ? (
+                    <div className="row" style={{ gap: "var(--s-1)" }}>
+                      {Array.from({ length: pageCount }, (_, index) => index + 1).map((number) => (
+                        <button
+                          type="button"
+                          key={number}
+                          className={`btn btn--sm pager-page ${number === safePage ? "" : "btn--quiet"}`}
+                          onClick={() => setPage(number)}
+                          aria-current={number === safePage ? "page" : undefined}
+                        >
+                          {number}
+                        </button>
+                      ))}
+                    </div>
+                  ) : (
+                    <span className="label mono">
+                      {safePage} / {pageCount}
+                    </span>
+                  )}
+
+                  <button
+                    type="button"
+                    className="btn btn--quiet btn--sm"
+                    onClick={() => setPage(safePage + 1)}
+                    disabled={safePage === pageCount}
+                  >
+                    Next
+                  </button>
+                </div>
+              </nav>
+            ) : null}
           </div>
         )}
       </section>

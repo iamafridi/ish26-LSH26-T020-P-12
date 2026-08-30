@@ -3,8 +3,10 @@
 import { useRouter } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
 
+import { AccountBar } from "@/components/account-bar";
 import { useAuth } from "@/components/auth-provider";
 import { Masthead } from "@/components/masthead";
+import { Footer } from "@/components/footer";
 
 /**
  * The signed-in shell. Redirects rather than rendering a half-populated page:
@@ -44,9 +46,11 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   return (
     <div className="shell">
       <Masthead />
-      <main id="main" className="wrap" style={{ flex: 1, paddingBottom: "var(--s-8)" }}>
+      <AccountBar />
+      <main id="main" className="wrap" style={{ flex: 1, paddingBottom: "var(--s-6)" }}>
         {children}
       </main>
+      <Footer />
     </div>
   );
 }

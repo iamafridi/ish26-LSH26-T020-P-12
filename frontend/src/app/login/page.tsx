@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { useAuth } from "@/components/auth-provider";
+import { DEMO_CASE, DEMO_EMAIL, DEMO_PASSWORD } from "@/lib/demo";
 
 /** Firebase error codes are not sentences. Turn the ones users actually hit into
  *  something that says what to do next. */
@@ -125,36 +126,8 @@ export default function LoginPage() {
                 </p>
               ) : null}
 
-              <button
-                type="button"
-                className="btn btn--quiet"
-                disabled={busy}
-                onClick={async () => {
-                  setError(null);
-                  setBusy(true);
-                  try {
-                    await signInWithGoogle();
-                    router.replace("/dashboard");
-                  } catch (caught) {
-                    setError(readableAuthError(caught));
-                  } finally {
-                    setBusy(false);
-                  }
-                }}
-              >
-                <GoogleMark />
-                Continue with Google
-              </button>
 
-              <div
-                className="row"
-                style={{ gap: "var(--s-3)", flexWrap: "nowrap" }}
-                aria-hidden="true"
-              >
-                <hr className="divider" style={{ flex: 1 }} />
-                <span className="label">or</span>
-                <hr className="divider" style={{ flex: 1 }} />
-              </div>
+
 
               <form className="stack" onSubmit={submit} noValidate>
                 <label className="field">
@@ -199,6 +172,89 @@ export default function LoginPage() {
                   {mode === "signin" ? "Create an account instead" : "I already have an account"}
                 </button>
               </form>
+
+              <div
+                className="row"
+                style={{ gap: "var(--s-3)", flexWrap: "nowrap" }}
+                aria-hidden="true"
+              >
+                <hr className="divider" style={{ flex: 1 }} />
+                <span className="label">or</span>
+                <hr className="divider" style={{ flex: 1 }} />
+              </div>
+
+              <button
+                type="button"
+                className="btn btn--quiet"
+                disabled={busy}
+                onClick={async () => {
+                  setError(null);
+                  setBusy(true);
+                  try {
+                    await signInWithGoogle();
+                    router.replace("/dashboard");
+                  } catch (caught) {
+                    setError(readableAuthError(caught));
+                  } finally {
+                    setBusy(false);
+                  }
+                }}
+              >
+                <GoogleMark />
+                Continue with Google
+              </button>
+
+              {/* A pre-seeded account holding published case PUB-01, so anyone
+                  reviewing this can see every screen populated with real,
+                  checkable data without creating an account or typing in a
+                  month of expenses first. */}
+              <div className="demo-card">
+                <div className="row-between" style={{ gap: "var(--s-2)" }}>
+                  <p className="label" style={{ margin: 0 }}>
+                    Reviewer? Use the demo account
+                  </p>
+                  <span className="chip chip--ok">case {DEMO_CASE} loaded</span>
+                </div>
+
+                <dl className="demo-creds">
+                  <div>
+                    <dt className="label">Email</dt>
+                    <dd className="mono">{DEMO_EMAIL}</dd>
+                  </div>
+                  <div>
+                    <dt className="label">Password</dt>
+                    <dd className="mono">{DEMO_PASSWORD}</dd>
+                  </div>
+                </dl>
+
+                <button
+                  type="button"
+                  className="btn btn--sm"
+                  disabled={busy}
+                  onClick={async () => {
+                    setError(null);
+                    setBusy(true);
+                    setEmail(DEMO_EMAIL);
+                    setPassword(DEMO_PASSWORD);
+                    try {
+                      await signIn(DEMO_EMAIL, DEMO_PASSWORD);
+                      router.replace("/dashboard");
+                    } catch (caught) {
+                      setError(readableAuthError(caught));
+                    } finally {
+                      setBusy(false);
+                    }
+                  }}
+                >
+                  {busy ? "Opening…" : "Open the demo ledger"}
+                </button>
+
+                <p className="faint" style={{ fontSize: "var(--t-xs)", margin: 0 }}>
+                  Shared and editable by anyone. Every figure it shows is computed from the
+                  published dataset, so it can be checked against the official case by hand.
+                </p>
+              </div>
+
             </div>
           )}
         </div>

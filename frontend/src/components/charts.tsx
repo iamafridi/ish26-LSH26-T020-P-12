@@ -1,15 +1,29 @@
 "use client";
 
 /**
- * Charts, drawn as ruled bars.
+ * Charts, drawn as ruled bars and hand-built SVG.
  *
- * Two constraints shape every one of these:
- *   1. A float may set a width and nothing else. Every printed figure is the
- *      canonical string from the API, never a number derived from it.
- *   2. Colour is never the only signal. Each bar is labelled and each chart
- *      carries a text equivalent, so a screen reader and a monochrome print get
- *      the same information the colours carry.
+ * No charting library. Every mark here is a rectangle or a polyline over values
+ * the engine already computed, and a library would add ~50kB, its own colour
+ * opinions, and a second place for number formatting to drift from the rest of
+ * the app.
+ *
+ * Four constraints shape all of them:
+ *
+ *   1. A float may set a width or a coordinate and nothing else. Every printed
+ *      figure is the canonical string from the API, never a number derived from
+ *      one.
+ *   2. Colour is never the only signal: every series is labelled, and every
+ *      chart carries a text equivalent for assistive technology.
+ *   3. Interaction works from the keyboard as well as the pointer. Each datum is
+ *      a real focusable control, so tabbing reveals the same detail hovering
+ *      does — a tooltip that only responds to a mouse is decoration, not
+ *      information.
+ *   4. Detail on demand: the resting state stays quiet, and exact figures appear
+ *      when something is pointed at or focused.
  */
+import { useId, useState } from "react";
+
 import { Amount } from "./money";
 import { formatMoney, toChartWidth } from "@/lib/money";
 import type { CategoryLine } from "@/lib/types";
@@ -23,7 +37,19 @@ export function categoryColour(index: number): string {
   return `var(${CATEGORY_VARS[index % CATEGORY_VARS.length]})`;
 }
 
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Spending by category.
+ *
+ * Each row is a button: hovering or focusing it dims the others and reveals the
+ * exact total, the share and the transaction count. Dimming the rest rather than
+ * brightening the target keeps the comparison intact — the point of the chart is
+ * the relative lengths, and those stay readable while one row is emphasised.
+ */
 export function CategoryBars({ lines }: { lines: CategoryLine[] }) {
+  const [active, setActive] = useState<string | null>(null);
+
   if (lines.length === 0) {
     return <p className="empty">Nothing recorded this month yet.</p>;
   }
@@ -32,41 +58,60 @@ export function CategoryBars({ lines }: { lines: CategoryLine[] }) {
 
   return (
     <div
+      className={`chart-group ${active ? "is-focused" : ""}`}
+      onMouseLeave={() => setActive(null)}
       role="img"
       aria-label={`Spending by category: ${lines
         .map((line) => `${line.category}, ${formatMoney(line.total_bdt)}, ${line.share_percent} percent`)
         .join("; ")}`}
     >
-      {lines.map((line, index) => (
-        <div className="bar-row" key={line.category}>
-          <span className="note" style={{ margin: 0 }}>
-            {line.category}
-          </span>
-          <span className="bar-track">
-            <span
-              className="bar-fill"
-              style={{
-                width: `${(toChartWidth(line.total_bdt) / widest) * 100}%`,
-                background: categoryColour(index),
-              }}
-            />
-          </span>
-          <span className="nowrap">
-            <Amount value={line.total_bdt} />
-            <span className="faint mono" style={{ fontSize: "var(--t-xs)", marginLeft: "var(--s-2)" }}>
-              {line.share_percent}%
+      {lines.map((line, index) => {
+        const on = active === line.category;
+        return (
+          <button
+            type="button"
+            className={`bar-row datum ${on ? "is-active" : ""}`}
+            key={line.category}
+            onMouseEnter={() => setActive(line.category)}
+            onFocus={() => setActive(line.category)}
+            onBlur={() => setActive(null)}
+            aria-label={`${line.category}: ${formatMoney(line.total_bdt)}, ${line.share_percent} percent of the month, ${line.count} ${line.count === 1 ? "transaction" : "transactions"}`}
+          >
+            <span className="note bar-label">{line.category}</span>
+            <span className="bar-track">
+              <span
+                className="bar-fill"
+                style={{
+                  width: `${(toChartWidth(line.total_bdt) / widest) * 100}%`,
+                  background: categoryColour(index),
+                }}
+              />
             </span>
-          </span>
-        </div>
-      ))}
+            <span className="nowrap bar-value">
+              <Amount value={line.total_bdt} />
+              <span className="faint mono bar-share">{line.share_percent}%</span>
+            </span>
+
+            <span className="datum-detail" aria-hidden="true">
+              {line.count} {line.count === 1 ? "transaction" : "transactions"} ·{" "}
+              {line.share_percent}% of the month
+            </span>
+          </button>
+        );
+      })}
     </div>
   );
 }
 
+/* -------------------------------------------------------------------------- */
+
 /**
  * The month's runway: what is already spent, what the pace projects on top, and
- * what is left of the salary. Three segments of one bar, because the question
- * "will this reach the end of the month" is a question about one length.
+ * what is left of the salary — three segments of one bar, because "will this
+ * reach the end of the month" is a question about one length.
+ *
+ * The legend entries and the segments are the same control, so pointing at
+ * either highlights both.
  */
 export function RunwayBar({
   salary,
@@ -77,126 +122,217 @@ export function RunwayBar({
   spent: string;
   projectedRemaining: string;
 }) {
+  const [active, setActive] = useState<string | null>(null);
+
   const salaryWidth = toChartWidth(salary);
   const spentWidth = toChartWidth(spent);
   const projectedWidth = toChartWidth(projectedRemaining);
 
-  // When the projection overruns the salary, the bar is scaled to the projection
-  // so the overrun is visible as a proportion rather than being clipped away.
+  // When the projection overruns the salary the bar scales to the projection, so
+  // the overrun shows as a proportion rather than being clipped out of sight.
   const scale = Math.max(salaryWidth, spentWidth + projectedWidth, 1);
   const pct = (value: number) => `${Math.max((value / scale) * 100, 0)}%`;
   const leftOver = Math.max(salaryWidth - spentWidth - projectedWidth, 0);
 
+  const segments = [
+    { key: "spent", label: "Spent", value: spent, width: spentWidth, fill: "var(--lime)", note: "already recorded this month" },
+    { key: "projected", label: "Projected", value: projectedRemaining, width: projectedWidth, fill: "var(--up)", note: "expected over the remaining days, at the current pace" },
+    { key: "left", label: "Unspent", value: formatMoney(String(leftOver.toFixed(2)), { symbol: false }), width: leftOver, fill: "transparent", note: "salary not yet accounted for" },
+  ];
+
   return (
-    <div>
+    <div className={`chart-group ${active ? "is-focused" : ""}`} onMouseLeave={() => setActive(null)}>
       <div
         className="runway"
         role="img"
         aria-label={`Of a ${formatMoney(salary)} salary, ${formatMoney(spent)} is spent and ${formatMoney(projectedRemaining)} more is projected for the rest of the month.`}
       >
-        <span className="runway-seg" style={{ width: pct(spentWidth), background: "var(--ink)" }} />
-        <span
-          className="runway-seg"
-          style={{
-            width: pct(projectedWidth),
-            background: "var(--vermillion)",
-            opacity: 0.55,
-          }}
-        />
-        <span className="runway-seg" style={{ width: pct(leftOver), background: "transparent" }} />
+        {segments.map((segment) => (
+          <button
+            type="button"
+            key={segment.key}
+            className={`runway-seg datum ${active === segment.key ? "is-active" : ""}`}
+            style={{
+              width: pct(segment.width),
+              background: segment.fill,
+              opacity: 1,
+            }}
+            onMouseEnter={() => setActive(segment.key)}
+            onFocus={() => setActive(segment.key)}
+            onBlur={() => setActive(null)}
+            aria-label={`${segment.label}: ${segment.note}`}
+            tabIndex={segment.width > 0 ? 0 : -1}
+          />
+        ))}
       </div>
 
       <div className="runway-legend">
         {[
-          { swatch: "var(--ink)", label: "Spent", value: spent },
-          { swatch: "var(--vermillion)", label: "Projected", value: projectedRemaining },
-          { swatch: "transparent", label: "Salary", value: salary },
+          { key: "spent", label: "Spent", value: spent, swatch: "var(--lime)" },
+          { key: "projected", label: "Projected", value: projectedRemaining, swatch: "var(--up)" },
+          { key: "salary", label: "Salary", value: salary, swatch: "transparent" },
         ].map((item) => (
-          <span className="row" key={item.label} style={{ gap: "var(--s-2)" }}>
+          <button
+            type="button"
+            className={`legend-item datum ${active === item.key ? "is-active" : ""}`}
+            key={item.label}
+            onMouseEnter={() => setActive(item.key)}
+            onFocus={() => setActive(item.key)}
+            onBlur={() => setActive(null)}
+          >
             <span
               className="swatch"
               style={{
                 background: item.swatch,
-                border: item.swatch === "transparent" ? "1px solid var(--rule-firm)" : "none",
-                opacity: item.label === "Projected" ? 0.55 : 1,
+                border: item.swatch === "transparent" ? "1px solid var(--line-firm)" : "none",
+                opacity: 1,
               }}
               aria-hidden="true"
             />
             <span className="label">{item.label}</span>
             <Amount value={item.value} />
-          </span>
+          </button>
         ))}
       </div>
+
+      <p className="chart-readout" aria-live="polite">
+        {active === "spent" && "Already recorded this month."}
+        {active === "projected" && "Expected over the remaining days, at the current daily pace."}
+        {active === "left" && "Salary not yet accounted for."}
+        {active === "salary" && "The month's salary, the length everything else is measured against."}
+        {!active && "Point at a segment for what it covers."}
+      </p>
     </div>
   );
 }
 
-/** A DPS balance curve, drawn from the schedule the engine produced. */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * The DPS balance curve, drawn from the schedule the engine produced.
+ *
+ * Two lines: the balance, and the same contributions with no interest. The band
+ * between them is the interest, shaded because over a short term the two curves
+ * sit within a couple of percent of each other and would read as one line —
+ * which would make the chart say nothing about the quantity the panel is about.
+ * The axes stay honest: no truncated baseline, no exaggerated scale.
+ *
+ * Hovering or focusing a month draws a guide and reports that month's figures.
+ */
 export function DpsCurve({
   schedule,
 }: {
-  schedule: Array<{ month_index: number; closing_balance_bdt: string; deposit_bdt: string }>;
+  schedule: Array<{
+    month_index: number;
+    closing_balance_bdt: string;
+    deposit_bdt: string;
+    interest_bdt: string;
+  }>;
 }) {
+  const [active, setActive] = useState<number | null>(null);
+  const clipId = useId();
+
   if (schedule.length < 2) return null;
 
   const width = 520;
   const height = 130;
   const peak = Math.max(...schedule.map((row) => toChartWidth(row.closing_balance_bdt)), 1);
 
-  const point = (index: number, value: number) => {
-    const x = (index / (schedule.length - 1)) * width;
-    const y = height - (value / peak) * height;
-    return `${x.toFixed(1)},${y.toFixed(1)}`;
-  };
+  const x = (index: number) => (index / (schedule.length - 1)) * width;
+  const y = (value: number) => height - (value / peak) * height;
+  const point = (index: number, value: number) => `${x(index).toFixed(1)},${y(value).toFixed(1)}`;
 
   const balancePoints = schedule.map((row, index) =>
     point(index, toChartWidth(row.closing_balance_bdt)),
   );
-
-  // The same contributions with no interest — the comparison that makes the
-  // interest figure mean something.
   const deposit = toChartWidth(schedule[0]?.deposit_bdt ?? "0.00");
   const plainPoints = schedule.map((_, index) => point(index, deposit * (index + 1)));
 
-  const balance = balancePoints.join(" ");
-  const plain = plainPoints.join(" ");
-
-  /**
-   * The band between the two lines is the interest.
-   *
-   * Over a short term the two curves sit within a couple of percent of each
-   * other and read as one line, which makes the chart say nothing. Shading the
-   * gap keeps the axes honest — no truncated baseline, no exaggerated scale —
-   * while making the quantity the panel is about actually visible.
-   */
   const gain = `${plainPoints.join(" ")} ${[...balancePoints].reverse().join(" ")}`;
-
   const last = schedule[schedule.length - 1];
+  const shown = active === null ? null : schedule[active];
 
   return (
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      preserveAspectRatio="none"
-      style={{ width: "100%", height: "130px" }}
-      role="img"
-      aria-label={`Balance over ${schedule.length} months, reaching ${formatMoney(last?.closing_balance_bdt ?? "0.00")} against ${formatMoney(String((deposit * schedule.length).toFixed(2)))} deposited.`}
-    >
-      <polygon points={gain} fill="var(--forest)" opacity="0.16" />
-      <polyline
-        points={plain}
-        fill="none"
-        stroke="var(--rule-firm)"
-        strokeWidth="1.5"
-        strokeDasharray="4 3"
-        vectorEffect="non-scaling-stroke"
-      />
-      <polyline
-        points={balance}
-        fill="none"
-        stroke="var(--forest)"
-        strokeWidth="2"
-        vectorEffect="non-scaling-stroke"
-      />
-    </svg>
+    <figure className="dps-figure" onMouseLeave={() => setActive(null)}>
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        preserveAspectRatio="none"
+        className="dps-svg"
+        role="img"
+        aria-label={`Balance over ${schedule.length} months, reaching ${formatMoney(last?.closing_balance_bdt ?? "0.00")} against ${formatMoney((deposit * schedule.length).toFixed(2))} deposited.`}
+      >
+        <clipPath id={clipId}>
+          <rect x="0" y="0" width={width} height={height} />
+        </clipPath>
+
+        <g clipPath={`url(#${clipId})`}>
+          <polygon points={gain} fill="var(--lime)" opacity="0.16" />
+          <polyline
+            points={plainPoints.join(" ")}
+            fill="none"
+            stroke="var(--line-firm)"
+            strokeWidth="1.5"
+            strokeDasharray="4 3"
+            vectorEffect="non-scaling-stroke"
+          />
+          <polyline
+            points={balancePoints.join(" ")}
+            fill="none"
+            stroke="var(--lime)"
+            strokeWidth="2"
+            vectorEffect="non-scaling-stroke"
+          />
+
+          {active !== null ? (
+            <>
+              <line
+                x1={x(active)}
+                x2={x(active)}
+                y1="0"
+                y2={height}
+                stroke="var(--ink-muted)"
+                strokeWidth="1"
+                vectorEffect="non-scaling-stroke"
+              />
+              <circle
+                cx={x(active)}
+                cy={y(toChartWidth(schedule[active]?.closing_balance_bdt ?? "0.00"))}
+                r="3.5"
+                fill="var(--lime)"
+                vectorEffect="non-scaling-stroke"
+              />
+            </>
+          ) : null}
+        </g>
+      </svg>
+
+      {/* One invisible hit target per month, sitting over the plot. Buttons
+          rather than SVG hover areas so the series is reachable by keyboard. */}
+      <div className="dps-hits">
+        {schedule.map((row, index) => (
+          <button
+            type="button"
+            key={row.month_index}
+            className={`dps-hit ${active === index ? "is-active" : ""}`}
+            onMouseEnter={() => setActive(index)}
+            onFocus={() => setActive(index)}
+            onBlur={() => setActive(null)}
+            aria-label={`Month ${row.month_index}: deposit ${formatMoney(row.deposit_bdt)}, interest ${formatMoney(row.interest_bdt)}, balance ${formatMoney(row.closing_balance_bdt)}`}
+          />
+        ))}
+      </div>
+
+      <figcaption className="chart-readout" aria-live="polite">
+        {shown ? (
+          <>
+            <strong className="mono">Month {shown.month_index}</strong> · interest{" "}
+            <Amount value={shown.interest_bdt} /> · balance{" "}
+            <Amount value={shown.closing_balance_bdt} />
+          </>
+        ) : (
+          <>Point at the curve for a month&rsquo;s figures. The shaded band is the interest.</>
+        )}
+      </figcaption>
+    </figure>
   );
 }

@@ -15,8 +15,16 @@ interface AmountProps {
   value: Money;
   /** "display" is the one hero figure on a screen. */
   size?: "sm" | "base" | "lg" | "display";
-  /** Colour by sign. Off by default: most amounts are neutral facts. */
-  tone?: "auto" | "none";
+  /**
+   * Colour by meaning.
+   *
+   * "auto" reads the sign, which is right for a delta but wrong wherever the
+   * caller has already stripped the sign for display — a shortfall rendered as
+   * an absolute value would come out in the positive colour and say the exact
+   * opposite of what it means. "short" and "surplus" state it outright for those
+   * cases, so the colour follows the meaning rather than the characters.
+   */
+  tone?: "auto" | "short" | "surplus" | "none";
   /** Render a leading + on positive values, for deltas. */
   signed?: boolean;
   className?: string;
@@ -34,7 +42,16 @@ export function Amount({
 
   const sizeClass =
     size === "display" ? "money--display" : size === "lg" ? "money--lg" : size === "sm" ? "" : "";
-  const toneClass = tone === "auto" ? (negative ? "is-short" : "is-surplus") : "";
+  const toneClass =
+    tone === "short"
+      ? "is-short"
+      : tone === "surplus"
+        ? "is-surplus"
+        : tone === "auto"
+          ? negative
+            ? "is-short"
+            : "is-surplus"
+          : "";
   const prefix = signed && !negative && value !== "0.00" ? "+" : sign;
 
   return (

@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { Amount } from "@/components/money";
 import { CategoryBars, RunwayBar } from "@/components/charts";
+import { CategoryDonut } from "@/components/donut";
 import { MonthPicker } from "@/components/month-picker";
 import { LoadSampleCase } from "@/components/load-sample-case";
 import { absolute } from "@/lib/money";
@@ -78,10 +79,14 @@ export default function DashboardPage() {
                 <p className="label">
                   {short ? "Projected shortfall at month end" : "Projected to be left at month end"}
                 </p>
+                {/* The sign is stripped because the label above already says
+                    which way it goes, so the tone has to be stated rather than
+                    inferred — otherwise a shortfall renders in the surplus
+                    colour and contradicts its own heading. */}
                 <Amount
                   value={absolute(forecast.projected_end_position_bdt)}
                   size="display"
-                  tone="auto"
+                  tone={short ? "short" : "surplus"}
                 />
                 <p className="note">
                   {forecast.days_elapsed} of {forecast.days_in_month} days elapsed, at{" "}
@@ -146,7 +151,14 @@ export default function DashboardPage() {
                     <Amount value={comparison.this_month.total_spent_bdt} />
                   </span>
                 </div>
-                <CategoryBars lines={comparison.this_month.by_category} />
+
+                <div className="grid grid-2" style={{ alignItems: "center" }}>
+                  <CategoryDonut
+                    lines={comparison.this_month.by_category}
+                    total={comparison.this_month.total_spent_bdt}
+                  />
+                  <CategoryBars lines={comparison.this_month.by_category} />
+                </div>
               </div>
 
               <div className="panel panel--flush">

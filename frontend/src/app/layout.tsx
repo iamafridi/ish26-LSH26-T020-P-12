@@ -1,23 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 
 import { AuthProvider } from "@/components/auth-provider";
 import "./globals.css";
 
 /**
- * Three faces, each with a job: an editorial serif for figures and titles, its
- * companion grotesk for interface text, and a mono for every amount so columns
- * align on the decimal. Self-hosted at build time by next/font, so there is no
- * request to Google at runtime and no layout shift while a face loads.
+ * Two faces, each with a job.
+ *
+ * Space Grotesk carries the interface and the hero figures: a geometric grotesk
+ * with enough character to avoid the anonymous-default look, and tight, even
+ * digits that hold up at 64px. JetBrains Mono carries every amount in every
+ * table, because money has to be tabular or columns stop aligning on the decimal.
+ *
+ * Both are self-hosted at build time by next/font, so there is no request to
+ * Google at runtime and no layout shift while a face loads.
  */
-const serif = Instrument_Serif({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const sans = Instrument_Sans({
+const sans = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
@@ -36,17 +34,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#faf8f3" },
-    { media: "(prefers-color-scheme: dark)", color: "#12110e" },
-  ],
+  themeColor: "#07090c",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${serif.variable} ${sans.variable} ${mono.variable}`}
+      className={`${sans.variable} ${mono.variable}`}
       data-scroll-behavior="smooth"
     >
       <body>

@@ -162,7 +162,7 @@ function PocketCard({
           <div className="grid grid-2">
             <div className="panel panel--sunk">
               <p className="label">At the stated contribution</p>
-              <p className="serif" style={{ fontSize: "var(--t-xl)", marginTop: "var(--s-2)" }}>
+              <p className="serif" style={{ fontSize: "var(--t-xl)", marginTop: "var(--s-2)", fontWeight: 700 }}>
                 {projection.expected_completion_date}
               </p>
               <p className="note" style={{ marginTop: "var(--s-2)" }}>
@@ -175,7 +175,7 @@ function PocketCard({
               <p className="label">What the forecast can fund</p>
               <p
                 className={`serif ${projection.on_track ? "" : "is-short"}`}
-                style={{ fontSize: "var(--t-xl)", marginTop: "var(--s-2)" }}
+                style={{ fontSize: "var(--t-xl)", marginTop: "var(--s-2)", fontWeight: 700 }}
               >
                 {projection.forecast_completion_date}
               </p>

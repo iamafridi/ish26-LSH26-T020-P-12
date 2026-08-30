@@ -1,10 +1,13 @@
 /* =============================================================================
    Personal Ledger Manager — design system
-   The rules this file implements are written down in /DESIGN.md.
 
-   Swiss typographic structure on paper stock, with editorial figures.
-   Hairline rules carry the structure; there are no shadows, no gradients, no
-   glass, and no glow anywhere in this stylesheet. Every neutral is warm-tinted.
+   Obsidian ground, electric lime accent, editorial figures.
+
+   The house rule that survives from the earlier pass and matters most: numbers
+   are never rendered over a blur. Cards are solid, layered surfaces rather than
+   translucent glass, because a blurred panel behind a column of digits lowers
+   contrast exactly where legibility is load-bearing. The depth comes from tone
+   and a hairline border, not from backdrop-filter.
    ========================================================================== */
 
 /* -----------------------------------------------------------------------------
@@ -12,41 +15,46 @@
    -------------------------------------------------------------------------- */
 
 :root {
-  /* Paper stock. Warm, never a pure white. */
-  --paper: #faf8f3;
-  --paper-sunk: #f2efe7;
-  --paper-raised: #fffdf8;
+  /* Ground and surfaces — four steps, each a real tonal step so nesting reads. */
+  --bg: #07090c;
+  --surface: #0d1116;
+  --surface-2: #131820;
+  --surface-3: #1a212b;
 
-  /* Ink. Warm near-black, never #000. */
-  --ink: #17150f;
-  --ink-muted: #5c5648;
-  --ink-faint: #8b8474;
+  /* Hairlines carry structure; shadows are used sparingly and never coloured. */
+  --line: #1e252f;
+  --line-firm: #2b3441;
 
-  /* Rules do the structural work that borders and shadows would elsewhere. */
-  --rule: #ddd8ca;
-  --rule-firm: #c4bda9;
+  /* Ink. Never pure white — it vibrates on a near-black ground. */
+  --ink: #eef2f6;
+  --ink-muted: #94a3b3;
+  --ink-faint: #64748b;
 
-  /* One accent, used as a stamp. Doubles as the shortfall colour: in a ledger,
-     the brand mark and the warning mean the same thing — look here. */
-  --vermillion: #c1440e;
-  --vermillion-sunk: #f7e9e2;
-  --forest: #1f6b4a;
-  --forest-sunk: #e6efe9;
+  /* One accent. Everything that is "the app talking" is this colour. */
+  --lime: #b8ff2e;
+  --lime-dim: #8fd41f;
+  --lime-sunk: rgba(184, 255, 46, 0.1);
+  --lime-line: rgba(184, 255, 46, 0.32);
 
-  /* Category ramp — muted earth tones, ordered. Never a rainbow, and never the
-     sole carrier of meaning: every segment is labelled too. */
-  --cat-1: #8c5a3c;
-  --cat-2: #6b7a4a;
-  --cat-3: #a8763e;
-  --cat-4: #4c6b7a;
-  --cat-5: #8a5f70;
-  --cat-6: #5f6b5a;
-  --cat-7: #a3854a;
-  --cat-8: #6a5a7a;
-  --cat-9: #7a5545;
-  --cat-10: #4f7068;
+  /* Semantics. Distinct from the accent so "good" and "brand" never blur. */
+  --up: #ff5c48;
+  --up-sunk: rgba(255, 92, 72, 0.12);
+  --down: #3ddc97;
+  --down-sunk: rgba(61, 220, 151, 0.12);
 
-  /* Type scale, 1.25 ratio from 16px. */
+  /* Category ramp — a deliberate spread, tuned for a dark ground. */
+  --cat-1: #b8ff2e;
+  --cat-2: #38bdf8;
+  --cat-3: #f472b6;
+  --cat-4: #fbbf24;
+  --cat-5: #a78bfa;
+  --cat-6: #3ddc97;
+  --cat-7: #fb923c;
+  --cat-8: #22d3ee;
+  --cat-9: #e879f9;
+  --cat-10: #94a3b3;
+
+  /* Type scale, 1.25 from 16px. */
   --t-xs: 0.75rem;
   --t-sm: 0.875rem;
   --t-base: 1rem;
@@ -68,68 +76,29 @@
   --s-9: 6rem;
 
   --measure: 68ch;
-  --radius: 2px;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --radius-pill: 999px;
 
   --ease: cubic-bezier(0.2, 0, 0, 1);
   --fast: 140ms;
-  --base: 220ms;
+  --base: 240ms;
 
-  color-scheme: light;
-}
+  /* ---- gradients -------------------------------------------------------
+     Used with restraint and never behind a figure. Each one has a job:
+       --grad-surface  a barely-there top-light on a card, so a panel reads as
+                       lit from above rather than as a flat rectangle
+       --grad-accent   the brand ramp, for marks and small emphatic fills
+       --grad-edge     a hairline that fades out, for section separators
+       --grad-glow     a wide, very low wash for hero backgrounds only
+     A gradient never carries meaning on its own — every value is still a
+     figure, a label or a bar. */
+  --grad-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 55%);
+  --grad-accent: linear-gradient(120deg, #b8ff2e, #3ddc97 55%, #38bdf8);
+  --grad-accent-soft: linear-gradient(120deg, rgba(184, 255, 46, 0.16), rgba(56, 189, 248, 0.12));
+  --grad-edge: linear-gradient(90deg, transparent, var(--line-firm) 18%, var(--line-firm) 82%, transparent);
+  --grad-glow: radial-gradient(circle at 50% 0%, rgba(184, 255, 46, 0.13), transparent 62%);
 
-/* Dark is not an inversion. The paper warmth is kept, the ink drops to a warm
-   off-white rather than pure white, and rules get lighter relative to ground. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #12110e;
-    --paper-sunk: #1a1815;
-    --paper-raised: #1e1c18;
-    --ink: #f5f2ea;
-    --ink-muted: #a8a08c;
-    --ink-faint: #6e6757;
-    --rule: #2e2b24;
-    --rule-firm: #423e33;
-    --vermillion: #e8663a;
-    --vermillion-sunk: #2c1a12;
-    --forest: #5fae86;
-    --forest-sunk: #14251d;
-    --cat-1: #b8815c;
-    --cat-2: #93a370;
-    --cat-3: #c99f62;
-    --cat-4: #7294a5;
-    --cat-5: #b28496;
-    --cat-6: #87947f;
-    --cat-7: #c4a86c;
-    --cat-8: #9184a5;
-    --cat-9: #a37a66;
-    --cat-10: #74998f;
-    color-scheme: dark;
-  }
-}
-
-:root[data-theme="dark"] {
-  --paper: #12110e;
-  --paper-sunk: #1a1815;
-  --paper-raised: #1e1c18;
-  --ink: #f5f2ea;
-  --ink-muted: #a8a08c;
-  --ink-faint: #6e6757;
-  --rule: #2e2b24;
-  --rule-firm: #423e33;
-  --vermillion: #e8663a;
-  --vermillion-sunk: #2c1a12;
-  --forest: #5fae86;
-  --forest-sunk: #14251d;
-  --cat-1: #b8815c;
-  --cat-2: #93a370;
-  --cat-3: #c99f62;
-  --cat-4: #7294a5;
-  --cat-5: #b28496;
-  --cat-6: #87947f;
-  --cat-7: #c4a86c;
-  --cat-8: #9184a5;
-  --cat-9: #a37a66;
-  --cat-10: #74998f;
   color-scheme: dark;
 }
 
@@ -150,10 +119,17 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  background: var(--bg);
 }
 
 body {
-  background: var(--paper);
+  /* Two very wide, very low-opacity washes. They give the ground depth without
+     ever sitting behind a figure hard enough to cost contrast. */
+  background:
+    radial-gradient(1100px 520px at 12% -8%, rgba(184, 255, 46, 0.05), transparent 62%),
+    radial-gradient(1000px 500px at 88% 4%, rgba(56, 189, 248, 0.05), transparent 58%),
+    var(--bg);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--t-base);
@@ -177,16 +153,31 @@ textarea {
   color: inherit;
 }
 
-/* Focus is never removed. 2px vermillion, offset so it reads on any ground. */
 :focus-visible {
-  outline: 2px solid var(--vermillion);
+  outline: 2px solid var(--lime);
   outline-offset: 2px;
-  border-radius: 1px;
+  border-radius: var(--radius-sm);
 }
 
 ::selection {
-  background: var(--vermillion);
-  color: var(--paper);
+  background: var(--lime);
+  color: #07090c;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-firm);
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3b4655;
 }
 
 /* -----------------------------------------------------------------------------
@@ -197,18 +188,18 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-serif), ui-serif, Georgia, serif;
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -0.015em;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(2.25rem, 5vw, var(--t-3xl));
+  font-size: clamp(2rem, 4.5vw, var(--t-3xl));
 }
 h2 {
-  font-size: clamp(1.5rem, 3vw, var(--t-2xl));
+  font-size: clamp(1.35rem, 2.6vw, var(--t-2xl));
 }
 h3 {
   font-size: var(--t-xl);
@@ -220,21 +211,21 @@ p {
 }
 
 a {
-  color: inherit;
+  color: var(--lime);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
 }
 
-/* The Swiss section index. Gives a judge a spoken reference for each block. */
+/* Section index. Gives a judge a spoken reference for each block. */
 .eyebrow {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: var(--t-xs);
   font-weight: 500;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-faint);
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: var(--s-3);
 }
 
@@ -242,7 +233,7 @@ a {
   content: "";
   flex: 1;
   height: 1px;
-  background: var(--rule);
+  background: linear-gradient(90deg, var(--line-firm), transparent);
 }
 
 .label {
@@ -255,7 +246,7 @@ a {
 
 .lede {
   font-size: var(--t-lg);
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--ink-muted);
 }
 
@@ -266,14 +257,14 @@ a {
 }
 
 .serif {
-  font-family: var(--font-serif), ui-serif, Georgia, serif;
-  font-weight: 400;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 /* -----------------------------------------------------------------------------
    04  MONEY — the signature detail
-   Taka at full size, paisa at 0.62em. Always tabular so columns align on the
-   decimal, which is both the house style and a legibility requirement.
+   Taka at full size, paisa at 0.58em and dimmed, always tabular so a column of
+   amounts aligns on the decimal. House style and a legibility requirement.
    -------------------------------------------------------------------------- */
 
 .money {
@@ -281,48 +272,52 @@ a {
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum" 1;
   white-space: nowrap;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  font-weight: 500;
 }
 
 .money .paisa {
-  font-size: 0.62em;
-  opacity: 0.55;
+  font-size: 0.58em;
+  opacity: 0.5;
   font-weight: 400;
 }
 
 .money .taka-sign {
-  font-size: 0.72em;
-  opacity: 0.5;
-  margin-right: 0.08em;
+  font-size: 0.7em;
+  opacity: 0.45;
+  margin-right: 0.1em;
 }
 
 .money--display {
-  font-family: var(--font-serif), ui-serif, Georgia, serif;
-  font-size: clamp(2.5rem, 8vw, var(--t-4xl));
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 7.5vw, var(--t-4xl));
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.045em;
   font-variant-numeric: tabular-nums lining-nums;
 }
 
 .money--display .paisa {
-  font-size: 0.38em;
+  font-size: 0.36em;
   opacity: 0.45;
+  letter-spacing: -0.02em;
 }
 
 .money--display .taka-sign {
-  font-size: 0.42em;
+  font-size: 0.4em;
   opacity: 0.4;
 }
 
 .money--lg {
   font-size: var(--t-xl);
+  font-weight: 600;
 }
 
 .is-short {
-  color: var(--vermillion);
+  color: var(--up);
 }
 .is-surplus {
-  color: var(--forest);
+  color: var(--lime);
 }
 
 /* -----------------------------------------------------------------------------
@@ -337,7 +332,7 @@ a {
 
 .wrap {
   width: 100%;
-  max-width: 78rem;
+  max-width: 82rem;
   margin-inline: auto;
   padding-inline: var(--s-5);
 }
@@ -349,12 +344,7 @@ a {
 }
 
 .section {
-  padding-block: var(--s-7);
-  border-top: 1px solid var(--rule);
-}
-
-.section:first-of-type {
-  border-top: none;
+  padding-block: var(--s-6);
 }
 
 .stack {
@@ -365,7 +355,7 @@ a {
 .stack-lg {
   display: flex;
   flex-direction: column;
-  gap: var(--s-6);
+  gap: var(--s-5);
 }
 .row {
   display: flex;
@@ -375,7 +365,7 @@ a {
 }
 .row-between {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: var(--s-4);
   flex-wrap: wrap;
@@ -383,7 +373,7 @@ a {
 
 .grid {
   display: grid;
-  gap: var(--s-5);
+  gap: var(--s-4);
 }
 
 @media (min-width: 700px) {
@@ -397,25 +387,99 @@ a {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .grid-sidebar {
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-    gap: var(--s-7);
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: var(--s-5);
   }
 }
 
 /* -----------------------------------------------------------------------------
    06  SURFACES
-   A panel is a 1px rule on paper. No shadow, no nesting of panels inside panels.
+   A card is a solid raised tone with a hairline border. No backdrop blur: the
+   numbers on top of it have to stay crisp.
    -------------------------------------------------------------------------- */
 
 .panel {
-  border: 1px solid var(--rule);
+  /* Two layers: a barely-there top-light so the card reads as lit from above,
+     over the flat surface tone. Never strong enough to cost contrast on the
+     figures sitting on it. */
+  background: var(--grad-surface), var(--surface);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--paper-raised);
   padding: var(--s-5);
+  transition:
+    border-color var(--fast) var(--ease),
+    background var(--fast) var(--ease);
+}
+
+/* A panel that carries the hero figure earns the accent wash and a lit edge. */
+.panel--hero {
+  background: var(--grad-glow), var(--grad-surface), var(--surface);
+  border-color: var(--line-firm);
+  position: relative;
+  overflow: hidden;
+}
+
+.panel--hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: var(--grad-accent);
+  opacity: 0.7;
+}
+
+.panel--accent {
+  background: var(--grad-accent-soft), var(--surface);
+  border-color: var(--lime-line);
+}
+
+/* The demo credentials block on the sign-in screen. */
+.demo-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  border: 1px solid var(--lime-line);
+  border-radius: var(--radius);
+  background: var(--grad-accent-soft), var(--surface);
+}
+
+.demo-creds {
+  display: grid;
+  gap: var(--s-2);
+  margin: 0;
+}
+
+.demo-creds div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
+.demo-creds dt {
+  margin: 0;
+}
+
+.demo-creds dd {
+  margin: 0;
+  font-size: var(--t-sm);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+/* Gradient text, used once or twice for a hero word — never for body copy,
+   where it costs legibility for nothing. */
+.grad-text {
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .panel--sunk {
-  background: var(--paper-sunk);
+  background: var(--surface-2);
+  border-color: var(--line);
 }
 
 .panel--flush {
@@ -425,12 +489,12 @@ a {
 
 .panel-head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: var(--s-4);
   padding-bottom: var(--s-3);
   margin-bottom: var(--s-4);
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--line);
   flex-wrap: wrap;
 }
 
@@ -447,7 +511,6 @@ a {
 
 /* -----------------------------------------------------------------------------
    07  LEDGER TABLE
-   Ruled lines, decimal-aligned amounts. The reference object is the account book.
    -------------------------------------------------------------------------- */
 
 .ledger-scroll {
@@ -466,18 +529,19 @@ a {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: var(--t-xs);
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  padding: var(--s-3) var(--s-3);
-  border-bottom: 1px solid var(--rule-firm);
+  padding: var(--s-3);
+  border-bottom: 1px solid var(--line-firm);
   white-space: nowrap;
+  background: var(--surface-2);
 }
 
 .ledger td {
   padding: var(--s-3);
-  border-bottom: 1px solid var(--rule);
-  vertical-align: baseline;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
 }
 
 .ledger tbody tr:last-child td {
@@ -489,7 +553,7 @@ a {
 }
 
 .ledger tbody tr:hover {
-  background: var(--paper-sunk);
+  background: var(--surface-2);
 }
 
 .ledger .num {
@@ -502,36 +566,71 @@ a {
   white-space: nowrap;
 }
 
+/* --- pagination ---------------------------------------------------------- */
+
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+  padding: var(--s-3) var(--s-4);
+  border-top: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.pager-count {
+  margin: 0;
+}
+
+/* Square-ish, so a row of page numbers reads as a set rather than as a row of
+   pills of differing widths. */
+.pager-page {
+  min-width: 36px;
+  padding: 0 var(--s-2);
+}
+
+@media (max-width: 640px) {
+  .pager {
+    justify-content: center;
+  }
+}
+
 /* -----------------------------------------------------------------------------
    08  CONTROLS
    -------------------------------------------------------------------------- */
 
 .btn {
-  --btn-bg: var(--ink);
-  --btn-fg: var(--paper);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--s-2);
   min-height: 44px;
   padding: 0 var(--s-5);
-  background: var(--btn-bg);
-  color: var(--btn-fg);
-  border: 1px solid var(--btn-bg);
-  border-radius: var(--radius);
+  background: var(--lime);
+  color: #07090c;
+  border: 1px solid var(--lime);
+  border-radius: var(--radius-pill);
   font-size: var(--t-sm);
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  font-weight: 600;
+  letter-spacing: -0.005em;
   cursor: pointer;
   text-decoration: none;
+  white-space: nowrap;
   transition:
     background var(--fast) var(--ease),
     border-color var(--fast) var(--ease),
-    color var(--fast) var(--ease);
+    color var(--fast) var(--ease),
+    transform var(--fast) var(--ease);
 }
 
 .btn:hover:not(:disabled) {
-  --btn-bg: var(--vermillion);
+  background: var(--lime-dim);
+  border-color: var(--lime-dim);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
 }
 
 .btn:disabled {
@@ -540,32 +639,32 @@ a {
 }
 
 .btn--quiet {
-  --btn-bg: transparent;
-  --btn-fg: var(--ink);
-  border-color: var(--rule-firm);
+  background: var(--surface-2);
+  color: var(--ink);
+  border-color: var(--line-firm);
 }
 
 .btn--quiet:hover:not(:disabled) {
-  --btn-bg: transparent;
-  --btn-fg: var(--vermillion);
-  border-color: var(--vermillion);
+  background: var(--surface-3);
+  border-color: var(--lime-line);
+  color: var(--lime);
 }
 
 .btn--danger {
-  --btn-bg: transparent;
-  --btn-fg: var(--vermillion);
-  border-color: var(--rule-firm);
+  background: transparent;
+  color: var(--up);
+  border-color: var(--line-firm);
 }
 
 .btn--danger:hover:not(:disabled) {
-  --btn-bg: var(--vermillion);
-  --btn-fg: var(--paper);
-  border-color: var(--vermillion);
+  background: var(--up-sunk);
+  border-color: var(--up);
+  color: var(--up);
 }
 
 .btn--sm {
   min-height: 36px;
-  padding: 0 var(--s-3);
+  padding: 0 var(--s-4);
   font-size: var(--t-xs);
 }
 
@@ -582,17 +681,25 @@ a {
   font-size: var(--t-base);
   min-height: 44px;
   padding: var(--s-2) var(--s-3);
-  background: var(--paper);
-  border: 1px solid var(--rule-firm);
-  border-radius: var(--radius);
-  transition: border-color var(--fast) var(--ease);
+  background: var(--surface-2);
+  color: var(--ink);
+  border: 1px solid var(--line-firm);
+  border-radius: var(--radius-sm);
+  transition:
+    border-color var(--fast) var(--ease),
+    background var(--fast) var(--ease);
   width: 100%;
 }
 
 .field > input:focus,
 .field > select:focus,
 .field > textarea:focus {
-  border-color: var(--ink);
+  border-color: var(--lime);
+  background: var(--surface-3);
+}
+
+.field > input::placeholder {
+  color: var(--ink-faint);
 }
 
 .field > input[inputmode="decimal"] {
@@ -602,25 +709,26 @@ a {
 
 .field-error {
   font-size: var(--t-xs);
-  color: var(--vermillion);
+  color: var(--up);
 }
 
 .field--invalid > input,
 .field--invalid > select {
-  border-color: var(--vermillion);
+  border-color: var(--up);
 }
 
 /* -----------------------------------------------------------------------------
-   09  CHIPS, BADGES, MARKS
+   09  CHIPS
    -------------------------------------------------------------------------- */
 
 .chip {
   display: inline-flex;
   align-items: center;
-  gap: var(--s-1);
-  padding: 2px var(--s-2);
-  border: 1px solid var(--rule-firm);
-  border-radius: var(--radius);
+  gap: var(--s-2);
+  padding: var(--s-1) var(--s-3);
+  background: var(--surface-2);
+  border: 1px solid var(--line-firm);
+  border-radius: var(--radius-pill);
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: var(--t-xs);
   letter-spacing: 0.04em;
@@ -629,33 +737,33 @@ a {
 }
 
 .chip--short {
-  color: var(--vermillion);
-  border-color: var(--vermillion);
-  background: var(--vermillion-sunk);
+  color: var(--up);
+  border-color: rgba(255, 92, 72, 0.4);
+  background: var(--up-sunk);
 }
 
 .chip--ok {
-  color: var(--forest);
-  border-color: var(--forest);
-  background: var(--forest-sunk);
+  color: var(--lime);
+  border-color: var(--lime-line);
+  background: var(--lime-sunk);
 }
 
 /* Confidence marks on a receipt reading. Colour is never the only signal —
    each carries its word as well. */
 .chip--low {
-  color: var(--vermillion);
-  border-color: var(--vermillion);
+  color: var(--up);
+  border-color: rgba(255, 92, 72, 0.4);
 }
 .chip--medium {
   color: var(--ink-muted);
 }
 .chip--high {
-  color: var(--forest);
-  border-color: var(--forest);
+  color: var(--lime);
+  border-color: var(--lime-line);
 }
 
 /* -----------------------------------------------------------------------------
-   10  CHARTS — drawn as ruled bars, not as decoration
+   10  CHARTS
    -------------------------------------------------------------------------- */
 
 .bar-row {
@@ -663,53 +771,350 @@ a {
   grid-template-columns: minmax(6rem, 9rem) 1fr auto;
   align-items: center;
   gap: var(--s-3);
-  padding-block: var(--s-2);
+  padding: var(--s-2) var(--s-2);
+  border-radius: var(--radius-sm);
 }
 
 .bar-track {
-  height: 10px;
-  background: var(--paper-sunk);
-  border: 1px solid var(--rule);
-  border-radius: 1px;
+  height: 8px;
+  background: var(--surface-3);
+  border-radius: var(--radius-pill);
   overflow: hidden;
 }
 
-/* `display: block` is load-bearing. This is a span inside a non-flex track, so
-   without it the element stays inline, and an inline box ignores both height and
-   a percentage width — every bar would render at the same length regardless of
-   its value, which is a chart that lies. */
 .bar-fill {
+  /* `display: block` is load-bearing. This is a span inside a non-flex track, so
+     without it the element stays inline, and an inline box ignores both height
+     and a percentage width — every bar would render at the same length
+     regardless of its value, which is a chart that lies. */
   display: block;
   height: 100%;
-  min-width: 2px;
+  min-width: 3px;
+  border-radius: var(--radius-pill);
   transition: width var(--base) var(--ease);
 }
 
 .runway {
-  height: 34px;
+  height: 36px;
   display: flex;
-  border: 1px solid var(--rule-firm);
-  border-radius: var(--radius);
+  border-radius: var(--radius-pill);
   overflow: hidden;
-  background: var(--paper-sunk);
-}
-
-.runway-seg {
-  transition: width var(--base) var(--ease);
+  background: var(--surface-3);
+  border: 1px solid var(--line);
 }
 
 .runway-legend {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--s-4);
+  gap: var(--s-2);
   margin-top: var(--s-3);
 }
 
 .swatch {
   width: 10px;
   height: 10px;
-  border-radius: 1px;
+  border-radius: 3px;
   flex: none;
+}
+
+/* --- interaction ---------------------------------------------------------
+   Every datum is a real button, so the same detail reaches a pointer and a
+   keyboard. Emphasis works by dimming the rest rather than brightening one: the
+   point of these charts is the relative lengths, and those must stay comparable
+   while a single value is being read. */
+
+.datum {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    opacity var(--fast) var(--ease),
+    background var(--fast) var(--ease);
+}
+
+.chart-group.is-focused .datum:not(.is-active) {
+  opacity: 0.38;
+}
+
+.bar-row.datum {
+  width: 100%;
+}
+
+.bar-row.datum:hover,
+.bar-row.datum.is-active {
+  background: var(--surface-2);
+}
+
+.bar-label,
+.bar-value {
+  margin: 0;
+}
+
+.bar-share {
+  font-size: var(--t-xs);
+  margin-left: var(--s-2);
+}
+
+.datum-detail {
+  grid-column: 2 / -1;
+  font-size: var(--t-xs);
+  color: var(--ink-faint);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height var(--fast) var(--ease),
+    opacity var(--fast) var(--ease);
+}
+
+.bar-row.datum:hover .datum-detail,
+.bar-row.datum.is-active .datum-detail {
+  max-height: 2rem;
+  opacity: 1;
+}
+
+.runway-seg.datum {
+  height: 100%;
+  border-radius: 0;
+  transition: filter var(--fast) var(--ease);
+}
+
+.runway-seg.datum:hover,
+.runway-seg.datum.is-active {
+  filter: brightness(1.25);
+}
+
+.runway-seg.datum:focus-visible {
+  outline-offset: -3px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-1) var(--s-3);
+  border-radius: var(--radius-pill);
+  min-height: 34px;
+  border: 1px solid transparent;
+}
+
+.legend-item:hover,
+.legend-item.is-active {
+  background: var(--surface-2);
+  border-color: var(--line-firm);
+}
+
+.chart-readout {
+  margin-top: var(--s-3);
+  font-size: var(--t-xs);
+  color: var(--ink-muted);
+  min-height: 1.4em;
+}
+
+/* --- DPS curve and area charts ------------------------------------------- */
+
+.dps-figure {
+  margin: 0;
+  position: relative;
+}
+
+.dps-svg {
+  width: 100%;
+  height: 130px;
+  display: block;
+}
+
+.dps-hits {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 130px;
+  display: flex;
+}
+
+.dps-hit {
+  flex: 1;
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.dps-hit:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: -2px;
+}
+
+/* --- diverging bars ------------------------------------------------------ */
+
+.diverge-row {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 8rem) 1fr minmax(6rem, auto);
+  align-items: center;
+  gap: var(--s-3);
+  width: 100%;
+  padding: var(--s-2);
+  border-radius: var(--radius-sm);
+}
+
+.diverge-row:hover,
+.diverge-row.is-active {
+  background: var(--surface-2);
+}
+
+.diverge-track {
+  position: relative;
+  height: 14px;
+  background: var(--surface-3);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+/* The centre line is zero. Everything is read relative to it. */
+.diverge-axis {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line-firm);
+}
+
+.diverge-fill {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  border-radius: 2px;
+  transition: width var(--base) var(--ease);
+}
+
+.diverge-label,
+.diverge-value {
+  margin: 0;
+  font-size: var(--t-sm);
+}
+
+.diverge-value {
+  text-align: right;
+}
+
+/* --- dial ---------------------------------------------------------------- */
+
+.dial-pct {
+  font-size: var(--t-xl);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* --- columns ------------------------------------------------------------- */
+
+.columns {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--s-2);
+  height: 168px;
+}
+
+.column {
+  flex: 1;
+  min-width: 44px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  gap: var(--s-2);
+  border-radius: var(--radius-sm);
+  padding-bottom: var(--s-1);
+}
+
+/* Coloured at rest, not only on hover: a chart that is grey until you touch it
+   reads as disabled. */
+.column-fill {
+  display: block;
+  background: linear-gradient(180deg, var(--lime-dim), rgba(143, 212, 31, 0.28));
+  border-radius: var(--radius-sm) var(--radius-sm) 2px 2px;
+  min-height: 6px;
+  transition:
+    height var(--base) var(--ease),
+    background var(--fast) var(--ease),
+    box-shadow var(--fast) var(--ease);
+}
+
+/* The most recent month is the one being edited, so it gets the full accent. */
+.column.is-current .column-fill {
+  background: linear-gradient(180deg, var(--lime), rgba(184, 255, 46, 0.35));
+}
+
+.column:hover .column-fill,
+.column.is-active .column-fill {
+  background: linear-gradient(180deg, var(--lime), rgba(184, 255, 46, 0.5));
+  box-shadow: 0 0 18px -4px rgba(184, 255, 46, 0.55);
+}
+
+.column-value {
+  font-size: var(--t-xs);
+  color: var(--ink);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.column-tick {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  color: var(--ink-faint);
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.column.is-current .column-tick {
+  color: var(--lime);
+}
+
+.salary-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-3);
+  margin-top: var(--s-4);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line);
+}
+
+.salary-stat {
+  font-size: var(--t-lg);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-top: 2px;
+}
+
+/* --- donut --------------------------------------------------------------- */
+
+.donut-wrap {
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.donut-centre {
+  position: absolute;
+  text-align: center;
+  pointer-events: none;
+}
+
+.donut-seg {
+  cursor: pointer;
+  transition:
+    opacity var(--fast) var(--ease),
+    stroke-width var(--fast) var(--ease);
+}
+
+.donut-seg:focus-visible {
+  outline: none;
 }
 
 /* -----------------------------------------------------------------------------
@@ -717,8 +1122,10 @@ a {
    -------------------------------------------------------------------------- */
 
 .masthead {
-  border-bottom: 1px solid var(--rule);
-  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  background: rgba(7, 9, 12, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   position: sticky;
   top: 0;
   z-index: 20;
@@ -729,31 +1136,37 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: var(--s-4);
-  min-height: 60px;
+  min-height: 64px;
 }
 
 .wordmark {
-  font-family: var(--font-serif), ui-serif, Georgia, serif;
+  font-weight: 700;
   font-size: var(--t-lg);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   text-decoration: none;
+  color: var(--ink);
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   gap: var(--s-2);
 }
 
 .wordmark::before {
   content: "";
-  width: 9px;
-  height: 9px;
-  background: var(--vermillion);
-  border-radius: 1px;
-  transform: translateY(-1px);
+  width: 10px;
+  height: 10px;
+  background: var(--lime);
+  border-radius: 3px;
+  box-shadow: 0 0 12px rgba(184, 255, 46, 0.45);
 }
 
+/* A pill-group nav, which is the shape the team already had and liked. */
 .nav {
   display: flex;
   gap: var(--s-1);
+  padding: var(--s-1);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -765,25 +1178,605 @@ a {
 .nav a {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
-  padding: 0 var(--s-3);
+  min-height: 36px;
+  padding: 0 var(--s-4);
+  border-radius: var(--radius-pill);
   font-size: var(--t-sm);
+  font-weight: 500;
   color: var(--ink-muted);
   text-decoration: none;
-  border-bottom: 2px solid transparent;
   white-space: nowrap;
   transition:
     color var(--fast) var(--ease),
-    border-color var(--fast) var(--ease);
+    background var(--fast) var(--ease);
 }
 
 .nav a:hover {
   color: var(--ink);
+  background: var(--surface-2);
 }
 
 .nav a[aria-current="page"] {
+  color: #07090c;
+  background: var(--lime);
+  font-weight: 600;
+}
+
+/* --- mobile drawer -------------------------------------------------------- */
+
+.drawer-toggle {
+  display: none;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 44px;
+  padding: 0 var(--s-3);
+  background: var(--surface-2);
+  border: 1px solid var(--line-firm);
+  border-radius: var(--radius-pill);
   color: var(--ink);
-  border-bottom-color: var(--vermillion);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.burger {
+  display: grid;
+  gap: 3px;
+  width: 16px;
+}
+
+.burger span {
+  display: block;
+  height: 2px;
+  background: var(--lime);
+  border-radius: 1px;
+  transition: transform var(--fast) var(--ease), opacity var(--fast) var(--ease);
+}
+
+.burger.is-open span:nth-child(1) {
+  transform: translateY(5px) rotate(45deg);
+}
+.burger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.burger.is-open span:nth-child(3) {
+  transform: translateY(-5px) rotate(-45deg);
+}
+
+.drawer-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 9, 12, 0.72);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--base) var(--ease);
+  z-index: 30;
+}
+
+.drawer-scrim.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(78vw, 20rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  padding: var(--s-5) var(--s-4);
+  background: var(--grad-surface), var(--surface);
+  border-left: 1px solid var(--line-firm);
+  transform: translateX(100%);
+  transition: transform var(--base) var(--ease);
+  z-index: 31;
+  overflow-y: auto;
+}
+
+.drawer.is-open {
+  transform: none;
+}
+
+.drawer-heading {
+  margin-bottom: var(--s-3);
+}
+
+.drawer-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  min-height: 52px;
+  padding: 0 var(--s-4);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: var(--t-base);
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease);
+}
+
+.drawer-link:hover {
+  background: var(--surface-2);
+}
+
+.drawer-link[aria-current="page"] {
+  background: var(--lime-sunk);
+  border-color: var(--lime-line);
+  color: var(--lime);
+}
+
+.drawer-chevron {
+  color: var(--ink-faint);
+}
+
+.drawer-link[aria-current="page"] .drawer-chevron {
+  color: var(--lime);
+}
+
+@media (max-width: 860px) {
+  .nav--wide {
+    display: none;
+  }
+
+  .drawer-toggle {
+    display: inline-flex;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   11b  ACCOUNT BAR
+   -------------------------------------------------------------------------- */
+
+.account-bar {
+  background: var(--grad-surface), var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.account-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  min-height: 56px;
+  padding-block: var(--s-2);
+  flex-wrap: wrap;
+}
+
+.account-identity {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin: 0;
+  min-width: 0;
+  font-size: var(--t-sm);
+}
+
+/* Initials rather than a photo: no upload, no external request, and it reads at
+   a glance whose ledger is on screen. */
+.account-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex: none;
+  background: var(--grad-accent);
+  color: #07090c;
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.account-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.account-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 8px rgba(184, 255, 46, 0.6);
+  flex: none;
+}
+
+.account-email {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--t-sm);
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.account-tag {
+  flex: none;
+}
+
+.account-actions {
+  gap: var(--s-2);
+  flex: none;
+}
+
+@media (max-width: 760px) {
+  /* The tag is the first thing to go — the identity is what has to survive. */
+  .account-tag {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .account-label {
+    display: none;
+  }
+
+  .account-bar-inner {
+    row-gap: var(--s-2);
+  }
+
+  .account-email {
+    font-size: var(--t-xs);
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   11c  FOOTER
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  margin-top: var(--s-8);
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  padding-block: var(--s-7) var(--s-5);
+}
+
+.footer-grid {
+  display: grid;
+  gap: var(--s-6);
+}
+
+@media (min-width: 800px) {
+  .footer-grid {
+    grid-template-columns: minmax(0, 1.7fr) repeat(2, minmax(0, 1fr));
+    gap: var(--s-7);
+  }
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.footer-tagline {
+  max-width: 42ch;
+}
+
+.footer-verified {
+  display: flex;
+  gap: var(--s-2);
+  align-items: flex-start;
+  font-size: var(--t-xs);
+  color: var(--ink-muted);
+  max-width: 46ch;
+  padding: var(--s-3);
+  background: var(--lime-sunk);
+  border: 1px solid var(--lime-line);
+  border-radius: var(--radius-sm);
+}
+
+.footer-tick {
+  color: var(--lime);
+  font-weight: 700;
+  flex: none;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  font-size: var(--t-sm);
+}
+
+.footer-col a {
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition: color var(--fast) var(--ease);
+  width: fit-content;
+}
+
+.footer-col a:hover {
+  color: var(--lime);
+}
+
+.footer-base {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  margin-top: var(--s-6);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line);
+}
+
+.footer-muted {
+  color: var(--ink-faint);
+}
+
+/* A section separator with a little more presence than a plain rule, for the
+   marketing page where sections are long and need a beat between them. */
+.sep {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--line-firm) 20%, var(--line-firm) 80%, transparent);
+  margin-block: var(--s-6);
+}
+
+.sep--marked {
+  position: relative;
+  overflow: visible;
+}
+
+.sep--marked::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--lime);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* -----------------------------------------------------------------------------
+   11d  INSIGHTS
+   -------------------------------------------------------------------------- */
+
+.insight-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--s-4);
+}
+
+.insight {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--s-4);
+  padding: var(--s-5);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--grad-surface), var(--surface);
+  transition:
+    border-color var(--fast) var(--ease),
+    transform var(--fast) var(--ease);
+}
+
+.insight:hover {
+  border-color: var(--line-firm);
+}
+
+/* Severity shows as a left edge as well as a labelled chip, so the ranking
+   survives both a monochrome print and a screen reader. */
+.insight--critical {
+  border-left: 3px solid var(--up);
+}
+.insight--warning {
+  border-left: 3px solid #fbbf24;
+}
+.insight--info {
+  border-left: 3px solid var(--lime);
+}
+
+.insight-index {
+  font-size: var(--t-lg);
+  color: var(--ink-faint);
+  line-height: 1.2;
+}
+
+.insight-text {
+  font-size: var(--t-lg);
+  line-height: 1.55;
+  max-width: 64ch;
+  margin: 0;
+}
+
+.insight-evidence {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--line);
+}
+
+/* The stated method, set as code so it reads as a definition rather than prose. */
+.formula {
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+
+.formula code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--t-xs);
+  color: var(--ink-muted);
+}
+
+@media (max-width: 640px) {
+  .insight {
+    grid-template-columns: 1fr;
+    gap: var(--s-3);
+    padding: var(--s-4);
+  }
+
+  .insight-text {
+    font-size: var(--t-base);
+  }
+}
+
+/* --- status tiles --------------------------------------------------------- */
+
+.status-tile {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-4);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+
+/* A dot is never the only signal — the value beside it is always spelled out. */
+.status-dot.is-ok {
+  background: var(--lime);
+  box-shadow: 0 0 8px rgba(184, 255, 46, 0.55);
+}
+
+.status-dot.is-off {
+  background: var(--ink-faint);
+}
+
+.status-value {
+  font-size: var(--t-sm);
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+/* -----------------------------------------------------------------------------
+   11e  LANDING
+   -------------------------------------------------------------------------- */
+
+.hero {
+  padding-block: var(--s-9) var(--s-7);
+  background: var(--grad-glow);
+}
+
+.hero-title {
+  font-size: clamp(2.25rem, 6.5vw, 4.25rem);
+  letter-spacing: -0.04em;
+}
+
+.hero-figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  margin: 0;
+}
+
+.hero-amount {
+  margin-block: var(--s-1);
+}
+
+.hero-caption {
+  margin: 0;
+}
+
+.hero-rows {
+  display: grid;
+  gap: var(--s-2);
+  margin: 0;
+}
+
+.hero-source {
+  color: var(--ink-faint);
+  margin-top: var(--s-1);
+}
+
+.feature-grid {
+  margin-top: var(--s-5);
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* A hairline of accent along the top edge, revealed on hover. Cheap, and it
+   makes a grid of four cards feel responsive rather than inert. */
+.feature::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: var(--grad-accent);
+  opacity: 0;
+  transition: opacity var(--base) var(--ease);
+}
+
+.feature:hover::before {
+  opacity: 0.85;
+}
+
+.feature:hover {
+  border-color: var(--line-firm);
+}
+
+.feature-index {
+  font-size: var(--t-xs);
+  color: var(--lime);
+  letter-spacing: 0.12em;
+}
+
+.feature-title {
+  font-size: var(--t-lg);
+  letter-spacing: -0.02em;
+}
+
+.arithmetic-lede {
+  font-size: var(--t-lg);
+  line-height: 1.6;
+  color: var(--ink-muted);
+  max-width: 56ch;
+}
+
+.stat-tile {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-4);
+}
+
+.stat-figure {
+  font-size: var(--t-2xl);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--lime);
+  font-variant-numeric: tabular-nums;
+  min-width: 2ch;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-block: var(--s-7) var(--s-6);
+  }
 }
 
 /* -----------------------------------------------------------------------------
@@ -791,78 +1784,69 @@ a {
    -------------------------------------------------------------------------- */
 
 .empty {
-  border: 1px dashed var(--rule-firm);
+  border: 1px dashed var(--line-firm);
   border-radius: var(--radius);
   padding: var(--s-6);
   text-align: center;
   color: var(--ink-muted);
+  background: var(--surface);
 }
 
 .alert {
-  border: 1px solid var(--rule-firm);
-  border-left: 3px solid var(--ink);
-  border-radius: var(--radius);
+  border: 1px solid var(--line-firm);
+  border-left: 3px solid var(--ink-muted);
+  border-radius: var(--radius-sm);
   padding: var(--s-3) var(--s-4);
   font-size: var(--t-sm);
-  background: var(--paper-sunk);
+  background: var(--surface-2);
 }
 
 .alert--error {
-  border-left-color: var(--vermillion);
-  color: var(--vermillion);
-  background: var(--vermillion-sunk);
+  border-left-color: var(--up);
+  color: #ffb4a8;
+  background: var(--up-sunk);
+  border-color: rgba(255, 92, 72, 0.3);
 }
 
 .alert--ok {
-  border-left-color: var(--forest);
-  background: var(--forest-sunk);
+  border-left-color: var(--lime);
+  background: var(--lime-sunk);
+  border-color: var(--lime-line);
 }
 
 .skeleton {
-  background: var(--paper-sunk);
-  border-radius: var(--radius);
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface-3) 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  border-radius: var(--radius-sm);
   height: 1em;
-  animation: pulse 1.4s var(--ease) infinite;
+  animation: shimmer 1.5s linear infinite;
 }
 
-@keyframes pulse {
-  50% {
-    opacity: 0.45;
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
   }
 }
 
 /* -----------------------------------------------------------------------------
    13  MOTION
-   One staggered entrance, capped at six rows so a long ledger does not shimmer.
    -------------------------------------------------------------------------- */
 
 .rise {
   animation: rise var(--base) var(--ease) both;
 }
 
-.rise:nth-child(1) {
-  animation-delay: 0ms;
-}
-.rise:nth-child(2) {
-  animation-delay: 40ms;
-}
-.rise:nth-child(3) {
-  animation-delay: 80ms;
-}
-.rise:nth-child(4) {
-  animation-delay: 120ms;
-}
-.rise:nth-child(5) {
-  animation-delay: 160ms;
-}
-.rise:nth-child(n + 6) {
-  animation-delay: 200ms;
-}
+.rise:nth-child(1) { animation-delay: 0ms; }
+.rise:nth-child(2) { animation-delay: 45ms; }
+.rise:nth-child(3) { animation-delay: 90ms; }
+.rise:nth-child(4) { animation-delay: 135ms; }
+.rise:nth-child(5) { animation-delay: 180ms; }
+.rise:nth-child(n + 6) { animation-delay: 220ms; }
 
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -882,15 +1866,7 @@ a {
 }
 
 /* -----------------------------------------------------------------------------
-   14  UTILITIES
-   -------------------------------------------------------------------------- */
-
-/* -----------------------------------------------------------------------------
-   15  SMALL SCREENS
-   The layout is single-column by default and gains columns at breakpoints, so
-   this section only has to relieve pressure rather than rebuild anything: tighten
-   the generous desktop spacing, let the masthead wrap onto two rows, and stop the
-   three-column bar rows from crushing the label at 390px.
+   14  SMALL SCREENS
    -------------------------------------------------------------------------- */
 
 @media (max-width: 640px) {
@@ -899,29 +1875,25 @@ a {
   }
 
   .section {
-    padding-block: var(--s-6);
+    padding-block: var(--s-5);
   }
 
   .panel {
     padding: var(--s-4);
   }
 
-  /* Wordmark on the first row, the nav scrolling underneath it. */
   .masthead-inner {
     flex-wrap: wrap;
-    padding-block: var(--s-2);
-    row-gap: var(--s-2);
+    padding-block: var(--s-3);
+    row-gap: var(--s-3);
+    min-height: 0;
   }
 
   .masthead-inner .nav {
     order: 3;
     width: 100%;
-    margin-inline: calc(var(--s-4) * -1);
-    padding-inline: var(--s-4);
-    border-top: 1px solid var(--rule);
   }
 
-  /* The label needs a full line of its own before the bar and the figure. */
   .bar-row {
     grid-template-columns: 1fr auto;
     gap: var(--s-2) var(--s-3);
@@ -931,13 +1903,9 @@ a {
     grid-column: 1 / -1;
   }
 
-  .runway-legend {
-    gap: var(--s-3);
-  }
-
-  /* A hero figure at 64px overflows a 390px viewport once it passes six digits. */
+  /* A hero figure at 64px overflows a 390px viewport past six digits. */
   .money--display {
-    font-size: clamp(2rem, 11vw, 2.75rem);
+    font-size: clamp(2rem, 12vw, 2.75rem);
   }
 
   .ledger th,
@@ -945,7 +1913,6 @@ a {
     padding: var(--s-2);
   }
 
-  /* Stacked buttons are easier to hit than two half-width ones. */
   .empty .row .btn {
     flex: 1 1 100%;
   }
@@ -958,6 +1925,10 @@ body {
   overflow-x: hidden;
   max-width: 100%;
 }
+
+/* -----------------------------------------------------------------------------
+   15  UTILITIES
+   -------------------------------------------------------------------------- */
 
 .sr-only {
   position: absolute;
@@ -981,9 +1952,9 @@ body {
   left: var(--s-4);
   top: var(--s-4);
   padding: var(--s-2) var(--s-4);
-  background: var(--ink);
-  color: var(--paper);
-  border-radius: var(--radius);
+  background: var(--lime);
+  color: #07090c;
+  border-radius: var(--radius-sm);
 }
 
 .muted {
@@ -1004,6 +1975,6 @@ body {
 }
 .divider {
   height: 1px;
-  background: var(--rule);
+  background: var(--line);
   border: 0;
 }
